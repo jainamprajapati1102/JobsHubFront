@@ -33,7 +33,7 @@ function Recruiterfooter() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/getrecruiterreview', config)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/getrecruiterreview', config)
     const result = await response.json()
     if (result.status == 1) {
       setRev(result.review);
@@ -63,7 +63,7 @@ function Recruiterfooter() {
       body: JSON.stringify(r)
     }
 
-    const response = await fetch('http://localhost:5000/recruiterreview', config)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/recruiterreview', config)
     const result = await response.json()
 
     if (result.status === 201) {

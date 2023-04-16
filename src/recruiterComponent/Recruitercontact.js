@@ -34,7 +34,7 @@ function Recruitercontact() {
   const navigate = useNavigate();
   const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
   const fetchCompanyData = async () => {
-    const response = await fetch('http://localhost:5000/getrecruiter', {
+    const response = await fetch('https://jobshubback-bry5.onrender.com/getrecruiter', {
       method: 'GET',
       headers: {
         Accept: "application/json", "Content-Type": "application/json", credentials: "includes",
@@ -42,7 +42,7 @@ function Recruitercontact() {
       }
     });
 
-    // const response = await fetch('http://localhost:5000/getOwndata', requestOptions);
+    // const response = await fetch('https://jobshubback-bry5.onrender.com/getOwndata', requestOptions);
     const data = await response.json();
     console.log(`cmp data :- ${data}`)
     setInputdata(data);
@@ -59,7 +59,7 @@ function Recruitercontact() {
         'Authorization': `Bearer ${accesstoken}`
       }
     };
-    const response = await fetch("http://localhost:5000/reccontact", confiOption);
+    const response = await fetch("https://jobshubback-bry5.onrender.com/reccontact", confiOption);
     const result = await response.json();
 
     if (result.status === 201) {

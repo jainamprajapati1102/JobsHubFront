@@ -27,7 +27,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("http://localhost:5000/order", requestOptions)
+// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         razerpayopenHandle(result.data)
@@ -58,7 +58,7 @@
 // //                     },
 // //                     body: JSON.stringify(response),
 // //                 };
-// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
+// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
 // //                 const result = await res.json();
 // //                 if (result.status === 200) {
 // //                     toast.success("payment success");
@@ -195,7 +195,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("http://localhost:5000/order", requestOptions)
+// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         console.log(result.data)
@@ -227,7 +227,7 @@
 // //                     },
 // //                     body: JSON.stringify(response),
 // //                 };
-// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
+// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
 // //                 const result = await res.json();
 // //                 if (result.status === 200) {
 // //                     toast.success("payment success");
@@ -379,7 +379,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("http://localhost:5000/order", requestOptions)
+// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         razerpayopenHandle(result.data)
@@ -413,7 +413,7 @@
 // //                     body: JSON.stringify(response),
 // //                 };
 
-// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
+// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
 // //                 const result = await res.json();
 
 // //                 if (result.status === 200) {
@@ -483,7 +483,7 @@
 //             headers: { "Content-Type": "application/json" },
 //             body: JSON.stringify(_data),
 //         };
-//         const response = await fetch("http://localhost:5000/order", requestOptions)
+//         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
 //         const result = await response.json();
 //         console.log("---->", result.data)
 //         razerpayopenHandle(result.data, packagename)
@@ -517,7 +517,7 @@
 //                     },
 //                     body: JSON.stringify({ ...response, packagename }),
 //                 };
-//                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
+//                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
 //                 const result = await res.json();
 //                 if (result.status === 200) {
 //                     toast.success("payment success");
@@ -680,7 +680,7 @@
 //             headers: { "Content-Type": "application/json" },
 //             body: JSON.stringify(amount),
 //         };
-//         const response = await fetch("http://localhost:5000/order", requestOptions)
+//         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
 //         const result = await response.json();
 //         console.log(result.data.amount)
 //         razerpayopenHandle(result.data)
@@ -714,7 +714,7 @@
 //                     body: JSON.stringify(response),
 //                 };
 
-//                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
+//                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
 //                 const result = await res.json();
 
 //                 if (result.status === 200) {
@@ -793,7 +793,7 @@ function Payment() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(_data),
         };
-        const response = await fetch("http://localhost:5000/order", requestOptions)
+        const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
         const result = await response.json();
         console.log("---->", result.data)
         razerpayopenHandle(result.data, packagename, amount)
@@ -828,7 +828,7 @@ function Payment() {
                     },
                     body: JSON.stringify({ ...response, packagename }),
                 };
-                const res = await fetch('http://localhost:5000/verify', requestOptions1)
+                const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
                 const result = await res.json();
                 if (result.status === 200) {
                     toast.success("payment success");

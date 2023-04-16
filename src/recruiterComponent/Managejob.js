@@ -40,7 +40,7 @@ function ManageJob() {
 
   //  ********** get own jobpost data  ************** //
   const getOwnJobpostData = async () => {
-    const response = await fetch('http://localhost:5000/getownjobpost', requestoption)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/getownjobpost', requestoption)
     const result = await response.json();
     console.log(result);
     setJobData(result)
@@ -63,7 +63,7 @@ function ManageJob() {
     // const conf = window.confirm('Do you want to Delete this job')
 
 
-    const response = await fetch(`http://localhost:5000/restorejobpost/${jobtrash.recid}`, {
+    const response = await fetch(`https://jobshubback-bry5.onrender.com/restorejobpost/${jobtrash.recid}`, {
       method: 'put'
 
     });

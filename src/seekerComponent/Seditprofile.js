@@ -34,7 +34,7 @@
 //     try {
 //       const token = JSON.stringify(localStorage.getItem('seekerToken'));
 //       console.log("token===>", token)
-//       const res = await fetch('http://localhost:5000/getseeker', {
+//       const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
 //         method: "GET",
 //         headers: {
 //           Accept: "application/json",
@@ -104,7 +104,7 @@
 
 //     }
 
-//     const response = await fetch("http://localhost:5000/updateprofile", configOption)
+//     const response = await fetch("https://jobshubback-bry5.onrender.com/updateprofile", configOption)
 //     const result = await response.json();
 //     console.log(result.status)
 //     if (result.status === 201) {
@@ -142,7 +142,7 @@
 //     }
 
 //     console.log(`IMAGE====>>>${formdata}`)
-//     const response = await fetch('http://localhost:5000/updateimage', configOption)
+//     const response = await fetch('https://jobshubback-bry5.onrender.com/updateimage', configOption)
 //     const result = await response.json();
 //     console.log(`photo: -${result}`)
 //     if (result.status === 201) {
@@ -196,7 +196,7 @@
 //                   <div className="user_dashboard_pic">
 //                     {" "}
 //                     {/*<label for="file" style={mystyle} onClick={profile}> <img alt="user photo" src=" ||assets/img/user-profile.png" />{" "}</label>*/}
-//                     <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
+//                     <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `https://jobshubback-bry5.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
 //                     <input type="file" id="file" name="js_profile" style={{ display: 'none' }} onChange={profilepic} />
 //                     {/*<img alt="user photo" src="assets/img/user-profile.png" />*/}{" "}
 //                     {/*<span className="user-photo-action">{seekerData.js_name}</span>{" "}*/}
@@ -516,7 +516,7 @@ function Seditprofile() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -586,7 +586,7 @@ function Seditprofile() {
 
     }
 
-    const response = await fetch("http://localhost:5000/updateprofile", configOption)
+    const response = await fetch("https://jobshubback-bry5.onrender.com/updateprofile", configOption)
     const result = await response.json();
     console.log(result.status)
     if (result.status === 201) {
@@ -624,7 +624,7 @@ function Seditprofile() {
 
     console.log('Test Data ==>', configOption);
     console.log('form data ===>', formdata);
-    const response = await fetch('http://localhost:5000/updateimage', configOption)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/updateimage', configOption)
     const result = await response.json();
     console.log(`photo: -${result}`)
     if (result.status === 201) {
@@ -661,7 +661,7 @@ function Seditprofile() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/checkprofile', configOption);
+    const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
     const result = await response.json();
     console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
@@ -690,7 +690,7 @@ function Seditprofile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/changepass', configOPtion)
+      const response = await fetch('https://jobshubback-bry5.onrender.com/changepass', configOPtion)
       const result = await response.json()
       console.log(`---->${result.status}`)
       if (result.status === 201) {
@@ -830,7 +830,7 @@ function Seditprofile() {
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
                       {" "}
-                      <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `https://jobshubback-bry5.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
                       <input type="file" id="file" name="js_profile" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
 
 

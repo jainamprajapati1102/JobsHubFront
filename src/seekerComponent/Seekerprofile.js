@@ -24,7 +24,7 @@
 //     try {
 //       const token = JSON.stringify(localStorage.getItem('seekerToken'));
 //       console.log("token===>", token)
-//       const res = await fetch('http://localhost:5000/getseeker', {
+//       const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
 //         method: "GET",
 //         headers: {
 //           Accept: "application/json",
@@ -80,7 +80,7 @@
 //       }
 //     };
 
-//     const response = await fetch(`http://localhost:5000/updateprofile`, confiOption);
+//     const response = await fetch(`https://jobshubback-bry5.onrender.com/updateprofile`, confiOption);
 //     const result = await response.json();
 
 //     if (result.status === 200) {
@@ -152,7 +152,7 @@
 //                   <div className="user_dashboard_pic">
 //                     {" "}
 //                     {
-//                       <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
+//                       <img src={seekerData.js_profile ? `https://jobshubback-bry5.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
 //                     }
 
 //                     <span className="user-photo-action">{seekerData.js_name}</span>{" "}
@@ -338,7 +338,7 @@ function Seekerprofile() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -394,7 +394,7 @@ function Seekerprofile() {
       }
     };
 
-    const response = await fetch(`http://localhost:5000/updateprofile`, confiOption);
+    const response = await fetch(`https://jobshubback-bry5.onrender.com/updateprofile`, confiOption);
     const result = await response.json();
 
     if (result.status === 200) {
@@ -446,7 +446,7 @@ function Seekerprofile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/changepass', configOPtion)
+      const response = await fetch('https://jobshubback-bry5.onrender.com/changepass', configOPtion)
       const result = await response.json()
       console.log(`---->${result.status}`)
       if (result.status === 201) {
@@ -591,7 +591,7 @@ function Seekerprofile() {
                     <div className="user_dashboard_pic">
                       {" "}
                       {
-                        <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
+                        <img src={seekerData.js_profile ? `https://jobshubback-bry5.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
                       }
 
                       <span className="user-photo-action">{seekerData.js_name}</span>{" "}

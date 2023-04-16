@@ -36,7 +36,7 @@ function Recruiterjobrestor() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch("http://localhost:5000/trashgetOwnJobpost", configOption);
+        const data = await fetch("https://jobshubback-bry5.onrender.com/trashgetOwnJobpost", configOption);
         const result = await data.json();
         setRecruiterpost(result)
         console.log(result);
@@ -56,7 +56,7 @@ function Recruiterjobrestor() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch(`http://localhost:5000/deletejobPost/${del._id}`, configOption);
+        const data = await fetch(`https://jobshubback-bry5.onrender.com/deletejobPost/${del._id}`, configOption);
         const result = await data.json()
         console.log("====>", result)
         if (result.status === 201) {
@@ -78,7 +78,7 @@ function Recruiterjobrestor() {
             }
         }
 
-        const restore = await fetch(`http://localhost:5000/updaterestorejobpost/${id}`, config);
+        const restore = await fetch(`https://jobshubback-bry5.onrender.com/updaterestorejobpost/${id}`, config);
         const data = await restore.json();
         if (data.status === 201) {
             Swal.fire({

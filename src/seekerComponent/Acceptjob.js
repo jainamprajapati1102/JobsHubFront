@@ -36,7 +36,7 @@ function Acceptjob() {
             }
         }
 
-        const response = await fetch('http://localhost:5000/checkprofile', configOption);
+        const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
         const result = await response.json();
         console.log(`Profile check ${JSON.stringify(result)}`);
         if (result.status !== 0) {
@@ -59,7 +59,7 @@ function Acceptjob() {
             }
         };
 
-        const data = await fetch('http://localhost:5000/jobhistoryaccept', configOption);
+        const data = await fetch('https://jobshubback-bry5.onrender.com/jobhistoryaccept', configOption);
 
         const result = await data.json()
 

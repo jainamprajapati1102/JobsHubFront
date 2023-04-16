@@ -42,7 +42,7 @@ function SeekerSignup() {
     // const confiOption = {
     //   method: "post", body: JSON.stringify(user), headers: { "content-type": "application/json" }
     // };
-    // const response = await fetch("http://localhost:5000/signup", confiOption);
+    // const response = await fetch("https://jobshubback-bry5.onrender.com/signup", confiOption);
     // const result = await response.json();
 
     const result = await signup(user)
@@ -82,7 +82,7 @@ function SeekerSignup() {
       }
     }
 
-    const res = await fetch("http://localhost:5000/auth/google", configOption)
+    const res = await fetch("https://jobshubback-bry5.onrender.com/auth/google", configOption)
 
     const result = await res.json()
     console.log(result);
@@ -226,8 +226,8 @@ function SeekerSignup() {
                         Sign Up
                       </button>
                       {/*<p>or</p>*/}
-                      {/*<Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>Signup with Google</Link>*/}
-                      {/*<Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>
+                      {/*<Link to="https://jobshubback-bry5.onrender.com/auth/google" onClick={googlesignupHandle}>Signup with Google</Link>*/}
+                      {/*<Link to="https://jobshubback-bry5.onrender.com/auth/google" onClick={googlesignupHandle}>
                         <>
 
                           <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>

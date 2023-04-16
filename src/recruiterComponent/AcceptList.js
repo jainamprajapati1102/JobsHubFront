@@ -24,7 +24,7 @@ const AcceptList = () => {
     }
 
     const getAcceptList = async () => {
-        const response = await fetch('http://localhost:5000/acceptlist', requestoption);
+        const response = await fetch('https://jobshubback-bry5.onrender.com/acceptlist', requestoption);
         const result = await response.json();
         console.log("ACCEPTlIST--->", result)
         setuserData(result)
@@ -41,7 +41,7 @@ const AcceptList = () => {
             }
         }
 
-        const response = await fetch('http://localhost:5000/exportcsv', d1)
+        const response = await fetch('https://jobshubback-bry5.onrender.com/exportcsv', d1)
         console.log(response)
         if (response.status === 200) {
             window.open(response.url, "blank")
@@ -125,7 +125,7 @@ const AcceptList = () => {
                                                 <a href="job-detail.html">
                                                     {" "}
                                                     <img
-                                                        src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                        src={`https://jobshubback-bry5.onrender.com/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
                                                         className="avatar-lg"
                                                         alt="Avatar"
                                                     />
@@ -152,10 +152,10 @@ const AcceptList = () => {
 
 
 
-                                                {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
+                                                {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`https://jobshubback-bry5.onrender.com/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
 
                                                 {/* 
-                                            <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
+                                            <a href={`https://jobshubback-bry5.onrender.com/public/uploads/resume/${item?.resume}`} target="_blank"
                                                 rel="noreferrer">
                                                 Open First PDF
                                             </a> */}

@@ -94,7 +94,7 @@ function Editprofile() {
     }
   }
   const fetchcategory = async () => {
-    const response = await fetch('http://localhost:5000/industry', requestOptions);
+    const response = await fetch('https://jobshubback-bry5.onrender.com/industry', requestOptions);
     const categoryres = await response.json();
     const category_list = [];
     categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
@@ -162,7 +162,7 @@ function Editprofile() {
 
   // ***** fetch company data ****** 
   const fetchCompanyData = async () => {
-    const response = await fetch('http://localhost:5000/getrecruiter', {
+    const response = await fetch('https://jobshubback-bry5.onrender.com/getrecruiter', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -218,7 +218,7 @@ function Editprofile() {
       body: JSON.stringify(inputdata),
     };
 
-    const response = await fetch('http://localhost:5000/createcmp', confiOption);
+    const response = await fetch('https://jobshubback-bry5.onrender.com/createcmp', confiOption);
     const result = await response.json();
 
     if (result.status === 200) {
@@ -263,7 +263,7 @@ function Editprofile() {
 
     console.log('Test Data ==>', configOption);
     console.log('form data ===>', formdata);
-    const response = await fetch('http://localhost:5000/cmpupdatelogo', configOption)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/cmpupdatelogo', configOption)
     const result = await response.json();
     console.log(`photo: -${result}`)
     if (result.status === 201) {
@@ -296,7 +296,7 @@ function Editprofile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/recchangepass', configOPtion)
+      const response = await fetch('https://jobshubback-bry5.onrender.com/recchangepass', configOPtion)
       const result = await response.json()
       console.log(`---->${result.status}`)
       if (result.status === 201) {
@@ -436,9 +436,9 @@ function Editprofile() {
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
                       {" "}
-                      {/*<img alt="user photo" src={`http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}`} />{" "}
+                      {/*<img alt="user photo" src={`https://jobshubback-bry5.onrender.com/public/uploads1/companylogo/${inputdata.cmp_logo}`} />{" "}
                       <span className="user-photo-action">{inputdata.cmp_name}</span>{" "}*/}
-                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `https://jobshubback-bry5.onrender.com/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} />{" "}</label>
                       <input type="file" id="file" name="cmp_logo" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
                   </div>

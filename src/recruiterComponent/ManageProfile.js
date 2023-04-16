@@ -62,7 +62,7 @@ function ManageProfile() {
   });
 
   const fetchCompanyData = async () => {
-    const response = await fetch('http://localhost:5000/getrecruiter', {
+    const response = await fetch('https://jobshubback-bry5.onrender.com/getrecruiter', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -72,7 +72,7 @@ function ManageProfile() {
       }
     });
 
-    // const response = await fetch('http://localhost:5000/getOwndata', requestOptions);
+    // const response = await fetch('https://jobshubback-bry5.onrender.com/getOwndata', requestOptions);
     const data = await response.json();
     console.log(`cmp data :- ${data}`)
     setInputdata({
@@ -133,7 +133,7 @@ function ManageProfile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/recchangepass', configOPtion)
+      const response = await fetch('https://jobshubback-bry5.onrender.com/recchangepass', configOPtion)
       const result = await response.json()
       console.log(`---->${result.status}`)
       if (result.status === 201) {
@@ -157,7 +157,7 @@ function ManageProfile() {
 
   const downloadReceipt = () => {
     console.log("token from down load ===>", accesstoken)
-    axios.post('http://localhost:5000/createreceipt', {
+    axios.post('https://jobshubback-bry5.onrender.com/createreceipt', {
       headers: {
         'Authorization': `Bearer ${accesstoken}`,
       }
@@ -180,7 +180,7 @@ function ManageProfile() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/recdeleteaccount', configOPtion)
+    const response = await fetch('https://jobshubback-bry5.onrender.com/recdeleteaccount', configOPtion)
     const result = await response.json();
     if (result.status === 201) {
       navigate('/recruiterlogin')
@@ -302,7 +302,7 @@ function ManageProfile() {
                     <div id="leftcol_item">
                       <div className="user_dashboard_pic">
                         {" "}
-                        <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avatar} alt="jainam" />
+                        <img src={inputdata.cmp_logo ? `https://jobshubback-bry5.onrender.com/public/uploads1/companylogo/${inputdata.cmp_logo}` : avatar} alt="jainam" />
                         {" "}
                       </div>
                     </div>
@@ -425,7 +425,7 @@ function ManageProfile() {
                             Company Address
                           </div>
                           <div className="col-md-6 col-sm-4 col-xs-12">
-                            {inputdata.cmp_address} , {inputdata.city} - {inputdata.zipcode} , {inputdata.state} {inputdata.country}
+                            {inputdata.cmp_address}, {inputdata.city} - {inputdata.zipcode} , {inputdata.state} {inputdata.country}
                           </div>
                         </li>
                         <li>

@@ -23,7 +23,7 @@ function Seekersendmail() {
     }
     const send = async (e) => {
         e.preventDefault();
-        const res = await fetch("http://localhost:5000/mail", {
+        const res = await fetch("https://jobshubback-bry5.onrender.com/mail", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

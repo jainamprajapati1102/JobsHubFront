@@ -25,7 +25,7 @@ function Seekerforgot() {
     }
 
     const userValid = async () => {
-        const res = await fetch(`http://localhost:5000/seekerforgot/${id}/${token}`, {
+        const res = await fetch(`https://jobshubback-bry5.onrender.com/seekerforgot/${id}/${token}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -52,7 +52,7 @@ function Seekerforgot() {
             }, body: JSON.stringify(pwd)
         }
 
-        const data = await fetch(`http://localhost:5000/seekerforgot/${id}/${token}`, configOption)
+        const data = await fetch(`https://jobshubback-bry5.onrender.com/seekerforgot/${id}/${token}`, configOption)
         const result = await data.json();
         console.log(result.status)
         if (result.status === 201) {

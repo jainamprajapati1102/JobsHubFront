@@ -33,7 +33,7 @@ function Changepassword() {
             body: JSON.stringify(newpass)
         }
 
-        const response = await fetch('http://localhost:5000/changepass', configOPtion)
+        const response = await fetch('https://jobshubback-bry5.onrender.com/changepass', configOPtion)
         const result = await response.json()
         console.log(`---->${result.status}`)
         if (result.status === 201) {
