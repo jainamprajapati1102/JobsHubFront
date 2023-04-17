@@ -41,7 +41,7 @@ function SeekerLogin() {
 
   const loginUser = async (e) => {
     if (user.js_email && user.js_pwd) {
-      let result = await fetch('https://jobshubback-bry5.onrender.com/login', {
+      let result = await fetch('https://jobshubback-19af.onrender.com/login', {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" }
@@ -97,7 +97,7 @@ function SeekerLogin() {
       }
     }
 
-    const res = await fetch("https://jobshubback-bry5.onrender.com/auth/google", configOption)
+    const res = await fetch("https://jobshubback-19af.onrender.com/auth/google", configOption)
 
     const result = await res.json()
     console.log(res);
@@ -107,7 +107,7 @@ function SeekerLogin() {
     }
     // localStorage.setItem('seekerGoogle', result.googleId)
 
-    // window.open("https://jobshubback-bry5.onrender.com/auth/google/callback", "_self")
+    // window.open("https://jobshubback-19af.onrender.com/auth/google/callback", "_self")
   }
 
 
@@ -262,8 +262,8 @@ function SeekerLogin() {
                       {/*<button onClick={googlesignupHandle}>
                     Sign In With Google
                   </button>
-                  <Link to="https://jobshubback-bry5.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>*/}
-                      {/*  <Link to="https://jobshubback-bry5.onrender.com/auth/google" onClick={googlesignupHandle}>
+                  <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>*/}
+                      {/*  <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>
                         <>
 
                           <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>
@@ -331,7 +331,7 @@ export default SeekerLogin
 //   }
 
 //   const loginUser = async (e) => {
-//     let result = await fetch('https://jobshubback-bry5.onrender.com/login', {
+//     let result = await fetch('https://jobshubback-19af.onrender.com/login', {
 //       method: "POST",
 //       body: JSON.stringify(user),
 //       headers: { "Content-Type": "application/json" }
@@ -367,7 +367,7 @@ export default SeekerLogin
 //       }
 //     }
 
-//     const res = await fetch("https://jobshubback-bry5.onrender.com/auth/google", configOption)
+//     const res = await fetch("https://jobshubback-19af.onrender.com/auth/google", configOption)
 
 //     const result = await res.json()
 //     console.log(res);
@@ -377,7 +377,7 @@ export default SeekerLogin
 //     }
 //     // localStorage.setItem('seekerGoogle', result.googleId)
 
-//     // window.open("https://jobshubback-bry5.onrender.com/auth/google/callback", "_self")
+//     // window.open("https://jobshubback-19af.onrender.com/auth/google/callback", "_self")
 //   }
 
 
@@ -481,7 +481,7 @@ export default SeekerLogin
 //                   <button onClick={googlesignupHandle}>
 //                     Sign In With Google
 //                   </button>
-//                   <Link to="https://jobshubback-bry5.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>
+//                   <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>
 //                 </div>
 //               </div>
 //               <div className="clearfix" />

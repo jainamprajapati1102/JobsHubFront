@@ -27,7 +27,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+// //         const response = await fetch("http://localhost:5000/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         razerpayopenHandle(result.data)
@@ -58,7 +58,7 @@
 // //                     },
 // //                     body: JSON.stringify(response),
 // //                 };
-// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
 // //                 const result = await res.json();
 // //                 if (result.status === 200) {
 // //                     toast.success("payment success");
@@ -195,7 +195,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+// //         const response = await fetch("http://localhost:5000/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         console.log(result.data)
@@ -227,7 +227,7 @@
 // //                     },
 // //                     body: JSON.stringify(response),
 // //                 };
-// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
 // //                 const result = await res.json();
 // //                 if (result.status === 200) {
 // //                     toast.success("payment success");
@@ -379,7 +379,7 @@
 // //             headers: { "Content-Type": "application/json" },
 // //             body: JSON.stringify(amount),
 // //         };
-// //         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+// //         const response = await fetch("http://localhost:5000/order", requestOptions)
 // //         const result = await response.json();
 // //         console.log(result.data.amount)
 // //         razerpayopenHandle(result.data)
@@ -413,7 +413,7 @@
 // //                     body: JSON.stringify(response),
 // //                 };
 
-// //                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+// //                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
 // //                 const result = await res.json();
 
 // //                 if (result.status === 200) {
@@ -483,7 +483,7 @@
 //             headers: { "Content-Type": "application/json" },
 //             body: JSON.stringify(_data),
 //         };
-//         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+//         const response = await fetch("http://localhost:5000/order", requestOptions)
 //         const result = await response.json();
 //         console.log("---->", result.data)
 //         razerpayopenHandle(result.data, packagename)
@@ -517,7 +517,7 @@
 //                     },
 //                     body: JSON.stringify({ ...response, packagename }),
 //                 };
-//                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+//                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
 //                 const result = await res.json();
 //                 if (result.status === 200) {
 //                     toast.success("payment success");
@@ -680,7 +680,7 @@
 //             headers: { "Content-Type": "application/json" },
 //             body: JSON.stringify(amount),
 //         };
-//         const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+//         const response = await fetch("http://localhost:5000/order", requestOptions)
 //         const result = await response.json();
 //         console.log(result.data.amount)
 //         razerpayopenHandle(result.data)
@@ -714,7 +714,7 @@
 //                     body: JSON.stringify(response),
 //                 };
 
-//                 const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+//                 const res = await fetch('http://localhost:5000/verify', requestOptions1)
 //                 const result = await res.json();
 
 //                 if (result.status === 200) {
@@ -793,7 +793,7 @@ function Payment() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(_data),
         };
-        const response = await fetch("https://jobshubback-bry5.onrender.com/order", requestOptions)
+        const response = await fetch("http://localhost:5000/order", requestOptions)
         const result = await response.json();
         console.log("---->", result.data)
         razerpayopenHandle(result.data, packagename, amount)
@@ -828,11 +828,11 @@ function Payment() {
                     },
                     body: JSON.stringify({ ...response, packagename }),
                 };
-                const res = await fetch('https://jobshubback-bry5.onrender.com/verify', requestOptions1)
+                const res = await fetch('http://localhost:5000/verify', requestOptions1)
                 const result = await res.json();
                 if (result.status === 200) {
                     toast.success("payment success");
-                    navigate('/manageprofile')
+                    navigate('/recruiterhomeP')
                 }
                 else {
                     toast.error('payment failed please try again later')
@@ -895,7 +895,6 @@ function Payment() {
 
 
                             <ul className="pricing-table__list">
-                                <li>1 Year Validity</li>
                                 <li>4 Job Post</li>
                                 <li>Unlimited Resume Access</li>
                                 <li>24 hour support</li>
@@ -909,9 +908,9 @@ function Payment() {
                             <button className="pricing-table__button_gld" style={{ border: "none", width: "100%" }} onClick={() => paymentHandler(2000, "GOLD")}>GOLD</button>
 
                             <ul className="pricing-table__list">
-                                <li>6 Months Validity</li>
+
                                 <li>2 Job Post</li>
-                                <li>3000 Resume Access</li>
+                                <li>Unlimited Resume Access</li>
                                 <li>Only Company Working Time</li>
                             </ul>
                         </div>
@@ -923,9 +922,9 @@ function Payment() {
                             <button id='buy' className="pricing-table__button_slv" style={{ border: "none", width: "100%" }} onClick={() => paymentHandler(1000, "SILVER")}>SILVER</button>
 
                             <ul className="pricing-table__list">
-                                <li>3 Months Validity</li>
+
                                 <li>1 Job Post</li>
-                                <li>1500 Resume Access</li>
+                                <li>Unlimited Resume Access</li>
                                 <li>No Support</li>
                             </ul>
                         </div>

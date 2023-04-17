@@ -50,7 +50,7 @@ function Login() {
         body: JSON.stringify(newData1),
       };
 
-      const response = await fetch("https://jobshubback-bry5.onrender.com/reclogin", requestOptions);
+      const response = await fetch("http://localhost:5000/reclogin", requestOptions);
       const result = await response.json();
       console.log("result===>", result);
       console.log("response===>", response);

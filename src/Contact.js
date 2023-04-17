@@ -21,7 +21,7 @@ function Contact() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
+      const res = await fetch('http://localhost:5000/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -61,7 +61,7 @@ function Contact() {
     const confiOption = {
       method: "post", body: JSON.stringify(seekerData), headers: { "content-type": "application/json" }
     };
-    const response = await fetch("https://jobshubback-bry5.onrender.com/contact", confiOption);
+    const response = await fetch("http://localhost:5000/contact", confiOption);
     const result = await response.json();
     if (seekerData.js_name && seekerData.js_email && seekerData.js_sub && seekerData.js_msg) {
       if (result.status === 200) {

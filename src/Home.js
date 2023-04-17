@@ -30,7 +30,7 @@ function Home() {
         "Content-Type": "application/json",
       }
     }
-    const res = await fetch('https://jobshubback-bry5.onrender.com/homeviewindustry', configOption);
+    const res = await fetch('http://localhost:5000/homeviewindustry', configOption);
     const data = await res.json();
     setIndus(data);
   }

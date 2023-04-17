@@ -90,7 +90,7 @@ function Updatejob() {
             },
             body: JSON.stringify(jobdata),
         };
-        const response = await fetch(`https://jobshubback-bry5.onrender.com/updatejob/${id}`, requestOptions);
+        const response = await fetch(`http://localhost:5000/updatejob/${id}`, requestOptions);
         const result = await response.json();
 
         if (result.status === 200) {
@@ -106,7 +106,7 @@ function Updatejob() {
 
     /* *********** fetch jobdata *********  */
     const fetchjobData = async () => {
-        const response = await fetch(`https://jobshubback-bry5.onrender.com/getperticularjob/${id}`, requestOptions);
+        const response = await fetch(`http://localhost:5000/getperticularjob/${id}`, requestOptions);
         const result = await response.json();
         setjobdata(result.data);
 
@@ -116,7 +116,7 @@ function Updatejob() {
 
     /* *********** fetch category *********  */
     const fetchcategory = async () => {
-        const response = await fetch('https://jobshubback-bry5.onrender.com/industry', requestOptions);
+        const response = await fetch('http://localhost:5000/industry', requestOptions);
         const categoryres = await response.json();
         const category_list = [];
         categoryres.map((item) => { category_list.push({ value: item.ind_name, label: item.ind_name }) })

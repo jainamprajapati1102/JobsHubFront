@@ -12,7 +12,7 @@ function Forgotpassword() {
     }
     const send = async (e) => {
         e.preventDefault();
-        const res = await fetch("https://jobshubback-bry5.onrender.com/mail", {
+        const res = await fetch("http://localhost:5000/mail", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

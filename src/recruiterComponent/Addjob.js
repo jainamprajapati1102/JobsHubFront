@@ -91,7 +91,7 @@ function Addjob() {
       },
       body: JSON.stringify(jobdata),
     };
-    const response = await fetch('https://jobshubback-bry5.onrender.com/jobpost', requestOptions);
+    const response = await fetch('http://localhost:5000/jobpost', requestOptions);
     const result = await response.json();
     console.log('result===>', result)
     if (result.status === 200) {
@@ -108,7 +108,7 @@ function Addjob() {
 
   /* **** fetch category ****  */
   const fetchcategory = async () => {
-    const response = await fetch('https://jobshubback-bry5.onrender.com/industry', requestOptions);
+    const response = await fetch('http://localhost:5000/industry', requestOptions);
     const categoryres = await response.json();
     const category_list = [];
     categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })

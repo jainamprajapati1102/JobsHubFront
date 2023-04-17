@@ -133,7 +133,7 @@ function Seekercontact() {
       }
     }
 
-    const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
+    const response = await fetch('http://localhost:5000/checkprofile', configOption);
     const result = await response.json();
     console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
@@ -153,7 +153,7 @@ function Seekercontact() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
+      const res = await fetch('http://localhost:5000/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -197,7 +197,7 @@ function Seekercontact() {
       body: JSON.stringify(seekerData),
 
     };
-    const response = await fetch("https://jobshubback-bry5.onrender.com/seekercontact", confiOption);
+    const response = await fetch("http://localhost:5000/seekercontact", confiOption);
     const result = await response.json();
 
     if (result.status === 201) {

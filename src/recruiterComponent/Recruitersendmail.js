@@ -24,7 +24,7 @@ function Recruitersendmail() {
     }
     const send = async (e) => {
         e.preventDefault();
-        const res = await fetch("https://jobshubback-bry5.onrender.com/recmail", {
+        const res = await fetch("http://localhost:5000/recmail", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

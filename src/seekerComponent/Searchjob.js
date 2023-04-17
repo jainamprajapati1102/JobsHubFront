@@ -49,7 +49,7 @@
 //     try {
 //       // const token = localStorage.getItem('seekerToken');
 //       // console.log("token===>", token)
-//       const res = await fetch(`https://jobshubback-bry5.onrender.com/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}`, {
+//       const res = await fetch(`http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}`, {
 //         method: "GET",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -70,7 +70,7 @@
 //     try {
 //       const token = JSON.stringify(localStorage.getItem('seekerToken'));
 //       console.log("token===>", token)
-//       const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
+//       const res = await fetch('http://localhost:5000/getseeker', {
 //         method: "GET",
 //         headers: {
 //           Accept: "application/json",
@@ -166,7 +166,7 @@
 //         },
 //         body: data,
 //       };
-//       const response = await fetch(`https://jobshubback-bry5.onrender.com/applyjob`, confiOption);
+//       const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
 //       const result = await response.json();
 //       console.log("result=--->", result)
 //       if (result.status === 201) {
@@ -209,7 +209,7 @@
 //   //   }
 //   // }
 //   // const fetchcategory = async () => {
-//   //   const response = await fetch('https://jobshubback-bry5.onrender.com/industry', requestOptions);
+//   //   const response = await fetch('http://localhost:5000/industry', requestOptions);
 //   //   const categoryres = await response.json();
 //   //   const category_list = [];
 //   //   categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
@@ -633,7 +633,7 @@
 //                                 <div className="vrt-job-cmp-logo">
 //                                   {" "}
 //                                   <a href="job-detail.html">
-//                                     <img src={list?.postedby?.cmp_logo ? `https://jobshubback-bry5.onrender.com/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : avtar} className="img-responsive" />
+//                                     <img src={list?.postedby?.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : avtar} className="img-responsive" />
 
 //                                   </a>{" "}
 //                                 </div>
@@ -812,7 +812,7 @@ function Searchjob() {
       }
     }
 
-    const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
+    const response = await fetch('http://localhost:5000/checkprofile', configOption);
     const result = await response.json();
     console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
@@ -849,7 +849,7 @@ function Searchjob() {
     try {
       // const token = localStorage.getItem('seekerToken');
       // console.log("token===>", token)
-      const res = await fetch(`https://jobshubback-bry5.onrender.com/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}`, {
+      const res = await fetch(`http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -870,7 +870,7 @@ function Searchjob() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
+      const res = await fetch('http://localhost:5000/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -961,7 +961,7 @@ function Searchjob() {
         },
         body: data,
       };
-      const response = await fetch(`https://jobshubback-bry5.onrender.com/applyjob`, confiOption);
+      const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
       const result = await response.json();
       console.log("result=--->", result)
       if (result.status === 201) {
@@ -1004,7 +1004,7 @@ function Searchjob() {
   //   }
   // }
   // const fetchcategory = async () => {
-  //   const response = await fetch('https://jobshubback-bry5.onrender.com/industry', requestOptions);
+  //   const response = await fetch('http://localhost:5000/industry', requestOptions);
   //   const categoryres = await response.json();
   //   const category_list = [];
   //   categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })

@@ -36,7 +36,7 @@ function Seekerjobrestor() {
         'Authorization': `Bearer ${accesstoken}`
       }
     };
-    const data = await fetch("https://jobshubback-bry5.onrender.com/jobrestore", configOption);
+    const data = await fetch("http://localhost:5000/jobrestore", configOption);
     const result = await data.json();
     setSeeker(result)
     console.log(result);
@@ -88,7 +88,7 @@ function Seekerjobrestor() {
           'Authorization': `Bearer ${accesstoken}`
         }
       };
-      const data = await fetch(`https://jobshubback-bry5.onrender.com/seekerapplydel/${id}`, configOption);
+      const data = await fetch(`http://localhost:5000/seekerapplydel/${id}`, configOption);
       const result = await data.json()
       console.log("====>", result)
       if (result.status === 201) {
@@ -108,7 +108,7 @@ function Seekerjobrestor() {
   //           'Authorization': `Bearer ${accesstoken}`
   //         }
   //       };
-  //       const data = await fetch(`https://jobshubback-bry5.onrender.com/seekerapplydel/${id}`, configOption);
+  //       const data = await fetch(`http://localhost:5000/seekerapplydel/${id}`, configOption);
   //       const result = await data.json()
   //       console.log("====>", result)
   //       if (result.status === 201) {
@@ -125,7 +125,7 @@ function Seekerjobrestor() {
         'Authorization': `Bearer ${accesstoken}`
       }
     }
-    const restore = await fetch(`https://jobshubback-bry5.onrender.com/jobapplyrestore/${id}`, config);
+    const restore = await fetch(`http://localhost:5000/jobapplyrestore/${id}`, config);
     const result = await restore.json()
     if (result.status === 201) {
       Swal.fire({
@@ -434,7 +434,7 @@ function Seekerjobrestor() {
   //         'Authorization': `Bearer ${accesstoken}`
   //       }
   //     };
-  //     const data = await fetch("https://jobshubback-bry5.onrender.com/jobrestore", configOption);
+  //     const data = await fetch("http://localhost:5000/jobrestore", configOption);
   //     const result = await data.json();
   //     setSeeker(result)
   //     console.log(result);
@@ -451,7 +451,7 @@ function Seekerjobrestor() {
   //           'Authorization': `Bearer ${accesstoken}`
   //         }
   //       };
-  //       const data = await fetch(`https://jobshubback-bry5.onrender.com/seekerapplydel/${id}`, configOption);
+  //       const data = await fetch(`http://localhost:5000/seekerapplydel/${id}`, configOption);
   //       const result = await data.json()
   //       console.log("====>", result)
   //       if (result.status === 201) {

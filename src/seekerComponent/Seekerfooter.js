@@ -35,7 +35,7 @@ function Seekerfooter() {
       }
     }
 
-    const response = await fetch('https://jobshubback-bry5.onrender.com/getseekerreview', config)
+    const response = await fetch('http://localhost:5000/getseekerreview', config)
     const result = await response.json()
 
     setRev(result.review);
@@ -60,7 +60,7 @@ function Seekerfooter() {
       body: JSON.stringify(r)
     }
 
-    const response = await fetch('https://jobshubback-bry5.onrender.com/seekerreview', config)
+    const response = await fetch('http://localhost:5000/seekerreview', config)
     const result = await response.json()
 
     if (result.status === 201) {

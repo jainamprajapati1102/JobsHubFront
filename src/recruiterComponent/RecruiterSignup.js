@@ -61,7 +61,7 @@ const Signup1 = () => {
 
     data.append('cmp_logo', newData.cmp_logo);
     console.log(`recruiter image===>${data}`)
-    let response = await fetch('https://jobshubback-bry5.onrender.com/recsignup', {
+    let response = await fetch('http://localhost:5000/recsignup', {
       method: "POST",
       body: data
     })

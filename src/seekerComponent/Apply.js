@@ -59,7 +59,7 @@ function Apply() {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
       console.log("token===>", token)
-      const res = await fetch('https://jobshubback-bry5.onrender.com/getseeker', {
+      const res = await fetch('http://localhost:5000/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -109,7 +109,7 @@ function Apply() {
   //       body: data,
   //     };
 
-  //     const response = await fetch(`https://jobshubback-bry5.onrender.com/applyjob`, confiOption);
+  //     const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
   //     const result = await response.json();
   //     console.log("result=--->", result)
   //     if (result.status === 201) {
@@ -146,7 +146,7 @@ function Apply() {
   //     };
   //     // const id = location.state
   //     // console.log("id--->", id)
-  //     const response = await fetch(`https://jobshubback-bry5.onrender.com/applyjob`, confiOption);
+  //     const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
   //     const result = await response.json();
   //     console.log("result=--->", result)
   //     if (result.status === 201) {
@@ -181,7 +181,7 @@ function Apply() {
         body: data,
       };
 
-      const response = await fetch(`https://jobshubback-bry5.onrender.com/applyjob/${id}`, confiOption);
+      const response = await fetch(`http://localhost:5000/applyjob/${id}`, confiOption);
       const result = await response.json();
       console.log("result=--->", result)
       if (result.status === 201) {

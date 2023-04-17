@@ -39,7 +39,7 @@ function Jobhistory() {
             }
         };
 
-        const data = await fetch('https://jobshubback-bry5.onrender.com/jobhistory', configOption);
+        const data = await fetch('http://localhost:5000/jobhistory', configOption);
 
         const result = await data.json()
 
@@ -67,7 +67,7 @@ function Jobhistory() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch(`https://jobshubback-bry5.onrender.com/jobbackup/${del._id}`, configOption);
+        const data = await fetch(`http://localhost:5000/jobbackup/${del._id}`, configOption);
         const result = await data.json()
         console.log("====>", result)
         if (result.status === 201) {

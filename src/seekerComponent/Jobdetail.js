@@ -46,7 +46,7 @@ function Jobdetail() {
             }
         }
 
-        const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
+        const response = await fetch('http://localhost:5000/checkprofile', configOption);
         const result = await response.json();
         console.log(`Profile check ${JSON.stringify(result)}`);
         if (result.status !== 0) {
@@ -64,7 +64,7 @@ function Jobdetail() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         }
-        const response = await fetch(`https://jobshubback-bry5.onrender.com/jobdetail/${id}`, configOption)
+        const response = await fetch(`http://localhost:5000/jobdetail/${id}`, configOption)
         const result = await response.json()
 
         setJobdata(result.data);
@@ -198,7 +198,7 @@ function Jobdetail() {
                                                 <div className="col-md-4 text-center user_profile_img">
                                                     {" "}
                                                     <img
-                                                        src={`https://jobshubback-bry5.onrender.com/public/uploads1/companylogo/${jobdata?.postedby.cmp_logo}`}
+                                                        src={`http://localhost:5000/public/uploads1/companylogo/${jobdata?.postedby.cmp_logo}`}
                                                         className="width-100"
                                                         alt="No image"
                                                     />

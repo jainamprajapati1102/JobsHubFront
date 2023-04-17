@@ -34,7 +34,7 @@ function Seekerhome() {
       }
     }
 
-    const response = await fetch('https://jobshubback-bry5.onrender.com/checkprofile', configOption);
+    const response = await fetch('http://localhost:5000/checkprofile', configOption);
     const result = await response.json();
     console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
@@ -61,7 +61,7 @@ function Seekerhome() {
         'Authorization': `Bearer ${accesstoken}`,
       }
     }
-    const res = await fetch('https://jobshubback-bry5.onrender.com/getjobedu', configOption);
+    const res = await fetch('http://localhost:5000/getjobedu', configOption);
     const data = await res.json();
     setJohb(data);
     console.log(job);
