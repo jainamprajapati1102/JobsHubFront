@@ -62,7 +62,7 @@ import RecruterProtected from "./component/RecruiterProtected";
 import RecruterUnprotected from "./component/RecruiterUnProtected"
 import SekProtected from "./component/SekProtected"
 import SekUnProtected from "./component/SekUnProtected"
-// import Try from "./Try";
+import Try from "./Try";
 
 import Loader from "./Loader";
 function Route1() {
@@ -122,6 +122,7 @@ function Route1() {
           <Route element={<SekProtected />}>
 
             <Route path="/seekerhome" element={<Seekerhome />} />
+            <Route path="/try" element={<Try />} />
 
             <Route path="/apply" element={<Apply />} />
             <Route path="/apply/:id" element={<Apply />} />

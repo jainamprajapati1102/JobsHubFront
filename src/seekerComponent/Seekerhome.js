@@ -4,24 +4,22 @@ import SeekHeader from './SeekHeader'
 import { Link, useNavigate } from 'react-router-dom'
 import ReactWhatsapp from 'react-whatsapp';
 import Seekerfooter from './Seekerfooter'
-import Typewriter from 'typewriter-effect'
 import Loader from '../Loader'
+import Load from '../Load';
 import { toast } from 'react-toastify';
 function Seekerhome() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    check();
+    calljobs();
     // simulate an API call with a delay of 3 seconds
     setTimeout(() => {
       setData("Some data");
       setIsLoading(false);
     }, 1000);
   }, []);
-  useEffect(() => {
-    check();
-    calljobs();
-  }, [])
 
   const check = async () => {
     const configOption = {
@@ -69,6 +67,7 @@ function Seekerhome() {
   return (
     <>
       {isLoading ? <Loader /> : <div>
+        <Load />
         <SeekHeader />
         <>
           <div

@@ -38,10 +38,11 @@ function SeekerLogin() {
       [e.target.name]: e.target.value
     })
   }
-
+  const count = 0;
+  console.log(count)
   const loginUser = async (e) => {
     if (user.js_email && user.js_pwd) {
-      let result = await fetch('https://jobshubback-19af.onrender.com/login', {
+      let result = await fetch('http://localhost:5000/login', {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" }
@@ -54,31 +55,19 @@ function SeekerLogin() {
       } else {
         if (result.status == 8) {
           toast.error(result.err)
-          // Swal.fire({
-          //   title: 'Please Create Your Account First',
-          //   showClass: {
-          //     popup: 'animate__animated animate__fadeInDown'
-          //   },
-          //   hideClass: {
-          //     popup: 'animate__animated animate__fadeOutUp'
-          //   }
-          // })
           navigate('/seekersignup')
         } else {
-
-
           if (result.status === 1) {
             localStorage.setItem('seekerToken', result.tok)
-            localStorage.setItem('seekerId', result.id)
             toast.success("Seeker Enter Successfully");
             navigate('/seditprofile');
           } else if (result.status === 2) {
             localStorage.setItem('seekerToken', result.tok)
-            localStorage.setItem('seekerId', result.id)
             toast.success("Seeker Signin ");
             navigate('/seekerhome');
           } else {
             toast.error('Invalid Credentails');
+
           }
         }
       }
@@ -86,9 +75,6 @@ function SeekerLogin() {
       toast.error('All Feild Required');
     }
   }
-
-
-
   const googlesignupHandle = async () => {
     const configOption = {
       method: "GET",
@@ -109,7 +95,30 @@ function SeekerLogin() {
 
     // window.open("https://jobshubback-19af.onrender.com/auth/google/callback", "_self")
   }
-
+  const pwdcheck = () => {
+    let timerInterval
+    Swal.fire({
+      title: 'Auto close alert!',
+      html: 'I will close in <b></b> milliseconds.',
+      timer: 9000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+  }
 
   return (
     <>
@@ -250,20 +259,20 @@ function SeekerLogin() {
 
                   <div className="col-md-12">
                     <div className="form-group text-center mrg-top-15">
-                      <button
-                        type="submit"
-                        className="btn theme-btn btn-m full-width"
-
-                      >
-                        Sign In
-                      </button>
-
-                      {/* <p>or</p>*/}
+                      {count > 3 ? pwdcheck :
+                        <button
+                          type="submit"
+                          className="btn theme-btn btn-m full-width"
+                        >
+                          Sign In
+                        </button>
+                      }
+                      <p>or</p>
                       {/*<button onClick={googlesignupHandle}>
                     Sign In With Google
                   </button>
                   <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>*/}
-                      {/*  <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>
+                      <Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>
                         <>
 
                           <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>
@@ -278,7 +287,7 @@ function SeekerLogin() {
                           </div>
                         </>
 
-                      </Link>*/}
+                      </Link>
                     </div>
                     Don't Have an account ?  <Link to="/seekersignup" title="Home" className="login">
                       Sign Up

@@ -118,16 +118,19 @@ function Addjob() {
 
   /* **** gender option ****  */
   const genderOption = [
-    { value: 'male', label: 'Male' },
-    { value: 'female', label: 'Female' },
-    { value: 'Other', label: 'Other' },
+    { value: 'Male', label: 'Male' },
+    { value: 'Female', label: 'Female' },
+    { value: 'Both', label: 'Both' },
   ]
 
   /* **** salary option ****  */
   const salaryoption = [
-    { value: '5000 - 15000', label: '5000 - 15000' },
-    { value: '15001 - 30000', label: '15001 - 30000' },
-    { value: '30001 - 50000', label: '30001 - 50000' },
+    { value: '5000 - 15000', label: '5000 - 15,000' },
+    { value: '15001 - 30000', label: '15,001 - 30,000' },
+    { value: '30001 - 50000', label: '30,001 - 50,000' },
+    { value: '50001 - 70000', label: '50,001 - 70,000' },
+    { value: '70001 - 90000', label: '70,001 - 90000' },
+    { value: '90001 - 110000', label: '90,001 - 1,10,000' },
   ]
 
   /* **** experinnce option ****  */
@@ -141,9 +144,12 @@ function Addjob() {
   /* **** job option ****  */
   const jobtypeOption = [
 
-    { value: 'FullTime', label: 'FullTime' },
+    { value: 'Full Time', label: 'Full Time' },
+    { value: 'Part Time', label: 'Part Time' },
+    { value: 'Contract Base', label: 'Contract Base' },
     { value: 'WorkFromHome', label: 'WorkFromHome' },
     { value: 'Freelancer', label: 'Freelancer' },
+    { value: 'Intership', label: 'Intership' },
   ]
 
   /* **** interview option ****  */

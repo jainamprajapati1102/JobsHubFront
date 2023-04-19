@@ -8,6 +8,7 @@ function Seekerforgot() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        userValid();
         // simulate an API call with a delay of 3 seconds
         setTimeout(() => {
             setData("Some data");
@@ -41,9 +42,6 @@ function Seekerforgot() {
         }
     }
 
-    useEffect(() => {
-        userValid();
-    }, [])
     const submit = async (req, res) => {
         const configOption = {
             method: "POST",
@@ -62,7 +60,6 @@ function Seekerforgot() {
         } else {
             toast.error("Your Token Expire Create New Link")
         }
-
     }
 
     return (

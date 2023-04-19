@@ -82,7 +82,7 @@ function SeekerSignup() {
       }
     }
 
-    const res = await fetch("https://jobshubback-19af.onrender.com/auth/google", configOption)
+    const res = await fetch("http://localhost:5000/auth/google", configOption)
 
     const result = await res.json()
     console.log(result);

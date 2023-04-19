@@ -510,6 +510,7 @@ function Seekerprofile() {
                       onChange={inputhandle}
                       className="form-control"
                       placeholder="***********"
+                      autoComplete='off'
                     />
                   </div>
                 </div>
