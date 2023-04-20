@@ -17,15 +17,14 @@ function Seekerjobrestor() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    calldata()
     // simulate an API call with a delay of 3 seconds
     setTimeout(() => {
       setData("Some data");
       setIsLoading(false);
     }, 1000);
   }, []);
-  useEffect(() => {
-    calldata()
-  }, [])
+
   const [accesstoken] = useState(localStorage.getItem('seekerToken'))
   const [seeker, setSeeker] = useState([]);
   const calldata = async () => {
@@ -43,8 +42,6 @@ function Seekerjobrestor() {
   }
 
   const deleteJobHandler = async (id) => {
-
-
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -129,7 +126,7 @@ function Seekerjobrestor() {
     const result = await restore.json()
     if (result.status === 201) {
       Swal.fire({
-        position: 'top-end',
+        position: 'top-middle',
         icon: 'success',
         title: 'Your Your Job Post Restore',
         showConfirmButton: false,

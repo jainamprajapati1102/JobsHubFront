@@ -1,140 +1,285 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'react-toastify';
-import Typewriter from 'typewriter-effect'
-import Loader from '../Loader';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Typewriter from "typewriter-effect";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import OTPInput, { ResendOTP } from "otp-input-react";
+import Loader from "../Loader";
+
 function Recruiterforgot() {
-    const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        // simulate an API call with a delay of 3 seconds
-        setTimeout(() => {
-            setData("Some data");
-            setIsLoading(false);
-        }, 3000);
-    }, []);
-    const { id, token } = useParams();
-    const [pwd, setPwd] = useState();
+    const [OTP, setOTP] = useState("");//for otp input
+    const [data, setData] = useState({
+        cmp_email: "",
+        newpwd: "",
+        conpwd: "",
+    });
     const navigate = useNavigate();
-    const handleInput = (e) => {
-        setPwd({
-            ...pwd,
-            [e.target.name]: e.target.value
-        })
+    const [step, setstep] = useState(0);//step form
+    const [email, setEmail] = useState("");
+    const [msg, setMsg] = useState('');
+    const handleChange = async (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+    };
+    const handle = (e) => {
+        setEmail({ ...email, [e.target.name]: e.target.value })
     }
-
-    const userValid = async () => {
-        const res = await fetch(`http://localhost:5000/recruiterforgot/${id}/${token}`, {
-            method: "GET",
+    const OtpRequestFunction = async (e) => {
+        //     //  form Validation
+        e.preventDefault();
+        const res = await fetch("http://localhost:5000/recmail", {
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        // console.log(res)
+
+        const result = await res.json();
+        if (result.status === 401 || !result) {
+            toast.error(result.err)
+        } else {
+            // window.alert("send");
+            toast.success('Mail Send For Forgot Password')
+            setEmail("");
+            setstep(step + 1)
+
+        }
+    };
+
+    const verifyOtpf = async () => {
+        //     //  form Validation\
+        if (OTP == "") {
+            toast.error("Plaese Enter OTP")
+        } else {
+            const veri = {
+                otp: OTP, cmp_email: data.cmp_email
             }
-        })
-        const data = await res.json()
-        console.log(data)
-        if (data.status == 201) {
-            // toast.sus
-            console.log("useer valid")
-        } else {
-            navigate('/*')
+            const config = {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(veri)
+            }
+            const resp = await fetch("http://localhost:5000/recruiterverifyotp", config);
+            var result = await resp.json();
+            if (result.status === 201) {
+                toast.success(result.msg);
+                setstep(step + 1);
+            } else {
+                toast.error(result.msg);
+            }
         }
-    }
+    };
 
+    const changepassword = async () => {
+        console.log("aavi gayu 6 hve st thase")
+        if (data.newpwd == data.conpwd) {
+            const config = {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+            const response = await fetch("http://localhost:5000/recruiterforgot", config);
+            const result = await response.json()
+            if (result.status === 201) {
+                toast.success(result.msg)
+                navigate('/recruiterlogin')
+            } else {
+                toast.error(result.msg)
+            }
+        } else {
+            toast.error("New Password & Confirm Password Always Same")
+        }
+    };
+    const [dataa, setDataa] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        userValid();
-    }, [])
-    const submit = async (req, res) => {
-        const configOption = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            }, body: JSON.stringify(pwd)
-        }
-
-        const data = await fetch(`http://localhost:5000/recruiterforgot/${id}/${token}`, configOption)
-        const result = await data.json();
-        console.log(result.status)
-        if (result.status === 201) {
-            toast.success("Password Change Success")
-            navigate('/recruiterlogin');
-            setPwd("");
-        } else {
-            toast.error("Your Token Expire Create New Link")
-        }
-
-    }
-
+        setTimeout(() => {
+            setDataa("Some data");
+            setIsLoading(false);
+        }, 1000);
+    }, []);
     return (
         <>
             {isLoading ? <Loader /> : <div>
-                <>
-                    {/* ======================= Page Title ===================== */}
-                    <div className="page-title">
-                        <div className="container">
-                            <div className="page-caption">
-                                <h2><Typewriter
+                {/* ======================= Page Title ===================== */}
+                <div className="page-title">
+                    <div className="container">
+                        <div className="page-caption">
+                            <h2>
+                                <Typewriter
                                     options={{
                                         autoStart: true,
                                         loop: true,
                                     }}
                                     onInit={(typewriter) => {
                                         typewriter
-                                            .typeString("Change Password")
+                                            .typeString("Forgot Password")
                                             .pauseFor(2000)
-                                            .start()
+                                            .start();
                                     }}
-
-                                /></h2>
-                                <p>
-                                    <a href="#" title="Home">
-                                        Home
-                                    </a>{" "}
-                                    <i className="ti-angle-double-right" /> Forgot Password
-                                </p>
-                            </div>
+                                />
+                            </h2>
+                            <p>
+                                <Link to="/home" title="Home">Home</Link>
+                                <i className="ti-angle-double-right" /> Forgot Password
+                            </p>
                         </div>
                     </div>
-                    {/* ======================= End Page Title ===================== */}
-                    {/* ================ Change Password ======================= */}
-                    <section className="padd-top-80 padd-bot-80">
-                        <div className="container">
-                            <div className="row">
-
-                                <div className="col-md-12">
-                                    <div className="profile_detail_block">
+                </div>
+                {/* ======================= End Page Title ===================== */}
+                {/* ================ Change Password ======================= */}
+                {step == 0 ? (
+                    <>
+                        <section className="padd-top-80 padd-bot-80">
+                            <div className="container">
+                                <center>
+                                    <div className="row">
                                         <div className="col-md-12 col-sm-12 col-xs-12">
-                                            <div className="form-group">
-                                                <label>New Password</label>
-                                                <input
-                                                    type="password"
-                                                    name='cmp_pwd'
-                                                    // value={pwd.js_pwd}
-                                                    onChange={handleInput}
-                                                    className="form-control"
-                                                    placeholder="***********"
-                                                />
+                                            <div
+                                                className="profile_detail_block"
+                                                style={{ width: "50%" }}
+                                            >
+                                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                                    <div className="form-group">
+                                                        <label>Enter Your Email</label>
+                                                        <input
+                                                            type="text"
+                                                            name="cmp_email"
+                                                            className="form-control"
+                                                            placeholder="Enter Your Email"
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="clearfix" />
+                                                <div className="col-md-12 padd-top-10 text-center">
+                                                    {" "}
+                                                    <button
+                                                        className="btn btn-m theme-btn full-width"
+                                                        type="button"
+                                                        onClick={OtpRequestFunction}
+                                                    >
+                                                        Send Otp
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </center>
+                            </div>
+                        </section>
+                    </>
+                ) : step == 1 ? (
+                    <>
+                        <section className="padd-top-80 padd-bot-80">
+                            <div className="container">
+                                <center>
+                                    <div className="row">
+                                        <div className="col-md-12 col-sm-12 col-xs-12">
+                                            <div
+                                                className="profile_detail_block"
+                                                style={{ width: "50%" }}
+                                            >
+                                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                                    <div className="form-group">
+                                                        <label>Enter Your Otp</label>
+                                                        <div className="otp">
 
+                                                            <OTPInput
+                                                                value={OTP} autoFocus OTPLength={6}
+                                                                renderSeparator=" true"
+                                                                onChange={setOTP}
+                                                                otpType="number" style={{
+                                                                    display: "flex",
+                                                                    justifyContent: "center",
+                                                                }} disabled={false} secure />
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                        <div className="clearfix" />
-                                        <div className="col-md-12 padd-top-10 text-center">
-                                            {" "}
-                                            <a href="#" className="btn btn-m theme-btn full-width" onClick={submit}>
-                                                Submit
-                                            </a>
+                                                <div className="clearfix" />
+                                                <div className="col-md-12 padd-top-10 text-center">
+                                                    {" "}
+                                                    <button
+                                                        className="btn btn-m theme-btn full-width"
+                                                        type="button"
+                                                        onClick={() => verifyOtpf()}
+                                                    >
+                                                        Verify
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                        </section>
+                    </>
+                ) : (
+                    <>
+                        <section className="padd-top-80 padd-bot-80">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-md-3"></div>
+                                    <div className="col-md-9 ">
+                                        <div className="profile_detail_block">
+                                            <center>
+                                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                                    <div className="form-group">
+                                                        <label>New Password</label>
+                                                        <input
+                                                            type="password"
+                                                            name="newpwd"
+                                                            onChange={(e) => {
+                                                                handleChange(e);
+                                                            }}
+                                                            className="form-control"
+                                                            placeholder="*****"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                                    <div className="form-group">
+                                                        <label>Confirm Password</label>
+                                                        <input
+                                                            type="password"
+                                                            name="conpwd"
+                                                            className="form-control"
+                                                            placeholder="*****"
+                                                            onChange={(e) => {
+                                                                handleChange(e);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="clearfix" />
+                                                <div className="col-md-12 padd-top-10 text-center">
+                                                    {" "}
+                                                    <button
+                                                        className="btn btn-m theme-btn full-width"
+                                                        type="button"
+                                                        onClick={changepassword}
+                                                    >
+                                                        Update
+                                                    </button>
+                                                </div>
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </>
+                        </section>
+                    </>
+                )}
             </div>}
         </>
-
-    )
+    );
 }
 
-export default Recruiterforgot
+export default Recruiterforgot;

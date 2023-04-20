@@ -18,7 +18,7 @@ function Seekerfooter() {
     console.log(newrating, "newrating");
     console.log(rating.newrating, "rate in state");
   };
-  const [rev, setRev] = useState({ review: '' });
+  const [rev, setRev] = useState('');
   const inputHandle = (e) => {
     setRev(e.target.value)
   }

@@ -610,8 +610,6 @@ function Searchjob() {
                                 onChange={(e) => setSearch(e.target.value)}
                               />
                             </div>
-
-
                           </fieldset>
                         </form>
                         <div className="col-md-4 col-sm-12 col-xs-12 browse_job_tlt">
@@ -620,27 +618,36 @@ function Searchjob() {
                         </div>
 
                         <div className="col-md-8 col-sm-12 col-xs-12">
-                          <li>
-                            <span className="custom-radio">
-                              <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Male" onChange={(e) => setgender(e.target.value)} id="g1" />
-                              <label htmlFor="g1" />
-                            </span>
-                            Male <span className="pull-right"></span>
-                          </li>
-                          <li>
-                            <span className="custom-radio">
-                              <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Female" onChange={(e) => setgender(e.target.value)} id="g2" />
-                              <label htmlFor="g2" />
-                            </span>
-                            Female <span className="pull-right"></span>
-                          </li>
-                          <li>
-                            <span className="custom-radio">
-                              <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Both" onChange={(e) => setgender(e.target.value)} id="g3" />
-                              <label htmlFor="g3" />
-                            </span>
-                            Both <span className="pull-right"></span>
-                          </li>
+                          <ul style={{ display: "flex", position: "relative", top: "56px", left: "-10%" }}>
+                            {/*<li style={{ listStyle: "none", margin: "10px" }}>
+                              <span className="custom-radio">
+                                <input type="radio" name="gender" style={{ listStyleType: "none" }} value="All" onChange={(e) => setgender("")} id="g1" />
+                                <label htmlFor="g1" />
+                              </span>
+                              All
+                            </li>*/}
+                            <li style={{ listStyle: "none", margin: "10px" }}>
+                              <span className="custom-radio">
+                                <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Male" onChange={(e) => setgender(e.target.value)} id="g1" />
+                                <label htmlFor="g1" />
+                              </span>
+                              Male
+                            </li>
+                            <li style={{ listStyle: "none", margin: "10px" }}>
+                              <span className="custom-radio">
+                                <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Female" onChange={(e) => setgender(e.target.value)} id="g2" />
+                                <label htmlFor="g2" />
+                              </span>
+                              Female
+                            </li>
+                            <li style={{ listStyle: "none", margin: "10px" }}>
+                              <span className="custom-radio">
+                                <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Both" onChange={(e) => setgender(e.target.value)} id="g3" />
+                                <label htmlFor="g3" />
+                              </span>
+                              Both
+                            </li>
+                          </ul>
                           <div className="fl-right short_by_filter_list">
 
                             <div className="search-wide short_by_til">
@@ -781,7 +788,7 @@ function Searchjob() {
 
 
                       <div className="clearfix" />
-                      <div className="utf_flexbox_area padd-0">
+                      {seekerData.length > 10 ? <div className="utf_flexbox_area padd-0">
                         <ul className="pagination">
                           <li className="page-item">
                             {" "}
@@ -815,7 +822,7 @@ function Searchjob() {
                             </a>{" "}
                           </li>
                         </ul>
-                      </div>
+                      </div> : ""}
                     </div>
                   </div>
                   {/* End Row */}

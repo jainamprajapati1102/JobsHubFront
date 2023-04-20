@@ -155,7 +155,7 @@ function Login() {
 
                     </div>
                     <div className="form-group">
-                      <Link to="/recruitersendmail" title="Forget" className="fl-right">Forgot Password?</Link>
+                      <Link to="/recruiterforgot" title="Forget" className="fl-right">Forgot Password?</Link>
 
                       {" "}
                       {/*   <label for="chpass" title="Forget" className="fl-right">Forgot Password?</label>

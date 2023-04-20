@@ -272,7 +272,7 @@ function SeekerLogin() {
                     Sign In With Google
                   </button>
                   <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>*/}
-                      <Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>
+                      {/*<Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>
                         <>
 
                           <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>
@@ -286,8 +286,7 @@ function SeekerLogin() {
 
                           </div>
                         </>
-
-                      </Link>
+                      </Link>*/}
                     </div>
                     Don't Have an account ?  <Link to="/seekersignup" title="Home" className="login">
                       Sign Up
