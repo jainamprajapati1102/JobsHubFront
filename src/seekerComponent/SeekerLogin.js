@@ -42,7 +42,7 @@ function SeekerLogin() {
   console.log(count)
   const loginUser = async (e) => {
     if (user.js_email && user.js_pwd) {
-      let result = await fetch('http://localhost:5000/login', {
+      let result = await fetch('https://jobshubback-19af.onrender.com/login', {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" }
