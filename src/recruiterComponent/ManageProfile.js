@@ -1,13 +1,12 @@
 import React from 'react'
 import RecHeader from "./RecHeader";
 import 'react-responsive-modal/styles.css';
-
+import Swal from 'sweetalert2'
 import { Form, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Typewriter from 'typewriter-effect'
 import loadjs from 'loadjs';
 import moment from 'moment'
-// import { Country, State, City } from 'country-state-city';
 import { State, City } from 'indian-states-cities'
 import { toast } from 'react-toastify';
 import Recruiterfooter from "./Recruiterfooter";
@@ -23,8 +22,7 @@ function ManageProfile() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
-
+    fetchCompanyData();
     // simulate an API call with a delay of 3 seconds
     setTimeout(() => {
       setData("Some data");
@@ -34,12 +32,6 @@ function ManageProfile() {
 
   const navigate = useNavigate();
   const [accesstoken] = useState(localStorage.getItem("recruiterToken"));
-
-  useEffect(() => {
-    console.log("loading")
-    // getlocaltion();
-    fetchCompanyData();
-  }, [])
 
   const [inputdata, setInputdata] = useState({
     cmp_name: "",
@@ -170,6 +162,7 @@ function ManageProfile() {
   }
 
   const deleteaccount = async () => {
+
     const configOPtion = {
       method: "DELETE",
       headers: {
@@ -177,14 +170,17 @@ function ManageProfile() {
         "Content-Type": "application/json",
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
-      }
+      },
     }
-
     const response = await fetch('http://localhost:5000/recdeleteaccount', configOPtion)
     const result = await response.json();
     if (result.status === 201) {
-      navigate('/recruiterlogin')
+      toast.error("Your Account Deleted")
+      navigate('/recruitersignup')
+      logout()
+
     }
+
   }
 
   const [open, setOpen] = useState(false);
@@ -421,7 +417,7 @@ function ManageProfile() {
                             Company Address
                           </div>
                           <div className="col-md-6 col-sm-4 col-xs-12">
-                            {inputdata.cmp_address}, {inputdata.city} - {inputdata.zipcode} , {inputdata.state} {inputdata.country}
+                            {inputdata.cmp_address ? `${inputdata.cmp_address} ,` : ''} {inputdata.city ? `${inputdata.city} -` : ''} {inputdata.zipcode ? `${inputdata.zipcode} ,` : ''} {inputdata.state ? `${inputdata.state} ` : ''}  {inputdata.country ? `${inputdata.country} ,` : ''}
                           </div>
                         </li>
                         <li>

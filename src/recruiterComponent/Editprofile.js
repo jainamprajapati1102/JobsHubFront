@@ -78,11 +78,8 @@ function Editprofile() {
     { label: 'software', value: 'software' },
     { label: 'mechanical', value: 'mechanical' }
   ]
-  const selectHandler = ({ name, value }) => {
-    setCategorydata({
-      ...categorydata,
-      [name]: value
-    })
+  const selectHandler = ({ name, label }) => {
+    setInputdata({ ...inputdata, [name]: label })
   }
   const requestOptions = {
     method: 'GET',
@@ -213,14 +210,11 @@ function Editprofile() {
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
         // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
-
       },
       body: JSON.stringify(inputdata),
     };
-
     const response = await fetch('http://localhost:5000/createcmp', confiOption);
     const result = await response.json();
-
     if (result.status === 200) {
       toast.success("profile update successfully");
       navigate('/payment');
@@ -229,14 +223,9 @@ function Editprofile() {
     }
   }
 
-  console.log("inputdata===>", inputdata)
   const [image, setImage] = useState({ cmp_logo: "" });
 
-
-  const mystyle = {
-    cursor: "pointer",
-    fontSize: "3rem"
-  }
+  const mystyle = { cursor: "pointer", fontSize: "3rem" }
   const profile = async (e) => {
     setImage({
       ...image,
@@ -254,13 +243,11 @@ function Editprofile() {
     const configOption = {
       method: 'PUT',
       headers: {
-
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
       },
       body: formdata
     }
-
     console.log('Test Data ==>', configOption);
     console.log('form data ===>', formdata);
     const response = await fetch('http://localhost:5000/cmpupdatelogo', configOption)
@@ -274,8 +261,6 @@ function Editprofile() {
     }
     console.log(`=====> ${image}`)
   }
-
-
 
   const [newpass, setNewpass] = useState("");
 
@@ -314,14 +299,9 @@ function Editprofile() {
   }
 
   const [open, setOpen] = useState(false);
-
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-
-  const del = () => {
-
-  }
   return (
     <>
       {isLoading ? <Loader /> : <div>
@@ -438,7 +418,7 @@ function Editprofile() {
                       {" "}
                       {/*<img alt="user photo" src={`http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}`} />{" "}
                       <span className="user-photo-action">{inputdata.cmp_name}</span>{" "}*/}
-                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
                       <input type="file" id="file" name="cmp_logo" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
                   </div>
@@ -509,19 +489,6 @@ function Editprofile() {
                                 />
                               </div>
                             </div>
-                            {/*<div className="col-md-6 col-sm-6 col-xs-12">
-                              <div className="form-group">
-                                <label>Company Tagline</label>
-                                <input
-                                  type="text"
-                                  value={inputdata.cmp_tagline}
-                                  className="form-control"
-                                  placeholder="Company Tagline"
-                                  name="cmp_tagline"
-                                  onChange={update1}
-                                />
-                              </div>
-                            </div>*/}
 
                             <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
                               <div className="form-group">
@@ -545,9 +512,18 @@ function Editprofile() {
 
                                 <Select
                                   className="wide form-control"
-                                  name="category"
-                                  onChange={({ value }) => selectHandler({ name: 'category', value })}
+                                  name="industry_cat"
+
+                                  onChange={({ label }) => selectHandler({ name: 'industry_cat', label })}
                                   options={categorydata}
+                                  value={categorydata.map((list) => {
+                                    if (list.label == inputdata.industry_cat) {
+                                      return {
+                                        value: list.value,
+                                        label: list.label,
+                                      }
+                                    }
+                                  })}
                                 />
                               </div>
                             </div>
@@ -558,7 +534,7 @@ function Editprofile() {
                               <input
                                 type="text"
                                 name="esta_date"
-                                value={moment(inputdata.esta_date).format("DD/MM/YYYY")}
+                                value={inputdata.esta_date ? moment(inputdata?.esta_date).format("DD/MM/YYYY") : ''}
                                 placeholder="DD/MM/YYYY"
                                 id="reservation-date"
                                 data-lang="en"
@@ -688,26 +664,6 @@ function Editprofile() {
                               </div>
                             </div>
 
-
-
-                            {/*<div className="col-md-4 col-sm-6 col-xs-12 m-clear">
-                              {console.log("countryvalue====>", inputdata.country)}
-                              <label>Country</label>
-                              <Select options={countrylist.map(({name})=>({ label:name,value:name}))}  onChange={({value})=>update2({name:'country',value})} /> 
-                              <Select options={countrylist} onChange={({ value }) => update2({ name: 'country', value })} value={{ value: inputdata.country, label: inputdata.country }} />
-                            </div>
-
-                            <div className="col-md-4 col-sm-6 col-xs-12 m-clear">
-                              <label>State</label>
-                              <Select options={statelist} onChange={({ value }) => update2({ name: 'state', value })} value={{ value: inputdata.state, label: inputdata.state }} />
-                            </div>
-
-                            <div className="col-md-4 col-sm-6 col-xs-12">
-                              <label>City</label>
-                              <Select options={citylist} onChange={({ value }) => update2({ name: 'city', value })} value={{ value: inputdata.city, label: inputdata.city }} />
-
-                            </div>*/}
-
                             <div className="col-md-6 col-sm-6 col-xs-12">
                               <div className="form-group">
 
@@ -803,7 +759,13 @@ function Editprofile() {
                       </div>
 
                       <div className="clearfix" />
-                      <div className="col-md-12 padd-top-10 text-center">
+                      <div className="col-md-6 padd-top-10 text-center">
+                        {" "}
+                        <button type='button' className="btn btn-m them-btn  full-width" onClick={() => { navigate('/manageprofile')}} >
+                          Cancle
+                        </button>
+                      </div>
+                      <div className="col-md-6 padd-top-10 text-center">
                         {" "}
                         <button type='submit' className="btn btn-m theme-btn full-width" >
                           Update

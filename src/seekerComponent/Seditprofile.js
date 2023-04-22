@@ -511,6 +511,17 @@ function Seditprofile() {
   });
   const navigate = useNavigate();
   const [accesstoken] = useState(localStorage.getItem('seekerToken'))
+
+  const [inputdata, setInputdata] = useState('');
+  const update2 = ({ name, value }) => {
+    setSeekerdata({ ...seekerData, js_gender: value })
+  }
+
+  const genderOption = [
+    { value: 'Male', label: "Male" },
+    { value: 'Female', label: 'Female' },
+    { value: 'Other', label: 'Other' },
+  ]
   const callProfile = async (e) => {
     // e.preventDefault();
     try {
@@ -583,7 +594,6 @@ function Seditprofile() {
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`
       },
-
     }
 
     const response = await fetch("http://localhost:5000/updateprofile", configOption)
@@ -597,18 +607,10 @@ function Seditprofile() {
     }
   }
 
-  console.log("image---->", image)
-
   const profile = async (e) => {
-    setImage({
-      ...image,
-      [e.target.name]: e.target.type == 'file' ? e.target.files[0] : e.target.value
-    })
+    setImage({ ...image, [e.target.name]: e.target.type == 'file' ? e.target.files[0] : e.target.value })
   }
-
   const profilepic = async (event, value) => {
-    // console.log('Called profile epic method=======================>', event);
-    // console.log('value================>', value);
     const selectedFile = event.target.files[0];
     console.log('selectedFile ====>', selectedFile);
     const formdata = new FormData()
@@ -630,22 +632,15 @@ function Seditprofile() {
     if (result.status === 201) {
       toast.success("Profile Picture Update")
       navigate('/seekerprofile')
-    } else {
-      toast.error("Profile Picture not Update yet")
-    }
+    } else toast.error("Profile Picture not Update yet")
     console.log(`=====> ${image}`)
   }
-  const mystyle = {
-    cursor: "pointer",
-    fontSize: "3rem"
-  }
+  const mystyle = { cursor: "pointer", fontSize: "3rem" }
 
   const [open, setOpen] = useState(false);
-
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
   const logout = async () => {
-
     localStorage.removeItem('seekerToken')
     navigate('/seekerlogin')
   }
@@ -668,18 +663,14 @@ function Seditprofile() {
     } else {
       toast.error(result.msg);
       navigate('/seditprofile');
-
     }
   }
   const [newpass, setNewpass] = useState("");
-  // const [accesstoken] = useState(localStorage.getItem('seekerToken'));
   const inputhandle = (e) => {
     setNewpass({ ...newpass, [e.target.name]: e.target.value })
   }
   const changepass = async () => {
     if (newpass.oldpwd && newpass.updatedpass && newpass.updateconpass) {
-
-
       console.log("")
       const configOPtion = {
         method: "POST",
@@ -707,16 +698,7 @@ function Seditprofile() {
       toast.error("All Feilds Required")
     }
   }
-  const [inputdata, setInputdata] = useState('');
-  const update2 = ({ name, value }) => {
-    setInputdata({ ...inputdata, [name]: value })
-  }
 
-  const genderOption = [
-    { value: 'Male', label: "Male" },
-    { value: 'Female', label: 'Female' },
-    { value: 'Other', label: 'Other' },
-  ]
   return (
     <>
       {isLoading ? <Loader /> : <div>
@@ -912,7 +894,7 @@ function Seditprofile() {
                       <div className="col-md-6 col-sm-6 col-xs-12">
                         <div className="form-group">
                           <label>Phone</label>
-                          <input type="text" className="form-control" name="js_mno" placeholder="123 214 13247" value={seekerData.js_mno} onChange={updateHandler}
+                          <input type="text" className="form-control" name="js_mno" maxLength={13} placeholder="123 214 13247" value={seekerData.js_mno} onChange={updateHandler}
 
                           />
                           {errors.js_mno && <p className='err'>Please check the Password</p>}
@@ -951,12 +933,16 @@ function Seditprofile() {
 
                         </div>
                       </div>
-                      <div className="col-md-12 col-sm-12 col-xs-12">
-                        <div className="form-group" >
-                          <label>Gender</label>
-                          <Select options={genderOption} onChange={({ value }) => update2({ value, name: 'worktime' })} value={{ value: inputdata.gender, label: inputdata.gender }} />
+                      <div className="col-md-6 col-sm-6 col-xs-12">
+                        <label>Gender</label>
+                        <Select
+                          className="wide "
+                          name="gender"
 
-                        </div>
+                          onChange={({ value }) => update2({ name: 'gender', value })}
+                          options={genderOption}
+                          value={{ value: seekerData.js_gender, label: seekerData.js_gender }}
+                        />
                       </div>
 
 
@@ -1080,7 +1066,13 @@ function Seditprofile() {
                         </div>
                       </div>
                       <div className="clearfix" />
-                      <div className="col-md-12 padd-top-10 text-center">
+                      <div className="col-md-6 padd-top-6 text-center">
+                        {" "}
+                        <button type='button' className="btn btn-m them-btn  full-width" onClick={() => { navigate('/seekerprofile') }} >
+                          Cancle
+                        </button>
+                      </div>
+                      <div className="col-md-6 padd-top-6 text-center">
                         {" "}
                         <button
                           type="submit"

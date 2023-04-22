@@ -832,7 +832,7 @@ function Payment() {
                 const result = await res.json();
                 if (result.status === 200) {
                     toast.success("payment success");
-                    navigate('/recruiterhomeP')
+                    navigate('/recruiterhome')
                 }
                 else {
                     toast.error('payment failed please try again later')

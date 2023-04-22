@@ -26,7 +26,7 @@ function Updatejob() {
         fetchjobData();
     }, [])
 
-    
+
     console.log("id====>", id);
 
 
@@ -133,9 +133,12 @@ function Updatejob() {
 
     /* *********** salary option *********  */
     const salaryoption = [
-        { value: '5000 TO 15000', label: '5000 TO 15000' },
-        { value: '15001 TO 30000', label: '15001 TO 30000' },
-        { value: '30001 TO 50000', label: '30001 TO 50000' },
+        { value: '5000 - 15,000', label: '5000 - 15,000' },
+        { value: '15,001 - 30,000', label: '15,001 - 30,000' },
+        { value: '30,001 - 50,000', label: '30,001 - 50,000' },
+        { value: '50,001 - 70,000', label: '50,001 - 70,000' },
+        { value: '70,001 - 90,000', label: '70,001 - 90,000' },
+        { value: '90,001 - 1,10,000', label: '90,001 - 1,10,000' },
     ]
 
     /* *********** experinnce option *********  */
@@ -161,9 +164,23 @@ function Updatejob() {
         { value: 'Online Platform', label: 'Online Platform' },
     ]
 
+    const qualificationOption = [
+        { value: 'High School', label: 'High School' },
+        { value: 'Intermediate', label: 'Intermediate' },
+        { value: 'Graduation', label: 'Graduation' },
+        { value: 'Master Degree', label: 'Master Degree' },
+        { value: 'M.Phil', label: 'M.Phil' },
+    ]
+    const selectQuali = ({ name, value }) => {
+        setjobdata({
+            ...jobdata,
+            [name]: value
+        })
+    }
     return (
         <>
             {isLoading ? <Loader /> : <div>
+                <RecHeader />
                 {/* ======================= Start Page Title ===================== */}
                 <div className="page-title">
                     <div className="container">
@@ -184,6 +201,10 @@ function Updatejob() {
                             <p>
                                 <Link to="/home" title="Home">
                                     Home
+                                </Link>{" "}
+                                <i className="ti-angle-double-right" />
+                                <Link to="/managejob" title="Home">
+                                    Manage Job Post
                                 </Link>{" "}
                                 <i className="ti-angle-double-right" /> Update Job
                             </p>
@@ -226,14 +247,16 @@ function Updatejob() {
                                             />
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
-                                            <label>Gender</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="gender"
-                                                onChange={({ value }) => selectHandler({ name: 'gender', value })}
-                                                options={genderOption}
-                                            />
-
+                                            <div className="form-group">
+                                                <label>Gender</label>
+                                                <Select
+                                                    className="wide form-control"
+                                                    name="gender"
+                                                    onChange={({ value }) => selectHandler({ name: 'gender', value })}
+                                                    options={genderOption}
+                                                    value={{ value: jobdata.gender, label: jobdata.gender }}
+                                                />
+                                            </div>
                                         </div>
 
 
@@ -255,6 +278,7 @@ function Updatejob() {
                                                 name="salaryrange"
                                                 onChange={({ value }) => selectHandler({ name: 'salaryrange', value })}
                                                 options={salaryoption}
+                                                value={{ value: jobdata.salaryrange, label: jobdata.salaryrange }}
                                             />
                                         </div>
 
@@ -277,6 +301,7 @@ function Updatejob() {
                                                 name="experience"
                                                 onChange={({ value }) => selectHandler({ name: 'experience', value })}
                                                 options={experienceOption}
+                                                value={{ value: jobdata.experience, label: jobdata.experience }}
                                             />
                                         </div>
 
@@ -287,6 +312,7 @@ function Updatejob() {
                                                 name="jobtype"
                                                 onChange={({ value }) => selectHandler({ name: 'jobtype', value })}
                                                 options={jobtypeOption}
+                                                value={{ value: jobdata.jobtype, label: jobdata.jobtype }}
                                             />
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
@@ -303,13 +329,12 @@ function Updatejob() {
 
                                         <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
                                             <label>Qualification Required</label>
-                                            <input
-                                                type="text"
+                                            <Select
+                                                className="wide form-control"
                                                 name="qualification"
-                                                className="form-control"
-                                                placeholder="High Sachool , Intermediate , Graduation , Master Degree"
-                                                value={jobdata.qualification}
-                                                onChange={(e) => inputHandler(e)}
+                                                onChange={({ value }) => selectQuali({ name: 'qualification', value })}
+                                                options={qualificationOption}
+                                                value={{ value: jobdata.qualification, label: jobdata.qualification }}
                                             />
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
@@ -351,6 +376,7 @@ function Updatejob() {
                                                 name="interviewtype"
                                                 onChange={({ value }) => selectHandler({ name: 'interviewtype', value })}
                                                 options={interviewtypeOption}
+                                                value={{ value: jobdata.interviewtype, label: jobdata.interviewtype }}
                                             />
                                         </div>
 
@@ -388,7 +414,7 @@ function Updatejob() {
                     </div>
                 </section >
                 {/* ====================== End Create Job ================ */}
-
+                <Recruiterfooter />
 
             </div>}
         </>

@@ -2,15 +2,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import Forgotpassword from "./Forgotpassword";
-import Header from "./Header";
-import Footer from "./Footer";
-import SeekHeader from "./seekerComponent/SeekHeader";
 import react, { Suspense } from 'react';
-
 import Error404 from "./Error404";
 import Aboutus from "./Aboutus";
-
 /****   seeker ******* */
 import Searchjob from "./seekerComponent/Searchjob";
 import SeekerLogin from "./seekerComponent/SeekerLogin";
@@ -47,7 +41,6 @@ import Jobdetail from './seekerComponent/Jobdetail';
 import Recruitercontact from "./recruiterComponent/Recruitercontact";
 import Recruiterfooter from "./recruiterComponent/Recruiterfooter";
 import Recruiterchangepass from "./recruiterComponent/RecruiterchangePass";
-import EditLogo from './recruiterComponent/EditLogo';
 import Notification from "./recruiterComponent/Notification";
 import AcceptList from "./recruiterComponent/AcceptList";
 import RejectList from "./recruiterComponent/RejectList";
@@ -62,7 +55,6 @@ import RecruterProtected from "./component/RecruiterProtected";
 import RecruterUnprotected from "./component/RecruiterUnProtected"
 import SekProtected from "./component/SekProtected"
 import SekUnProtected from "./component/SekUnProtected"
-import Try from "./Try";
 
 import Loader from "./Loader";
 function Route1() {
@@ -95,7 +87,6 @@ function Route1() {
             <Route path="/managejob" element={<ManageJob />} />
             <Route path="/recruitercontact" element={<Recruitercontact />} />
             <Route path="/manageprofile" element={<ManageProfile />} />
-            {/* <Route path="/editLogo" element={< EditLogo />} />*/}
             <Route path="/editprofile" element={<Editprofile />} />
             <Route path="/recruiterjobrestor" element={<Recruiterjobrestor />} />
 
@@ -122,8 +113,6 @@ function Route1() {
           <Route element={<SekProtected />}>
 
             <Route path="/seekerhome" element={<Seekerhome />} />
-            <Route path="/try" element={<Try />} />
-
             <Route path="/apply" element={<Apply />} />
             <Route path="/apply/:id" element={<Apply />} />
             <Route path="/jobhistory" element={<Jobhistory />} />

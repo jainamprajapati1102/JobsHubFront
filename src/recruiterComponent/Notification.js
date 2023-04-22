@@ -36,14 +36,13 @@ const Notification = () => {
     useEffect(() => {
         getjobApplieduser();
     }, []);
-    // const [email, setEmail] = useState('');
     const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
     const [userdata, setuserData] = useState([])
     const requestoption = {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${accesstoken}`//.replace(/"/g, '')}`,
+            'Authorization': `Bearer ${accesstoken}`
         }
     }
 
@@ -52,19 +51,6 @@ const Notification = () => {
         const result = await response.json();
         setuserData(result)
     }
-
-    console.log("userdata=====>", userdata);
-
-    // const resumeview = (url) => {
-    //     console.log("url====>", url)
-    // }
-
-
-
-    // const acceptHandler = (id) => {
-    //     console.log("id=====>", id);
-
-    // }
 
     const acceptHandler = async (id) => {
         console.log("id=====>", id);
@@ -75,7 +61,6 @@ const Notification = () => {
                 "Content-Type": "application/json",
                 credentials: "includes",
                 'Authorization': `Bearer ${accesstoken}`,
-                // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
             }
         };
         const response = await fetch(`http://localhost:5000/acceptrequest/${id}`, confiOption);
@@ -88,13 +73,11 @@ const Notification = () => {
             })
             // toast.success(" request accept successfully");
             getjobApplieduser();
-
             //   navigate('/manageprofile');
         } else {
             toast.error("something wrong");
         }
     }
-
     const acceptmail = async (id) => {
         console.log(`id---->${id}`)
         const configOption = {

@@ -24,7 +24,7 @@ const RejectList = () => {
 
     const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
     const navigate = useNavigate();
-   
+
     const [userdata, setuserData] = useState([])
     const requestoption = {
         method: 'GET',
@@ -55,8 +55,8 @@ const RejectList = () => {
 
 
                     {/* ======================== Manage Job ========================= */}
-                    <section className="utf_manage_jobs_area padd-top-50 padd-bot-50">
-                        <div className="container">
+                    <section className="utf_manage_jobs_area padd-top-50 padd-bot-50 text-danger">
+                        <div className="container ">
                             <div className="table-responsive">
                                 <table className="table table-lg table-hover">
                                     <thead>
@@ -65,10 +65,9 @@ const RejectList = () => {
                                             <th>Email</th>
                                             <th>Contact</th>
                                             <th>Gender</th>
-                                            {/* <th>Action</th> */}
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className='text-danger'>
 
                                         {userdata.map((item) => (
                                             <tr key={item?._id}>
@@ -94,22 +93,6 @@ const RejectList = () => {
 
                                                 <td>
                                                     {item?.js_id?.js_gender}
-                                                </td>
-
-                                                <td>
-
-                                                    {/* {item?.accept == 1 ? <Button variant="success" > Accepted </Button> : */}
-                                                    {/* <Button onClick={() => resumeview(item?.resume)} variant="info" data-toggle="tooltip"  > viewDetail </Button> */}
-
-
-
-                                                    {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
-
-                                                    {/* 
-                                            <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
-                                                rel="noreferrer">
-                                                Open First PDF
-                                            </a> */}
                                                 </td>
                                             </tr>
                                         ))

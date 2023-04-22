@@ -44,17 +44,12 @@ const AcceptList = () => {
         const response = await fetch('http://localhost:5000/exportcsv', d1)
         console.log(response)
         if (response.status === 200) {
-            window.open(response.url, "blank")
+            window.open(response.url, "self")
             // toast.success('CSV Download Complete')
         } else {
             toast.error('Please Try After Some Time')
         }
-
-
     }
-
-
-
 
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -64,47 +59,16 @@ const AcceptList = () => {
         setTimeout(() => {
             setData("Some data");
             setIsLoading(false);
-        }, 3000);
+        }, 1000);
     }, []);
 
     return (
         <>
 
             <>
-                {/*< RecHeader />*/}
-                { /* ======================= Page Title ===================== */}
-
-                {/*<div className="page-title">
-                    <div className="container">
-                        <div className="page-caption">
-                            <h2><Typewriter
-                                options={{
-                                    autoStart: true,
-                                    loop: true,
-                                }}
-                                onInit={(typewriter) => {
-                                    typewriter
-                                        .typeString("Accept List")
-                                        .pauseFor(2000)
-                                        .start()
-                                }}
-
-                            /></h2>
-                            <p>
-                                <Link to="/home" title="Home">
-                                    Home
-                                </Link>{" "}
-                                <i className="ti-angle-double-right" /> AcceptList
-                            </p>
-                        </div>
-                    </div>
-                </div>*/}
-                {/* ======================= End Page Title ===================== */}
-
-
                 {/* ======================== Manage Job ========================= */}
 
-                <section className="utf_manage_jobs_area padd-top-50 padd-bot-50">
+                <section className="utf_manage_jobs_area padd-top-50 padd-bot-50 text-success">
                     <div className="container">
                         <div className="table-responsive">
                             <table className="table table-lg table-hover">
@@ -114,7 +78,6 @@ const AcceptList = () => {
                                         <th>Email</th>
                                         <th>Contact</th>
                                         <th>Gender</th>
-                                        {/* <th>Action</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,44 +92,15 @@ const AcceptList = () => {
                                                         className="avatar-lg"
                                                         alt="Avatar"
                                                     />
-
                                                     {item?.js_id?.js_name}
                                                 </a>
                                             </td>
-                                            <td>
-                                                {item?.js_id?.js_email}
-                                            </td>
-
-                                            <td>
-                                                {item?.js_id?.js_mno}
-                                            </td>
-
-                                            <td>
-                                                {item?.js_id?.js_gender}
-                                            </td>
-
-                                            <td>
-
-                                                {/* {item?.accept == 1 ? <Button variant="success" > Accepted </Button> : */}
-                                                {/* <Button onClick={() => resumeview(item?.resume)} variant="info" data-toggle="tooltip"  > viewDetail </Button> */}
-
-
-
-                                                {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
-
-                                                {/* 
-                                            <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
-                                                rel="noreferrer">
-                                                Open First PDF
-                                            </a> */}
-                                            </td>
+                                            <td>{item?.js_id?.js_email}</td>
+                                            <td>{item?.js_id?.js_mno}</td>
+                                            <td>{item?.js_id?.js_gender}</td>
                                         </tr>
                                     ))
                                     }
-
-
-
-
                                 </tbody>
                             </table>
                             {/*<div className="utf_flexbox_area padd-10">

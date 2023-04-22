@@ -52,33 +52,25 @@ const Signup1 = () => {
 
   const submit = async (e) => {
     // e.preventDefault();
-
     const data = new FormData();
     data.append('cmp_name', newData.cmp_name)
     data.append('cmp_pwd', newData.cmp_pwd)
     data.append('cmp_email', newData.cmp_email)
     data.append('rec_mno', newData.rec_mno)
-
     data.append('cmp_logo', newData.cmp_logo);
-    console.log(`recruiter image===>${data}`)
     let response = await fetch('http://localhost:5000/recsignup', {
       method: "POST",
       body: data
     })
-    console.log("response====>", response)
     const result = await response.json();
-    console.log("result===>", result);
-
-
-    if (result.status === 201) {
+    if (result.status === 200) {
       toast.success("Registration Successfully");
-      // toast.success("Your Username & ");
       navigate("/recruiterlogin");
-    } else if (result.Error) {
-
+    } else if (result.status == 400) {
+      toast.error("User Already Exist")
     }
     else {
-      toast.error("error");
+      toast.error("Sign Up Failed");
     }
   }
 

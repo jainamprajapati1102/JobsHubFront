@@ -91,18 +91,13 @@ function Resumedetail() {
       navigate('/seekerlogin')
     }
   }
-
-
   const downloadresume = async (req, res) => {
     axios.post('http://localhost:5000/createresume', seekerData)
       .then(() => axios.get('http://localhost:5000/downloadresume', { responseType: 'blob' })).then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, `${seekerData.js_name}Resume.pdf`)
       })
-
   }
-
-
   return (
 
     <>
@@ -170,11 +165,6 @@ function Resumedetail() {
                             <i className="ti-mobile padd-r-10" />
                             {seekerData.js_mno}{" "}
                           </div>
-                          {/*<div className="col-md-12 mrg-bot-10">
-                            {" "}
-                            <i className="ti-credit-card padd-r-10" />
-                            $12/Hour{" "}
-                          </div>*/}
                           <div className="col-md-12 mrg-bot-10">
                             {" "}
                             <i className="ti-user padd-r-10" />{seekerData.js_exp_company} (Experience Company)
@@ -185,138 +175,14 @@ function Resumedetail() {
                           </div>
                           <div className="col-md-12 mrg-bot-10">
                             {" "}
-                            {
-
-                            }
                             <span className="skill-tag">{seekerData.js_skill}</span>{" "}
-                            <span className="skill-tag">HTML</span>{" "}
-                            <span className="skill-tag">Photoshop</span>{" "}
+                            {/* <span className="skill-tag">HTML</span>{" "}
+                            <span className="skill-tag">Photoshop</span>{" "}*/}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/*<div className="detail-wrapper">
-                    <div className="detail-wrapper-header">
-                      <h4>Career</h4>
-                    </div>
-                    <div className="detail-wrapper-body">
-                      <p>
-                        Contrary to popular belief, Lorem Ipsum is not simply random
-                        text. It has roots in a piece of classical Latin literature from
-                        45 BC, making it over 2000 years old. Richard McClintock, a
-                        Latin professor at Hampden-Sydney College in Virginia, looked up
-                        one of the more obscure Latin words, consectetur.
-                      </p>
-                      <p>
-                        The point of using Lorem Ipsum is that it has a more-or-less
-                        normal distribution of letters, as opposed to using 'Content
-                        here, content here', making it look like readable English.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="detail-wrapper">
-                    <div className="detail-wrapper-header">
-                      <h4>Education</h4>
-                    </div>
-                    <div className="detail-wrapper-body">
-                      <div className="edu-history info">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>University</h3>
-                          <i>2020 - 2020</i>{" "}
-                          <span>
-                            {" "}
-                            denouncing pleasure and praising pain <i>It Computer</i>
-                          </span>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="edu-history danger">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>Intermediate School</h3>
-                          <i>2015 - 2020</i>{" "}
-                          <span>
-                            denouncing pleasure and praising pain <i>It Computer</i>
-                          </span>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="edu-history success">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>High School</h3>
-                          <i>2012 - 2015</i>{" "}
-                          <span>
-                            denouncing pleasure and praising pain <i>It Computer</i>
-                          </span>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="detail-wrapper">
-                    <div className="detail-wrapper-header">
-                      <h4>Work &amp; Experience</h4>
-                    </div>
-                    <div className="detail-wrapper-body">
-                      <div className="edu-history info">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>Php Developer</h3>
-                          <i>2008 - 2012</i>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="edu-history danger">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>Java Developer</h3>
-                          <i>2012 - 2014</i>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="edu-history success">
-                        {" "}
-                        <i />
-                        <div className="detail-info">
-                          <h3>CMS Developer</h3>
-                          <i>2014 - 2018</i>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                            ipsum primis in faucibus.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>*/}
                 </div>
                 {/* Sidebar */}
                 <div className="col-md-4 col-sm-5">
@@ -369,10 +235,6 @@ function Resumedetail() {
                         </div>
                       </div>
                     </div>
-                    {/* End: Job Overview */}
-                    {/* Start: Opening hour */}
-
-                    {/* End: Opening hour */}
                   </div>
                 </div>
                 {/* End Sidebar */}
@@ -385,7 +247,6 @@ function Resumedetail() {
         <Seekerfooter />
       </div>}
     </>
-
   )
 }
 

@@ -667,6 +667,7 @@ function Seekerprofile() {
                           Address
                         </div>
                         <div className="col-md-4 col-sm-4 col-xs-12">
+                          {console.log("seek add", seekerData.js_address)}
                           {seekerData.js_address}
                         </div>
                       </li>

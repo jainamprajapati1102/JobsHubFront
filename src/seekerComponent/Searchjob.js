@@ -62,18 +62,18 @@ function Searchjob() {
     Profile();
 
     // fetchcategory();
-  }, [search, gender, jobtype, qualification]);
+  }, [search, gender, jobtype, qualification, salary, sort]);
 
   const timeOption = [
-    { value: 'Most Recent', label: 'Most Recent' },
-    { value: 'Old', label: 'Old' },
+    { value: '1', label: 'Most Recent' },
+    { value: '-1', label: 'Old' },
   ]
 
   const getpostedjob = async () => {
     try {
       // const token = localStorage.getItem('seekerToken');
       // console.log("token===>", token)
-      const res = await fetch(`http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}`, {
+      const res = await fetch(`http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(sort)}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -128,16 +128,8 @@ function Searchjob() {
   }
 
   const [categorydata, setCategorydata] = useState();
-  const selectHandler = ({ name, value }) => {
-    setSort({
-      ...sort,
-      [name]: value
-    })
-  }
-
-  // if()
-  const salaryRange = (e) => {
-    setSalary({ ...salary, [e.target.name]: e.target.value })
+  const selectHandler = ({ value }) => {
+    setSort({ sort: value.value })
   }
 
   // apply job 
@@ -218,6 +210,7 @@ function Searchjob() {
     setSort('')
     setgender('')
     setqualification('')
+    // input.type.radioButton = "false"
   }
 
 
@@ -380,42 +373,50 @@ function Searchjob() {
                               <li>
                                 {" "}
                                 <span className="checkbox">
-                                  <input type="checkbox" id={1} className='custom-checkbox' name='10000' value={'1000'} onChange={(e) => setSalary(...salary, e.target.value)} />
+                                  <input type="radio" id={1} className='custom-checkbox' name='salaryrange' value={'5000 - 15,000'} onChange={(e) => setSalary(e.target.value)} />
                                   <label htmlFor={1} />
                                 </span>{" "}
-                                Under 10,000 <span className="pull-right"> </span>
+                                5000 - 15,000 <span className="pull-right"> </span>
                               </li>
                               <li>
                                 {" "}
                                 <span className="checkbox">
-                                  <input type="checkbox" name='15000' onChange={(e) => setSalary(...salary, e.target.value)} value={'10000 - 15000'} id={2} />
+                                  <input type="radio" name='salaryrange' onChange={(e) => setSalary(e.target.value)} value={'15,001 - 30,000'} id={2} />
                                   <label htmlFor={2} />
                                 </span>{" "}
-                                10,000 - 15,000 <span className="pull-right"></span>
+                                15,001 - 30,000 <span className="pull-right"></span>
                               </li>
                               <li>
                                 {" "}
                                 <span className="checkbox">
-                                  <input type="checkbox" name='20000' onChange={(e) => setSalary(...salary, e.target.value)} value={'15000 - 20000'} id={3} />
+                                  <input type="radio" name='salaryrange' onChange={(e) => setSalary(e.target.value)} value={'30,001 - 50,000'} id={3} />
                                   <label htmlFor={3} />
                                 </span>{" "}
-                                15,000 - 20,000 <span className="pull-right"></span>
+                                30,001 - 50,000 <span className="pull-right"></span>
                               </li>
                               <li>
                                 {" "}
                                 <span className="checkbox">
-                                  <input type="checkbox" name='30000' onChange={(e) => setSalary(...salary, e.target.value)} value={'20000 - 30000'} id={4} />
+                                  <input type="radio" name='salaryrange' onChange={(e) => setSalary(e.target.value)} value={'50,001 - 70,000'} id={4} />
                                   <label htmlFor={4} />
                                 </span>{" "}
-                                20,000 - 30,000 <span className="pull-right"></span>
+                                50,001 - 70,000 <span className="pull-right"></span>
                               </li>
                               <li>
                                 {" "}
                                 <span className="checkbox">
-                                  <input type="checkbox" name='40000' onChange={(e) => setSalary(...salary, e.target.value)} value={'30000 - 40000'} id={5} />
+                                  <input type="radio" name='salaryrange' onChange={(e) => setSalary(e.target.value)} value={'70,001 - 90,000'} id={5} />
                                   <label htmlFor={5} />
                                 </span>{" "}
-                                30,000 - 40,000 <span className="pull-right"></span>
+                                70,001 - 90,000 <span className="pull-right"></span>
+                              </li>
+                              <li>
+                                {" "}
+                                <span className="checkbox">
+                                  <input type="radio" name='salaryrange' onChange={(e) => setSalary(e.target.value)} value={'90,001 - 1,10,000'} id={6} />
+                                  <label htmlFor={6} />
+                                </span>{" "}
+                                90,001 - 1,10,000 <span className="pull-right"></span>
                               </li>
                             </ul>
                           </div>
@@ -658,8 +659,8 @@ function Searchjob() {
                               <Select
                                 className="wide "
                                 name="time"
-                                onChange={(value) => selectHandler({ ...sort, name: "time", value })}
-                                options={sort}
+                                onChange={(value) => selectHandler({ ...sort, value })}
+                                options={timeOption}
                               />
                             </div>
                             <></>
@@ -685,7 +686,7 @@ function Searchjob() {
                                 <div className="vrt-job-cmp-logo">
                                   {" "}
                                   <a href="job-detail.html">
-                                    <img src={list.postedby.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : pic} className="img-responsive" />
+                                    <img src={list?.postedby?.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : pic} className="img-responsive" />
                                   </a>{" "}
                                 </div>
                                 <h4>
@@ -710,20 +711,7 @@ function Searchjob() {
                                       <li>
                                         <strong>Job Type: </strong>{list?.jobtype}
                                       </li>
-                                      <li>
-                                        <strong>Skills: </strong>{" "}
-                                        <div>
-                                          {/*{
-                                      list?.map((item) => (
 
-                                        <span className="skill-tag">{item?.skil}</span>
-                                      ))
-                                    }*/}
-                                          <span className="skill-tag">Jainam</span>{" "}
-                                          <span className="skill-tag">java</span>{" "}
-                                          <span className="skill-tag">php</span>
-                                        </div>{" "}
-                                      </li>
                                       <li>
                                         <strong>Experience: </strong>{list.experience}
                                       </li>
@@ -731,7 +719,7 @@ function Searchjob() {
                                         <strong>Gender: </strong>{list.gender}
                                       </li>
                                       <li>
-                                        <strong>Location: </strong>{list.joblocation}
+                                        <strong>Location: </strong>{list?.postedby?.cmp_address}
                                       </li>
                                     </ul>
                                   </div>
