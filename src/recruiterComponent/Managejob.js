@@ -9,6 +9,7 @@ import Loader from '../Loader';
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import moment from 'moment';
+import nodata from "../img/nodata.png"
 function ManageJob() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,7 @@ function ManageJob() {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${accesstoken}`//.replace(/"/g, '')}`,
+      'Authorization': `Bearer ${accesstoken}`
     }
   }
 
@@ -60,12 +61,8 @@ function ManageJob() {
 
   //  ************* delete job  **************** //
   const deleteJobHandler = async () => {
-    // const conf = window.confirm('Do you want to Delete this job')
-
-
     const response = await fetch(`http://localhost:5000/restorejobpost/${jobtrash.recid}`, {
       method: 'put'
-
     });
     const result = await response.json();
     if (result.status === 200) {
@@ -73,21 +70,6 @@ function ManageJob() {
       getOwnJobpostData();
 
     }
-
-
-
-    // console.log("id=====>", id)
-    // const response = await fetch(`http://localhost:8080/deletejob/${id}`, {
-    //   method: 'DELETE'
-
-    // });
-    // const result = await response.json();
-
-    // if (result.status === 200) {
-    //   toast.success("job delete success");
-    //   getOwnJobpostData();
-
-    // }
   }
 
 
@@ -189,52 +171,46 @@ function ManageJob() {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {
-                      jobData.map((item) => (
-                        <tr>
-                          <td>
-                            <a href="">
-                              {" "}
+                  {jobData.length > 0 ?
+                    <tbody>
+                      {
+                        jobData.map((item) => (
+                          <tr>
+                            <td>
+                              <a href="">
+                                {" "}
 
-                              {item.jobtitle}
-                            </a>
-                          </td>
-                          <td>
-                            <i className="ti-calander" />  {moment(item?.createdAt).format("DD/MM/YYYY")}
-                          </td>
+                                {item.jobtitle}
+                              </a>
+                            </td>
+                            <td>
+                              <i className="ti-calander" />  {moment(item?.createdAt).format("DD/MM/YYYY")}
+                            </td>
 
-                          <td>
-                            <button onClick={() => { updatejo(item._id) }} className="cl-success mrg-5 fa fa-edit" >  </button>
+                            <td>
+                              <button onClick={() => { updatejo(item._id) }} className="cl-success mrg-5 fa fa-edit" >  </button>
 
-                            {/*<Link to="/recruiterhome" className="cl-danger mrg-5" data-toggle="tooltip" onClick={() => deleteJobHandler(item._id)} > <i className="fa fa-trash-o" /> </Link>*/}
-                            <button
-                              // onClick={()=>{deletef(list.addjobid)}}
-                              onClick={() => { onOpenModal(); trashfun(item._id) }}
+                              <button
+                                onClick={() => { onOpenModal(); trashfun(item._id) }}
 
-                              className="cl-danger mrg-5 fa fa-trash-o"
-                              data-toggle="tooltip"
-                              data-original-title="Delete"
-                            >
-                              {/* <i className="fa fa-trash-o" /> */}
-                            </button>
+                                className="cl-danger mrg-5 fa fa-trash-o"
+                                data-toggle="tooltip"
+                                data-original-title="Delete"
+                              >
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                      }
 
-                            {/* <Link className="btn btn-sm btn-danger" data-toggle="tooltip" onClick={() => updateJobHandler(item._id)} > Delete </Link> */}
-
-                            {/* <button className="cl-success mrg-5" data-toggle="tooltip" data-original-title="update" to="/updatejob" onClick={() => updateJobHandler(item._id)}>
-                          update
-                        </button> */}
-
-
-                            {/* <button className="cl-danger mrg-5" data-toggle="tooltip" data-original-title="Delete" onClick={() => deleteJobHandler(item._id)}>
-                          Delete
-                        </button> */}
-                          </td>
-                        </tr>
-                      ))
-                    }
-
-                  </tbody>
+                    </tbody>
+                    :
+                    (
+                      <td colSpan="5" style={{ textAlign: "center" }}>
+                        <img src={nodata} style={{ width: "400px" }} />
+                      </td>
+                    )
+                  }
                 </table>
 
                 {

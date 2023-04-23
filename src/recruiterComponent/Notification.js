@@ -15,7 +15,6 @@ import { Modal } from "react-responsive-modal";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import nodata from "../img/nodata.png"
-
 const Notification = () => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -126,7 +125,7 @@ const Notification = () => {
         if (result.status === 200) {
             toast.success("You Reject This request successfully");
             getjobApplieduser();
-            navigate('/manageprofile');
+            navigate('/applicantlist');
         } else {
             toast.error("something wrong");
         }
@@ -151,37 +150,18 @@ const Notification = () => {
                     <td>
                         {item?.js_id?.js_email}
                     </td>
-
                     <td>
                         {item?.js_id?.js_mno}
                     </td>
-
                     <td>
                         {item?.js_id?.js_gender}
                     </td>
-
                     <td>
-
                         <Button variant="success" id="md1" onClick={() => { acceptHandler(item?._id); acceptmail(item?._id) }} style={{ display: "none" }}> <i className="fa fa-check" /> </Button>
-                        <Button variant="danger" id="md2" data-toggle="tooltip" onClick={() => { onOpenModal(); rej(item?._id) }} style={{ display: "none" }}> <i className="fa fa-trash-o" /> </Button>
-
-
+                        <Button variant="danger" id="md2" data-toggle="tooltip" onClick={() => { onOpenModal(); rej(item?._id) }} style={{ display: "none" }}> <i className="fa fa-times" /> </Button>
                         <label className="cl-success mrg-5" for="md1">  <i className="fa fa-check" /> </label>
-                        <label className="cl-danger mrg-5 " for="md2">   <i className="fa fa-trash-o" /> </label>
+                        <label className="cl-danger mrg-5 " for="md2">   <i className="fa fa-times" /> </label>
                         <Link target="_blank" class="cl-primary mrg-5" to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`} ><i className="fa fa-eye" /></Link>
-
-                        {/* {item?.accept == 1 ? <Button variant="success" > Accepted </Button> : */}
-                        {/* <Button onClick={() => resumeview(item?.resume)} variant="info" data-toggle="tooltip"  > viewDetail </Button> */}
-
-
-
-                        {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
-
-                        {/* 
-            <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
-                rel="noreferrer">
-                Open First PDF
-            </a> */}
                     </td>
                 </tr>
 
@@ -290,64 +270,61 @@ const Notification = () => {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {userdata.length > 0 ?
+                                        <tbody>
 
-                                        {
-                                            userdata.map((item) => (
-                                                <tr key={item?._id}>
-                                                    <td>
-                                                        <a href="job-detail.html">
-                                                            {" "}
-                                                            <img
-                                                                src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
-                                                                className="avatar-lg"
-                                                                alt="Avatar"
-                                                            />
+                                            {
+                                                userdata.map((item) => (
+                                                    <tr key={item?._id}>
+                                                        <td>
+                                                            <a href="job-detail.html" className='text-success'>
+                                                                {" "}
+                                                                <img
+                                                                    src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                                    className="avatar-lg"
+                                                                    alt="Avatar"
+                                                                    style={{ color: "green" }}
+                                                                />
 
-                                                            {item?.js_id?.js_name}
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        {item?.js_id?.js_email}
-                                                    </td>
+                                                                {item?.js_id?.js_name}
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            {item?.js_id?.js_email}
+                                                        </td>
 
-                                                    <td>
-                                                        {item?.js_id?.js_mno}
-                                                    </td>
+                                                        <td>
+                                                            {item?.js_id?.js_mno}
+                                                        </td>
 
-                                                    <td>
-                                                        {item?.js_id?.js_gender}
-                                                    </td>
+                                                        <td>
+                                                            {item?.js_id?.js_gender}
+                                                        </td>
 
-                                                    <td>
+                                                        <td>
 
-                                                        <Button variant="success" id="md1" onClick={() => { acceptHandler(item?._id); acceptmail(item?._id) }} style={{ display: "none" }}> <i className="fa fa-check" /> </Button>
-                                                        <Button variant="danger" id="md2" data-toggle="tooltip" onClick={() => { onOpenModal(); rej(item?._id) }} style={{ display: "none" }}> <i className="fa fa-trash-o" /> </Button>
-
-
-                                                        <label className="cl-success mrg-5" for="md1">  <i className="fa fa-check" /> </label>
-                                                        <label className="cl-danger mrg-5 " for="md2">   <i className="fa fa-trash-o" /> </label>
-                                                        <Link target="_blank" class="cl-primary mrg-5" to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`} ><i className="fa fa-eye" /></Link>
-
-                                                        {/* {item?.accept == 1 ? <Button variant="success" > Accepted </Button> : */}
-                                                        {/* <Button onClick={() => resumeview(item?.resume)} variant="info" data-toggle="tooltip"  > viewDetail </Button> */}
+                                                            <Button variant="success" id="md1" onClick={() => { acceptHandler(item?._id); acceptmail(item?._id) }} style={{ display: "none" }}> <i className="fa fa-check" /> </Button>
+                                                            <Button variant="danger" id="md2" data-toggle="tooltip" onClick={() => { onOpenModal(); rej(item?._id) }} style={{ display: "none" }}> <i className="fa fa-trash-o" /> </Button>
 
 
+                                                            <label className="cl-success mrg-5" for="md1">  <i className="fa fa-check" /> </label>
+                                                            <label className="cl-danger mrg-5 " for="md2">   <i className="fa fa-trash-o" /> </label>
+                                                            <Link target="_blank" class="cl-primary mrg-5" to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`} ><i className="fa fa-eye" /></Link>
 
-                                                        {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
+                                                        </td>
+                                                    </tr>
 
-                                                        {/* 
-                                            <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
-                                                rel="noreferrer">
-                                                Open First PDF
-                                            </a> */}
-                                                    </td>
-                                                </tr>
+                                                ))
+                                            }
 
-                                            ))
-                                        }
-
-                                    </tbody>
+                                        </tbody>
+                                        :
+                                        (
+                                            <td colSpan="5" style={{ textAlign: "center" }}>
+                                                <img src={nodata} style={{ width: "400px" }} />
+                                            </td>
+                                        )
+                                    }
                                 </table>
                                 {/* <div className="utf_flexbox_area padd-10">
                                     <ul className="pagination">

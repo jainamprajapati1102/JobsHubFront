@@ -186,7 +186,7 @@ function Apply() {
       console.log("result=--->", result)
       if (result.status === 201) {
         toast.success('Job Apply ');
-        navigate('/seekerhome')
+        navigate('/jobhistory')
       } else {
         toast.error('Job Not Apply ')
       }

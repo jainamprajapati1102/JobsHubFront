@@ -396,8 +396,15 @@ function Updatejob() {
 
                                     </div>
 
-                                    &nbsp;
-                                    <div className="text-center">
+
+                                    <div className="col-md-6 padd-top-10 text-center">
+                                        {" "}
+                                        <button type='button' className="btn btn-m them-btn  full-width" onClick={() => { navigate('/managejob') }} >
+                                            Cancle
+                                        </button>
+                                    </div>
+
+                                    <div className="col-md-6 padd-top-10 text-center">
                                         <button
                                             type="button"
                                             className="btn btn-m theme-btn full-width"
@@ -405,7 +412,7 @@ function Updatejob() {
                                                 jobUpdateHandler();
                                             }}
                                         >
-                                            Job Post
+                                            Update
                                         </button>
                                     </div>
                                 </div>

@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Recruiterfooter from './Recruiterfooter';
 import Typewriter from 'typewriter-effect'
 import Loader from '../Loader';
+import nodata from "../img/nodata.png"
 const RejectList = () => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -67,41 +68,49 @@ const RejectList = () => {
                                             <th>Gender</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='text-danger'>
+                                    {userdata.length > 0 ?
+                                        <tbody className='text-danger'>
 
-                                        {userdata.map((item) => (
-                                            <tr key={item?._id}>
-                                                <td>
-                                                    <a href="job-detail.html">
-                                                        {" "}
-                                                        <img
-                                                            src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
-                                                            className="avatar-lg"
-                                                            alt="Avatar"
-                                                        />
+                                            {userdata.map((item) => (
+                                                <tr key={item?._id}>
+                                                    <td>
+                                                        <a href="job-detail.html">
+                                                            {" "}
+                                                            <img
+                                                                src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                                className="avatar-lg"
+                                                                alt="Avatar"
+                                                            />
 
-                                                        {item?.js_id?.js_name}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    {item?.js_id?.js_email}
-                                                </td>
+                                                            {item?.js_id?.js_name}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {item?.js_id?.js_email}
+                                                    </td>
 
-                                                <td>
-                                                    {item?.js_id?.js_mno}
-                                                </td>
+                                                    <td>
+                                                        {item?.js_id?.js_mno}
+                                                    </td>
 
-                                                <td>
-                                                    {item?.js_id?.js_gender}
-                                                </td>
-                                            </tr>
-                                        ))
-                                        }
-
-
+                                                    <td>
+                                                        {item?.js_id?.js_gender}
+                                                    </td>
+                                                </tr>
+                                            ))
+                                            }
 
 
-                                    </tbody>
+
+
+                                        </tbody>
+                                        :
+                                        (
+                                            <td colSpan="5" style={{ textAlign: "center" }}>
+                                                <img src={nodata} style={{ width: "400px" }} />
+                                            </td>
+                                        )
+                                    }
                                 </table>
                                 {/*<div className="utf_flexbox_area padd-10">
                                     <ul className="pagination">

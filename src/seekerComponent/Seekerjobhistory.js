@@ -12,6 +12,7 @@ import Rejectjob from './Rejectjob';
 import Loader from '../Loader';
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import nodata from "../img/nodata.png"
 function Jobhistory() {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -72,17 +73,11 @@ function Jobhistory() {
         console.log("====>", result)
         if (result.status === 201) {
             toast.success("Your Application In Trash")
-
             callhistory();
             navigate('/seekerhome')
         }
-
-
     }
-
-
     const [open, setOpen] = useState(false);
-
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
     return (
@@ -179,15 +174,23 @@ function Jobhistory() {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {
+                                    {seeker.length > 0 ?
+                                        <tbody>
+                                            {
 
-                                            seeker.map((item) => (
-                                                <tr>
-                                                    <td><i className="ti-user" />{item?.rec_id?.cmp_name}</td>
-                                                    <td>{moment(item?.rec_id?.createdAt).format("DD/MM/YYYY")}</td>
-                                                    <td>
-                                                        {/* {((item) => {
+                                                seeker.map((item) => (
+                                                    <tr>
+                                                        <td>
+                                                            <img
+                                                                src={`http://localhost:5000/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`}
+                                                                className="avatar-lg"
+                                                                alt="Avatar"
+                                                            />
+                                                            {item?.rec_id?.cmp_name}
+                                                        </td>
+                                                        <td>{moment(item?.rec_id?.createdAt).format("DD/MM/YYYY")}</td>
+                                                        <td>
+                                                            {/* {((item) => {
                                                         if (item?.accept == 1) {
                                                             return (
                                                                 <p style={{ color: "green" }}>Accepted</p>
@@ -204,40 +207,47 @@ function Jobhistory() {
                                                             )
                                                         } */}
 
-                                                        {/* })()} */}
+                                                            {/* })()} */}
 
-                                                        {item?.accept === 1 ?
-                                                            <div> <p style={{ color: "#0fb76b" }}>Accepted</p></div> :
-                                                            item?.accept === 2 ?
-                                                                <div>
-                                                                    {/* <p style={{ color: "green" }}>Accepted</p> */}
-                                                                    <p style={{ color: "red" }}>Rejected</p>
-                                                                </div>
-                                                                : item?.accept === 0 ?
+                                                            {item?.accept === 1 ?
+                                                                <div> <p style={{ color: "#0fb76b" }}>Accepted</p></div> :
+                                                                item?.accept === 2 ?
                                                                     <div>
                                                                         {/* <p style={{ color: "green" }}>Accepted</p> */}
-                                                                        {/* <p style={{ color: "red" }}>Rejected</p> */}
-                                                                        <p style={{ color: "blue" }}>Pending</p>
+                                                                        <p style={{ color: "red" }}>Rejected</p>
                                                                     </div>
-                                                                    : ''
-                                                        }
+                                                                    : item?.accept === 0 ?
+                                                                        <div>
+                                                                            {/* <p style={{ color: "green" }}>Accepted</p> */}
+                                                                            {/* <p style={{ color: "red" }}>Rejected</p> */}
+                                                                            <p style={{ color: "blue" }}>Pending</p>
+                                                                        </div>
+                                                                        : ''
+                                                            }
 
 
-                                                        {/* {item?.accept === 1 ? <p style={{ color: "green" }}>Accepted</p> : <p style={{ color: "red" }}>Pending</p>} */}
+                                                            {/* {item?.accept === 1 ? <p style={{ color: "green" }}>Accepted</p> : <p style={{ color: "red" }}>Pending</p>} */}
 
-                                                    </td>
-                                                    <td>
+                                                        </td>
+                                                        <td>
 
-                                                        {
-                                                            item?.accept ? "" :
-                                                                <Link to="/jobhistory" className="cl-danger mrg-5" data-toggle="tooltip" onClick={() => { onOpenModal(); delHandle(item._id) }} ><i className="fa fa-trash-o" /></Link>
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            ))
-                                        }
+                                                            {
+                                                                item?.accept ? "" :
+                                                                    <Link to="/jobhistory" className="cl-danger mrg-5" data-toggle="tooltip" onClick={() => { onOpenModal(); delHandle(item._id) }} ><i className="fa fa-trash-o" /></Link>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            }
 
-                                    </tbody>
+                                        </tbody>
+                                        :
+                                        (
+                                            <td colSpan="5" style={{ textAlign: "center" }}>
+                                                <img src={nodata} style={{ width: "400px" }} />
+                                            </td>
+                                        )
+                                    }
                                 </table>
                                 {
                                     seeker.length > 10 ? <div className="utf_flexbox_area padd-10">

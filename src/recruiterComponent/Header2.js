@@ -49,7 +49,7 @@ function Header2() {
                   Company
                 </a>
                 <ul className="dropdown-menu animated fadeOutUp">
-            
+
                   <li>
                     <Link to="/addjob">Add job</Link>
                   </li>
@@ -85,26 +85,7 @@ function Header2() {
                   </li>
                 </ul>
               </li>
-              {/* <li className="dropdown">
-            {" "}
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-              Pages
-            </a>
-            <ul className="dropdown-menu animated fadeOutUp">
-              <li>
-                <Link to="/profilesetting">Profile Settings</Link>
-              </li>
-              <li>
-                <a href="job-detail.html">Job Detail</a>
-              </li>
-              <li>
-                <a href="job-layout-one.html">Job Layout One</a>
-              </li>
-              <li>
-                <Link to="/error">404</Link>
-              </li>
-            </ul>
-          </li> */}
+
               <li className="dropdown">
                 {" "}
                 <Link to="/contact">Contact</Link>{" "}
@@ -112,43 +93,6 @@ function Header2() {
 
             </ul>
 
-            {/* <ul className="nav navbar-nav navbar-right  ">
-   
-        <li className="dropdown ">
-            {" "}
-            <a href="#" className="dropdown-toggle btn-signup red-btn" data-toggle="dropdown"> <i className="login-icon ti-user" />
-              Login
-            </a>
-            <ul className="dropdown-menu animated fadeOutUp">
-            
-              <li>
-                <Link to="/login">Login as Company</Link>
-              </li>
-              <li>
-                <Link to="/login">Login as User</Link>
-              </li>
-             
-            </ul>
-          </li>
-          <li className="sign-up">
-            <Link className="btn-signup red-btn" to="/signup">
-              <span className="ti-briefcase" />
-              Register
-            </Link>
-          </li>
-          <li className="br-right">
-            <Link
-              className="btn-signup red-btn"
-              to="/login"
-              data-toggle="modal"
-              data-target="#signin"
-            >
-              <i className="login-icon ti-user" />
-              Login
-            </Link>
-          </li>
-        
-        </ul> */}
 
           </div>
         </div>

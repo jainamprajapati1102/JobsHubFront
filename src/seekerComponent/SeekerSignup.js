@@ -37,20 +37,14 @@ function SeekerSignup() {
     setUser({ ...user, [name]: value });
   }
 
-  // data send from the front to bacj end using fetch function
+  // data send from the front to backend using fetch function
   const userData = async (e) => {
-    // const confiOption = {
-    //   method: "post", body: JSON.stringify(user), headers: { "content-type": "application/json" }
-    // };
-    // const response = await fetch("https://jobshubback-19af.onrender.com/signup", confiOption);
-    // const result = await response.json();
-
     const result = await signup(user)
     if (user.js_name && user.js_email && user.js_pwd && user.js_cpwd && user.js_mno) {
       if (result.status === 200) {
         toast.success("Seeker Signup Successfully");
         console.log({ result });
-        toast.success("YOur Id and Password send on your Email & Whatsapp No ");
+        // toast.success("YOur Id and Password send on your Email & Whatsapp No ");
         localStorage.setItem('seeker', JSON.stringify(result));
         navigate("/seekerlogin");
       } else {
@@ -63,17 +57,6 @@ function SeekerSignup() {
     }
   }
 
-  // const googlesignupHandle = await(e) => {
-  //   const configOption = {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   }
-
-  //   const response = await fetch("")
-  // }
-
   const googlesignupHandle = async () => {
     const configOption = {
       method: "GET",
@@ -82,7 +65,7 @@ function SeekerSignup() {
       }
     }
 
-    const res = await fetch("http://localhost:5000/auth/google", configOption)
+    const res = await fetch("https://jobshubback-19af.onrender.com/auth/google", configOption)
 
     const result = await res.json()
     console.log(result);
@@ -198,11 +181,12 @@ function SeekerSignup() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label>Phone</label>
+                      <label>Whatsapp No.</label>
                       <input
-                        type="text"
+                        type="tele"
                         name="js_mno"
                         defaultValue="91"
+                        maxLength={12}
                         className="form-control"
                         placeholder="Phone Number"
                         {...register("js_mno", {
@@ -225,24 +209,6 @@ function SeekerSignup() {
                       >
                         Sign Up
                       </button>
-                      {/*<p>or</p>*/}
-                      {/*<Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Signup with Google</Link>*/}
-                      {/*<Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>
-                        <>
-
-                          <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>
-                            <div className="google-icon-wrapper" style={{ marginBottom: "10px" }}>
-                              <img
-                                className="google-icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                              />
-
-                            </div>
-
-                          </div>
-                        </>
-
-                      </Link>*/}
                     </div>
 
                     Alredy have an account?  <Link to="/seekerlogin" title="Home" className="login">

@@ -70,94 +70,14 @@ function Jobdetail() {
         setJobdata(result.data);
         console.log(`jainam :--${jobdata}`)
     }
+    const applyHandle = (id) => {
+        console.log("id from the job detrail", id)
+        navigate('/apply', { state: id })
+    }
     return (
         <>
             {isLoading ? <Loader /> : <div>
                 <>
-                    <Modal open={open} onClose={onCloseModal} center>
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                borderRadius: 20
-                            }}
-                        >
-                            <span>
-                                <h3>APPLY HERE...</h3>
-                            </span>
-                            <span></span>
-                        </div>
-                        <hr />
-                        <div className="scr" style={{ height: "350px", overflow: "auto" }}>
-                            <div className="profile_detail_block">
-                                <div className="text-center mrg-bot-20">
-                                    {/* <h4 className="mrg-0">Front End Designer</h4> */}
-                                    {/* <span>2708 Scenic Way, Sutter</span> */}
-                                </div>
-                                <form>
-                                    <div className="col-md-6 col-sm-6">
-                                        <label>Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-
-                                            value={jobdata?.postedby?.cmp_name}
-                                            placeholder="Name"
-                                            name="name"
-                                        //   onChange={inputHandle}
-                                        />
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <label>Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            className="form-control"
-                                            // value={apply.js_email}
-                                            placeholder="Email"
-                                        //   onChange={inputHandle}
-                                        />
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <label>Phone</label>
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            placeholder="Phone No"
-                                            name="mno"
-                                        // value={apply.js_mno}
-                                        //   onChange={inputHandle}
-                                        />
-                                    </div>
-                                    <div className="col-md-6 col-sm-6">
-                                        <label>Upload CV</label>
-                                        <div className="custom-file-upload">
-                                            <input
-                                                type="file"
-                                                id="file"
-                                            // onChange={inputHandle}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="col-md-12 text-center">
-                                        <button
-                                            //   onClick={() => {
-                                            //     applyFrom();
-                                            //     onCloseModal();
-                                            //   }}
-                                            type="button"
-                                            className="btn theme-btn btn-m full-width"
-                                        >
-                                            APPLY JOB
-                                        </button>
-                                    </div>
-                                    <div className="clearfix" />
-                                </form>
-                            </div>
-                        </div>
-                    </Modal>
                     <loadjs />
                     <SeekHeader />
                     <div className="page-title">
@@ -206,8 +126,7 @@ function Jobdetail() {
                                                     <span>512 Big Tower, New Delhi</span>
                                                     <div className="text-center">
                                                         <button
-                                                            onClick={onOpenModal}
-
+                                                            onClick={() => { applyHandle(id) }}
                                                             type="button"
                                                             data-toggle="modal"
                                                             data-target="#signin"

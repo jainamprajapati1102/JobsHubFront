@@ -9,26 +9,12 @@ import Select from "react-select";
 import avtar from "../img/loginpic.png"
 import { Modal } from 'react-responsive-modal';
 import moment from 'moment'
-// console.log(Country.getAllCountries())
-// console.log(State.getAllStates())
-// console.log(State.getAllCities())
-// console.log(State.getAllCities())
-// import toas
-// 
+
 import Typewriter from 'typewriter-effect'
 import Loader from '../Loader'
 function Editprofile() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // simulate an API call with a delay of 3 seconds
-    setTimeout(() => {
-      setData("Some data");
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
 
   useEffect(() => {
     fetchCompanyData();
@@ -37,7 +23,12 @@ function Editprofile() {
     fetchCityData();
     callrecruiter();
     fetchcategory();
-  }, [])
+    // simulate an API call with a delay of 3 seconds
+    setTimeout(() => {
+      setData("Some data");
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   const navigate = useNavigate();
   const callrecruiter = async (req, res) => {
@@ -94,7 +85,7 @@ function Editprofile() {
     const response = await fetch('http://localhost:5000/industry', requestOptions);
     const categoryres = await response.json();
     const category_list = [];
-    categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
+    categoryres?.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
     setCategorydata(category_list)
   }
   const update1 = (e) => {
@@ -112,8 +103,7 @@ function Editprofile() {
   const fetchCountry = async () => {
     const rescountry = Country.getAllCountries()
     let country_list = [];
-    rescountry.map((item) => country_list.push({ value: item.name, label: item.name }));
-    // console.log("country_list==>",country_list);
+    rescountry?.map((item) => country_list.push({ value: item.name, label: item.name }));
     setCountrylist(country_list);
   };
 
@@ -126,7 +116,6 @@ function Editprofile() {
         "Content-Type": "application/json",
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
-        // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
       }
     })
     const resultstate = await response.json();
@@ -145,14 +134,13 @@ function Editprofile() {
         "Content-Type": "application/json",
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
-        // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
       }
     }
     );
 
     const result = await response.json();
     let city_list = [];
-    result.map((item) => { city_list.push({ value: item.title, label: item.title }) });
+    result?.map((item) => { city_list.push({ value: item.title, label: item.title }) });
     console.log("citylist====>", city_list);
     setCitylist(city_list);
   }
@@ -166,7 +154,6 @@ function Editprofile() {
         "Content-Type": "application/json",
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
-        // 'Authorization': `Bearer ${accesstoken}`//.replace(/"/g, '')}`,
       }
     });
 
@@ -209,7 +196,6 @@ function Editprofile() {
         "Content-Type": "application/json",
         credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
-        // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
       },
       body: JSON.stringify(inputdata),
     };
@@ -224,7 +210,6 @@ function Editprofile() {
   }
 
   const [image, setImage] = useState({ cmp_logo: "" });
-
   const mystyle = { cursor: "pointer", fontSize: "3rem" }
   const profile = async (e) => {
     setImage({
@@ -234,8 +219,6 @@ function Editprofile() {
   }
 
   const profilepic = async (event, value) => {
-    // console.log('Called profile epic method=======================>', event);
-    // console.log('value================>', value);
     const selectedFile = event.target.files[0];
     console.log('selectedFile ====>', selectedFile);
     const formdata = new FormData()
@@ -259,7 +242,6 @@ function Editprofile() {
     } else {
       toast.error("Profile Picture not Update yet")
     }
-    console.log(`=====> ${image}`)
   }
 
   const [newpass, setNewpass] = useState("");
@@ -269,9 +251,6 @@ function Editprofile() {
   }
   const changepass = async () => {
     if (newpass.oldpwd && newpass.updatedpass && newpass.updateconpass) {
-
-
-      console.log("")
       const configOPtion = {
         method: "POST",
         headers: {
@@ -283,7 +262,6 @@ function Editprofile() {
 
       const response = await fetch('http://localhost:5000/recchangepass', configOPtion)
       const result = await response.json()
-      console.log(`---->${result.status}`)
       if (result.status === 201) {
         toast.success("Your Password Successfully Change")
         logout();
@@ -415,9 +393,6 @@ function Editprofile() {
                 <div className="col-md-3">
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
-                      {" "}
-                      {/*<img alt="user photo" src={`http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}`} />{" "}
-                      <span className="user-photo-action">{inputdata.cmp_name}</span>{" "}*/}
                       <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
                       <input type="file" id="file" name="cmp_logo" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
@@ -435,21 +410,12 @@ function Editprofile() {
                           <i className="login-icon ti-pencil-alt" /> Edit Profile
                         </Link>
                       </li>
-
-                      {/* <li >
-                        <Link to="/notification">
-                          <i className="login-icon ti-bell" /> Notifications
-                        </Link>
-                      </li> */}
-
                       <li>
                         <label for="chpass">
-
                           <i className="login-icon ti-key" /> Change Password
                         </label>
 
                         <button onClick={onOpenModal} style={{ display: "none" }} id='chpass'>
-                          hh
                         </button>
                       </li>
                       <li>
@@ -516,7 +482,7 @@ function Editprofile() {
 
                                   onChange={({ label }) => selectHandler({ name: 'industry_cat', label })}
                                   options={categorydata}
-                                  value={categorydata.map((list) => {
+                                  value={categorydata?.map((list) => {
                                     if (list.label == inputdata.industry_cat) {
                                       return {
                                         value: list.value,
@@ -581,7 +547,7 @@ function Editprofile() {
                               <div className="form-group">
                                 <label>Phone Number</label>
                                 <input
-                                  type="number"
+                                  type="tele"
                                   value={inputdata.rec_mno}
                                   // min={10}
                                   // max={10}
@@ -761,7 +727,7 @@ function Editprofile() {
                       <div className="clearfix" />
                       <div className="col-md-6 padd-top-10 text-center">
                         {" "}
-                        <button type='button' className="btn btn-m them-btn  full-width" onClick={() => { navigate('/manageprofile')}} >
+                        <button type='button' className="btn btn-m them-btn  full-width" onClick={() => { navigate('/manageprofile') }} >
                           Cancle
                         </button>
                       </div>

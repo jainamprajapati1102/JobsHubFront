@@ -82,7 +82,7 @@ function Recruiterjobrestor() {
         const data = await restore.json();
         if (data.status === 201) {
             Swal.fire({
-                position: 'top-end',
+                position: 'top-middle',
                 icon: 'success',
                 title: 'Your Your Job Post Restore',
                 showConfirmButton: false,

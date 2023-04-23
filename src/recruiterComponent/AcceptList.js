@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Recruiterfooter from './Recruiterfooter';
 import Typewriter from 'typewriter-effect'
 import Loader from '../Loader';
+import nodata from "../img/nodata.png"
 const AcceptList = () => {
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const AcceptList = () => {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${accesstoken}`//.replace(/"/g, '')}`,
+            'Authorization': `Bearer ${accesstoken}`
         }
     }
 
@@ -29,23 +30,18 @@ const AcceptList = () => {
         console.log("ACCEPTlIST--->", result)
         setuserData(result)
     }
-
-    console.log("userdata=====>", userdata);
-
-
     const exportcsv = async () => {
         const d1 = {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         }
-
-        const response = await fetch('http://localhost:5000/exportcsv', d1)
+        console.log("token jainm", accesstoken)
+        const response = await fetch(`http://localhost:5000/exportcsv/${accesstoken}`, d1)
         console.log(response)
         if (response.status === 200) {
             window.open(response.url, "self")
-            // toast.success('CSV Download Complete')
         } else {
             toast.error('Please Try After Some Time')
         }
@@ -80,28 +76,36 @@ const AcceptList = () => {
                                         <th>Gender</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {userdata.length > 0 ?
+                                    <tbody>
 
-                                    {userdata.map((item) => (
-                                        <tr key={item?._id}>
-                                            <td>
-                                                <a href="job-detail.html">
-                                                    {" "}
-                                                    <img
-                                                        src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
-                                                        className="avatar-lg"
-                                                        alt="Avatar"
-                                                    />
-                                                    {item?.js_id?.js_name}
-                                                </a>
-                                            </td>
-                                            <td>{item?.js_id?.js_email}</td>
-                                            <td>{item?.js_id?.js_mno}</td>
-                                            <td>{item?.js_id?.js_gender}</td>
-                                        </tr>
-                                    ))
-                                    }
-                                </tbody>
+                                        {userdata.map((item) => (
+                                            <tr key={item?._id}>
+                                                <td>
+                                                    <a href="job-detail.html">
+                                                        {" "}
+                                                        <img
+                                                            src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                            className="avatar-lg"
+                                                            alt="Avatar"
+                                                        />
+                                                        {item?.js_id?.js_name}
+                                                    </a>
+                                                </td>
+                                                <td>{item?.js_id?.js_email}</td>
+                                                <td>{item?.js_id?.js_mno}</td>
+                                                <td>{item?.js_id?.js_gender}</td>
+                                            </tr>
+                                        ))
+                                        }
+                                    </tbody>
+                                    :
+                                    (
+                                        <td colSpan="5" style={{ textAlign: "center" }}>
+                                            <img src={nodata} style={{ width: "400px" }} />
+                                        </td>
+                                    )
+                                }
                             </table>
                             {/*<div className="utf_flexbox_area padd-10">
                                     <ul className="pagination">

@@ -64,7 +64,6 @@ function ManageProfile() {
       }
     });
 
-    // const response = await fetch('http://localhost:5000/getOwndata', requestOptions);
     const data = await response.json();
     console.log(`cmp data :- ${data}`)
     setInputdata({
@@ -90,26 +89,7 @@ function ManageProfile() {
     });
   }
 
-
-  // const [state, setStates] = useState('');
-  // const [city, setCity] = useState('');
-  // const getlocaltion = async () => {
-
-  //   const resstate = State.allStates();
-  //   console.log(`Indian state :--->${resstate}`)
-  //   const rescity = City.allcities()
-  //   const statelist = [];
-  //   // resstate.map((item) => { statelist.push({value:}) })
-  //   setCountry(rescountry);
-  //   setStates(resstate);
-  //   setCity(rescity);
-  // }
-
-  // getlocaltion();
-
-  // const navigate = useNavigate();
   const [newpass, setNewpass] = useState("");
-  // const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
   const inputhandle = (e) => {
     setNewpass({ ...newpass, [e.target.name]: e.target.value })
   }
@@ -162,7 +142,6 @@ function ManageProfile() {
   }
 
   const deleteaccount = async () => {
-
     const configOPtion = {
       method: "DELETE",
       headers: {
@@ -175,12 +154,10 @@ function ManageProfile() {
     const response = await fetch('http://localhost:5000/recdeleteaccount', configOPtion)
     const result = await response.json();
     if (result.status === 201) {
-      toast.error("Your Account Deleted")
+      toast.success("Your Account Deleted")
+      localStorage.removeItem('recruiterToken');
       navigate('/recruitersignup')
-      logout()
-
     }
-
   }
 
   const [open, setOpen] = useState(false);
@@ -314,15 +291,6 @@ function ManageProfile() {
                             <i className="login-icon ti-pencil-alt" /> Edit Profile
                           </Link>
                         </li>
-                        {
-                          /* <li >
-                                                  <Link to="/notification">
-                                                    <i className="login-icon ti-bell" /> Notifications
-                                                  </Link>
-                                                </li> */
-                        }
-
-
                         <li>
                           <label for="chpass">
 

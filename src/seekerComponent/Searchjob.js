@@ -725,46 +725,18 @@ function Searchjob() {
                                   </div>
                                   <div className="col-md-3 col-sm-12 col-xs-12">
                                     <div className="vrt-job-act">
-                                      {" "}
-                                      {/*<button
-                                        // to={`/apply/${list.postedby._id}`}
-                                        className="btn-job theme-btn job-apply"
-
-                                        onClick={(e) => { jobinput(list.postedby._id) }}
-                                      // onClick={applyFrom}
-
-                                      >
-                                        Apply Now
-                                      </button>{" "}*/}
                                       <button
-
                                         className="btn-job theme-btn job-apply"
-
                                         onClick={(e) => jobinput(list?.postedby?._id)}
-
                                       >
                                         Apply Now
-                                      </button>{" "}
-                                      {/*<Link
-                                        to={`/jobdetail/${list._id}`}
-                                        title=""
-                                        className="btn-job light-gray-btn"
-                                      >
-                                        Job Detail
-                                      </Link>{" "}*/}
-
-
+                                      </button>
                                       <button
-
                                         className="btn-job light-gray-btn"
-
                                         onClick={(e) => detailinput(list._id)}
-
                                       >
                                         Job Detail
                                       </button>{" "}
-
-
                                     </div>
                                   </div>
                                 </div>

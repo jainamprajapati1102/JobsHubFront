@@ -16,7 +16,7 @@ function Recruiterhome() {
     setTimeout(() => {
       setData("Some data");
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
   const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
   const navigate = useNavigate();
