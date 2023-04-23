@@ -23,7 +23,6 @@ function Changepassword() {
         setNewpass({ ...newpass, [e.target.name]: e.target.value })
     }
     const changepass = async () => {
-        console.log("")
         const configOPtion = {
             method: "POST",
             headers: {
@@ -33,9 +32,8 @@ function Changepassword() {
             body: JSON.stringify(newpass)
         }
 
-        const response = await fetch('http://localhost:5000/changepass', configOPtion)
+        const response = await fetch('https://jobshubback-19af.onrender.com/changepass', configOPtion)
         const result = await response.json()
-        console.log(`---->${result.status}`)
         if (result.status === 201) {
             toast.success("Your Password Successfully Change")
             navigate('/seekerlogin')

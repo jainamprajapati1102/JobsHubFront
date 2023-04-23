@@ -34,9 +34,8 @@ function Searchjob() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/checkprofile', configOption);
+    const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
     const result = await response.json();
-    console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
     } else {
       toast.error(result.msg);
@@ -71,9 +70,7 @@ function Searchjob() {
 
   const getpostedjob = async () => {
     try {
-      // const token = localStorage.getItem('seekerToken');
-      // console.log("token===>", token)
-      const res = await fetch(`http://localhost:5000/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(sort)}`, {
+      const res = await fetch(`https://jobshubback-19af.onrender.com/getjobpost?search=${search}&gender=${gender}&jobtype=${jobtype}&qualification=${qualification}&salaryrange=${salary}&sort=${JSON.stringify(sort)}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -81,11 +78,9 @@ function Searchjob() {
         }
       });
       const data = await res.json();
-      console.log("data===>", data);
       setSeekerdata(data);
 
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
 
     }
   }
@@ -93,8 +88,7 @@ function Searchjob() {
   const Profile = async (e) => {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
-      console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-19af.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -104,7 +98,6 @@ function Searchjob() {
         }
       });
       const data = await res.json();
-      console.log(data);
       setApply({
         ...apply,
         js_name: data.js_name,
@@ -117,14 +110,11 @@ function Searchjob() {
         throw error;
       }
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
       navigate('/seekerlogin')
     }
   }
 
-  console.log("seekerData===>", seekerData.jobtitle)
   const applyHandle = (_id) => {
-    console.log(`id =>>>${_id}`)
   }
 
   const [categorydata, setCategorydata] = useState();
@@ -156,7 +146,6 @@ function Searchjob() {
       ...cv, resume: event.target.files[0]
     })
   }
-  console.log("apply---->", cv.resume);
   const applyFrom = async () => {
     try {
       const data = new FormData();
@@ -166,7 +155,6 @@ function Searchjob() {
       data.append('resume', cv.resume);
       data.append('rec_id', rec.recid);
 
-      console.log(`Fornm===>>>${data}`)
       const confiOption = {
         method: "post",
         headers: {
@@ -177,9 +165,8 @@ function Searchjob() {
         },
         body: data,
       };
-      const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
+      const response = await fetch(`https://jobshubback-19af.onrender.com/applyjob`, confiOption);
       const result = await response.json();
-      console.log("result=--->", result)
       if (result.status === 201) {
         toast.success('Job Apply ');
         navigate('/seekerhome')
@@ -187,7 +174,6 @@ function Searchjob() {
         toast.error('Job Not Apply ')
       }
     } catch (error) {
-      console.log(`Error from frontend :- ${error}`)
     }
   }
 
@@ -210,34 +196,7 @@ function Searchjob() {
     setSort('')
     setgender('')
     setqualification('')
-    // input.type.radioButton = "false"
   }
-
-
-
-  // const requestOptions = {
-  //   method: 'GET',
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //     credentials: "includes",
-  //     'Authorization': `Bearer ${accesstoken1.replace(/"/g, '')}`,
-  //   }
-  // }
-  // const fetchcategory = async () => {
-  //   const response = await fetch('http://localhost:5000/industry', requestOptions);
-  //   const categoryres = await response.json();
-  //   const category_list = [];
-  //   categoryres.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
-  //   setCategorydata(category_list)
-  // }
-
-
-
-
-
-
-
   return (
     <>
       {
@@ -261,8 +220,6 @@ function Searchjob() {
               <div className="scr" style={{ height: "350px", overflow: "auto" }}>
                 <div className="profile_detail_block">
                   <div className="text-center mrg-bot-20">
-                    {/* <h4 className="mrg-0">Front End Designer</h4> */}
-                    {/* <span>2708 Scenic Way, Sutter</span> */}
                   </div>
                   <form method='post'>
                     <div className="col-md-6 col-sm-6">
@@ -482,65 +439,6 @@ function Searchjob() {
                         </div>
                       </div>
 
-                      {/*<div className="widget-boxed padd-bot-0">
-                        <div className="widget-boxed-header">
-                          <h4>Experince</h4>
-                        </div>
-                        <div className="widget-boxed-body">
-                          <div className="side-list no-border">
-                            <ul>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="All Jobs" onChange={(e) => setJobtype("")} id="j1" />
-                                  <label htmlFor="j1" />
-                                </span>{" "}
-                                1Year To 2Year <span className="pull-right"></span>
-                              </li>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="Full Time" onChange={(e) => setJobtype(e.target.value)} id="a1" />
-                                  <label htmlFor="a1" />
-                                </span>{" "}
-                                2Year To 3Year <span className="pull-right"></span>
-                              </li>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="Part Time" onChange={(e) => setJobtype(e.target.value)} id="b1" />
-                                  <label htmlFor="b1" />
-                                </span>{" "}
-                                3Year To 4Year <span className="pull-right"></span>
-                              </li>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="Internship" onChange={(e) => setJobtype(e.target.value)} id="c1" />
-                                  <label htmlFor="c1" />
-                                </span>{" "}
-                                4Year To 5Year <span className="pull-right"></span>
-                              </li>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="Freelancer" onChange={(e) => setJobtype(e.target.value)} id="d1" />
-                                  <label htmlFor="d1" />
-                                </span>{" "}
-                                5Year To 7Year <span className="pull-right">{seekerData.jobtype == "Freelancer" ? seekerData.jobtype.length : ""}</span>
-                              </li>
-                              <li>
-                                {" "}
-                                <span className="custom-radio">
-                                  <input type="radio" name="jobtype" value="Contract Base" onChange={(e) => setJobtype(e.target.value)} id="e1" />
-                                  <label htmlFor="e1" />
-                                </span>{" "}
-                                7Year To 10Year<span className="pull-right"> </span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>*/}
                       <div className="widget-boxed padd-bot-0">
                         <div className="widget-boxed-header">
                           <h4>qualification</h4>
@@ -620,13 +518,7 @@ function Searchjob() {
 
                         <div className="col-md-8 col-sm-12 col-xs-12">
                           <ul style={{ display: "flex", position: "relative", top: "56px", left: "-10%" }}>
-                            {/*<li style={{ listStyle: "none", margin: "10px" }}>
-                              <span className="custom-radio">
-                                <input type="radio" name="gender" style={{ listStyleType: "none" }} value="All" onChange={(e) => setgender("")} id="g1" />
-                                <label htmlFor="g1" />
-                              </span>
-                              All
-                            </li>*/}
+                  
                             <li style={{ listStyle: "none", margin: "10px" }}>
                               <span className="custom-radio">
                                 <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Male" onChange={(e) => setgender(e.target.value)} id="g1" />
@@ -686,7 +578,7 @@ function Searchjob() {
                                 <div className="vrt-job-cmp-logo">
                                   {" "}
                                   <a href="job-detail.html">
-                                    <img src={list?.postedby?.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : pic} className="img-responsive" />
+                                    <img src={list?.postedby?.cmp_logo ? `https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : pic} className="img-responsive" />
                                   </a>{" "}
                                 </div>
                                 <h4>

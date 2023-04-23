@@ -31,7 +31,6 @@ function SeekerSignup() {
   // function for save value
   let name, value;
   const handleInputs = (e) => {
-    console.log(e);
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
@@ -43,8 +42,6 @@ function SeekerSignup() {
     if (user.js_name && user.js_email && user.js_pwd && user.js_cpwd && user.js_mno) {
       if (result.status === 200) {
         toast.success("Seeker Signup Successfully");
-        console.log({ result });
-        // toast.success("YOur Id and Password send on your Email & Whatsapp No ");
         localStorage.setItem('seeker', JSON.stringify(result));
         navigate("/seekerlogin");
       } else {
@@ -64,13 +61,8 @@ function SeekerSignup() {
         "Content-Type": "application/json"
       }
     }
-
     const res = await fetch("https://jobshubback-19af.onrender.com/auth/google", configOption)
-
     const result = await res.json()
-    console.log(result);
-
-
   }
   return (
     <>

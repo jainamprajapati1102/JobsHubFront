@@ -30,7 +30,7 @@ function Home() {
         "Content-Type": "application/json",
       }
     }
-    const res = await fetch('http://localhost:5000/homeviewindustry', configOption);
+    const res = await fetch('https://jobshubback-19af.onrender.com/homeviewindustry', configOption);
     const data = await res.json();
     setIndus(data);
   }

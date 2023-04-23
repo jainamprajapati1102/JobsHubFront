@@ -36,14 +36,10 @@ const RejectList = () => {
     }
 
     const getRejetList = async () => {
-        const response = await fetch('http://localhost:5000/rejectlist', requestoption);
+        const response = await fetch('https://jobshubback-19af.onrender.com/rejectlist', requestoption);
         const result = await response.json();
-        console.log("ACCEPTlIST--->", result)
         setuserData(result)
     }
-
-    console.log("userdata=====>", userdata);
-
     return (
         <>
             {isLoading ? <Loader /> : <div>
@@ -77,7 +73,7 @@ const RejectList = () => {
                                                         <a href="job-detail.html">
                                                             {" "}
                                                             <img
-                                                                src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                                src={`https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
                                                                 className="avatar-lg"
                                                                 alt="Avatar"
                                                             />

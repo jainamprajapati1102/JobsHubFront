@@ -82,7 +82,7 @@ function Editprofile() {
     }
   }
   const fetchcategory = async () => {
-    const response = await fetch('http://localhost:5000/industry', requestOptions);
+    const response = await fetch('https://jobshubback-19af.onrender.com/industry', requestOptions);
     const categoryres = await response.json();
     const category_list = [];
     categoryres?.map((item) => { category_list.push({ value: item._id, label: item.ind_name }) })
@@ -122,7 +122,6 @@ function Editprofile() {
     let State_list = [];
     resultstate?.map((item) => { State_list.push({ value: item.name, label: item.name }) })
     setStatelist(State_list);
-    console.log("State_list====>", State_list);
   }
 
   // ***** fetch city data ******
@@ -141,13 +140,12 @@ function Editprofile() {
     const result = await response.json();
     let city_list = [];
     result?.map((item) => { city_list.push({ value: item.title, label: item.title }) });
-    console.log("citylist====>", city_list);
     setCitylist(city_list);
   }
 
   // ***** fetch company data ****** 
   const fetchCompanyData = async () => {
-    const response = await fetch('http://localhost:5000/getrecruiter', {
+    const response = await fetch('https://jobshubback-19af.onrender.com/getrecruiter', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -199,7 +197,7 @@ function Editprofile() {
       },
       body: JSON.stringify(inputdata),
     };
-    const response = await fetch('http://localhost:5000/createcmp', confiOption);
+    const response = await fetch('https://jobshubback-19af.onrender.com/createcmp', confiOption);
     const result = await response.json();
     if (result.status === 200) {
       toast.success("profile update successfully");
@@ -220,7 +218,6 @@ function Editprofile() {
 
   const profilepic = async (event, value) => {
     const selectedFile = event.target.files[0];
-    console.log('selectedFile ====>', selectedFile);
     const formdata = new FormData()
     formdata.append('cmp_logo', selectedFile)
     const configOption = {
@@ -231,11 +228,8 @@ function Editprofile() {
       },
       body: formdata
     }
-    console.log('Test Data ==>', configOption);
-    console.log('form data ===>', formdata);
-    const response = await fetch('http://localhost:5000/cmpupdatelogo', configOption)
+    const response = await fetch('https://jobshubback-19af.onrender.com/cmpupdatelogo', configOption)
     const result = await response.json();
-    console.log(`photo: -${result}`)
     if (result.status === 201) {
       toast.success("Profile Picture Update")
       navigate('/manageprofile')
@@ -260,14 +254,13 @@ function Editprofile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/recchangepass', configOPtion)
+      const response = await fetch('https://jobshubback-19af.onrender.com/recchangepass', configOPtion)
       const result = await response.json()
       if (result.status === 201) {
         toast.success("Your Password Successfully Change")
         logout();
       } else {
         if (result.status === 401) {
-          console.log(`Aa add kravani 6 error ma :--->${result.err}`)
           toast.error(`${result.err}`)
         }
       }
@@ -393,7 +386,7 @@ function Editprofile() {
                 <div className="col-md-3">
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
-                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
                       <input type="file" id="file" name="cmp_logo" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
                   </div>

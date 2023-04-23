@@ -34,17 +34,14 @@ function Recruitercontact() {
   const navigate = useNavigate();
   const [accesstoken] = useState(localStorage.getItem('recruiterToken'));
   const fetchCompanyData = async () => {
-    const response = await fetch('http://localhost:5000/getrecruiter', {
+    const response = await fetch('https://jobshubback-19af.onrender.com/getrecruiter', {
       method: 'GET',
       headers: {
         Accept: "application/json", "Content-Type": "application/json", credentials: "includes",
         'Authorization': `Bearer ${accesstoken}`,
       }
     });
-
-    // const response = await fetch('http://localhost:5000/getOwndata', requestOptions);
     const data = await response.json();
-    console.log(`cmp data :- ${data}`)
     setInputdata(data);
   }
 
@@ -59,13 +56,11 @@ function Recruitercontact() {
         'Authorization': `Bearer ${accesstoken}`
       }
     };
-    const response = await fetch("http://localhost:5000/reccontact", confiOption);
+    const response = await fetch("https://jobshubback-19af.onrender.com/reccontact", confiOption);
     const result = await response.json();
 
     if (result.status === 201) {
       toast.success("Message Send Successful");
-      console.log({ result });
-      // localStorage.setItem('seeker', JSON.stringify(result));/
       navigate("/recruiterhome");
     } else {
       toast.error("Message Not Send");

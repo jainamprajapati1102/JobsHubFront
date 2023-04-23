@@ -25,9 +25,6 @@ function Recruiterchangepass() {
     }
     const changepass = async () => {
         if (newpass.oldpwd && newpass.updatedpass && newpass.updateconpass) {
-
-
-            console.log("")
             const configOPtion = {
                 method: "POST",
                 headers: {
@@ -36,16 +33,13 @@ function Recruiterchangepass() {
                 },
                 body: JSON.stringify(newpass)
             }
-
-            const response = await fetch('http://localhost:5000/recchangepass', configOPtion)
+            const response = await fetch('https://jobshubback-19af.onrender.com/recchangepass', configOPtion)
             const result = await response.json()
-            console.log(`---->${result.status}`)
             if (result.status === 201) {
                 toast.success("Your Password Successfully Change")
                 navigate('/recruiterlogin')
             } else {
                 if (result.status === 401) {
-                    console.log(`Aa add kravani 6 error ma :--->${result.err}`)
                     toast.error(`${result.err}`)
                 }
             }

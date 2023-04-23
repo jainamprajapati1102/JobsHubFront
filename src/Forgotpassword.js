@@ -12,16 +12,13 @@ function Forgotpassword() {
     }
     const send = async (e) => {
         e.preventDefault();
-        const res = await fetch("http://localhost:5000/mail", {
+        const res = await fetch("https://jobshubback-19af.onrender.com/mail", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(email)
         })
-        // console.log(res)
-
-        // const data = await res.json();
         if (res.status === 401 || !res) {
             window.alert('error')
         } else {

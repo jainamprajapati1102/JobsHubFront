@@ -46,9 +46,8 @@ function Jobdetail() {
             }
         }
 
-        const response = await fetch('http://localhost:5000/checkprofile', configOption);
+        const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
         const result = await response.json();
-        console.log(`Profile check ${JSON.stringify(result)}`);
         if (result.status !== 0) {
         } else {
             toast.error(result.msg);
@@ -64,14 +63,12 @@ function Jobdetail() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         }
-        const response = await fetch(`http://localhost:5000/jobdetail/${id}`, configOption)
+        const response = await fetch(`https://jobshubback-19af.onrender.com/jobdetail/${id}`, configOption)
         const result = await response.json()
 
         setJobdata(result.data);
-        console.log(`jainam :--${jobdata}`)
     }
     const applyHandle = (id) => {
-        console.log("id from the job detrail", id)
         navigate('/apply', { state: id })
     }
     return (
@@ -118,7 +115,7 @@ function Jobdetail() {
                                                 <div className="col-md-4 text-center user_profile_img">
                                                     {" "}
                                                     <img
-                                                        src={`http://localhost:5000/public/uploads1/companylogo/${jobdata?.postedby.cmp_logo}`}
+                                                        src={`https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${jobdata?.postedby.cmp_logo}`}
                                                         className="width-100"
                                                         alt="No image"
                                                     />

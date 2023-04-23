@@ -38,9 +38,8 @@ function Rejectjob() {
             }
         }
 
-        const response = await fetch('http://localhost:5000/checkprofile', configOption);
+        const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
         const result = await response.json();
-        console.log(`Profile check ${JSON.stringify(result)}`);
         if (result.status !== 0) {
         } else {
             toast.error(result.msg);
@@ -60,15 +59,9 @@ function Rejectjob() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-
-        const data = await fetch('http://localhost:5000/jobhistoryreject', configOption);
-
+        const data = await fetch('https://jobshubback-19af.onrender.com/jobhistoryreject', configOption);
         const result = await data.json()
-
-        console.log(result)
-
         setSeeker(result)
-        console.log(seeker)
     }
 
 
@@ -127,25 +120,6 @@ function Rejectjob() {
                                                     <td><i className="ti-credit-card" />{item?.rec_id?.cmp_name}</td>
                                                     <td>{moment(item?.rec_id?.createdAt).format("DD/MM/YYYY")}</td>
                                                     <td>
-                                                        {/* {((item) => {
-                                                        if (item?.accept == 1) {
-                                                            return (
-                                                                <p style={{ color: "green" }}>Accepted</p>
-                                                            )
-                                                        }
-                                                        else if (item?.accept == 2) {
-                                                            return (
-                                                                <p style={{ color: "red" }}>Reject</p>
-                                                            )
-                                                        }
-                                                        else {
-                                                            return (
-                                                                <p style={{ color: "blue" }}>Pending</p>
-                                                            )
-                                                        } */}
-
-                                                        {/* })()} */}
-
                                                         {item?.accept === 1 ?
                                                             <div> <p style={{ color: "#0fb76b" }}>Accepted</p></div> :
                                                             item?.accept === 2 ?
@@ -155,16 +129,10 @@ function Rejectjob() {
                                                                 </div>
                                                                 : item?.accept === 0 ?
                                                                     <div>
-                                                                        {/* <p style={{ color: "green" }}>Accepted</p> */}
-                                                                        {/* <p style={{ color: "red" }}>Rejected</p> */}
                                                                         <p style={{ color: "blue" }}>Pending</p>
                                                                     </div>
                                                                     : ''
                                                         }
-
-
-                                                        {/* {item?.accept === 1 ? <p style={{ color: "green" }}>Accepted</p> : <p style={{ color: "red" }}>Pending</p>} */}
-
                                                     </td>
 
                                                 </tr>

@@ -15,8 +15,6 @@ function Seekerfooter() {
   const [accesstoken] = useState(localStorage.getItem('seekerToken'))
   const handlechange = (newrating) => {
     setrating(newrating);
-    console.log(newrating, "newrating");
-    console.log(rating.newrating, "rate in state");
   };
   const [rev, setRev] = useState('');
   const inputHandle = (e) => {
@@ -35,7 +33,7 @@ function Seekerfooter() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/getseekerreview', config)
+    const response = await fetch('https://jobshubback-19af.onrender.com/getseekerreview', config)
     const result = await response.json()
 
     setRev(result.review);
@@ -46,9 +44,6 @@ function Seekerfooter() {
     data.append('ratingstars', rating.newrating);
     data.append('review', rev.review)
     r = { ratingstar: rating, review: rev }
-
-    console.log("review data", rev);
-    console.log("all review data", r);
     const config = {
       method: "put",
       headers: {
@@ -60,7 +55,7 @@ function Seekerfooter() {
       body: JSON.stringify(r)
     }
 
-    const response = await fetch('http://localhost:5000/seekerreview', config)
+    const response = await fetch('https://jobshubback-19af.onrender.com/seekerreview', config)
     const result = await response.json()
 
     if (result.status === 201) {

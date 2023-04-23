@@ -36,10 +36,9 @@ function Recruiterjobrestor() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch("http://localhost:5000/trashgetOwnJobpost", configOption);
+        const data = await fetch("https://jobshubback-19af.onrender.com/trashgetOwnJobpost", configOption);
         const result = await data.json();
         setRecruiterpost(result)
-        console.log(result);
     }
     const [del, setDel] = useState();
     const delHandle = (item) => {
@@ -56,9 +55,8 @@ function Recruiterjobrestor() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch(`http://localhost:5000/deletejobPost/${del._id}`, configOption);
+        const data = await fetch(`https://jobshubback-19af.onrender.com/deletejobPost/${del._id}`, configOption);
         const result = await data.json()
-        console.log("====>", result)
         if (result.status === 201) {
             toast.success("Your Application Delete")
             calldata();
@@ -68,8 +66,6 @@ function Recruiterjobrestor() {
 
     }
     const restoreHandle = async (id, e) => {
-        // e.preventDefault()
-        console.log("post id ", id)
         const config = {
             method: "PUT",
             headers: {
@@ -78,7 +74,7 @@ function Recruiterjobrestor() {
             }
         }
 
-        const restore = await fetch(`http://localhost:5000/updaterestorejobpost/${id}`, config);
+        const restore = await fetch(`https://jobshubback-19af.onrender.com/updaterestorejobpost/${id}`, config);
         const data = await restore.json();
         if (data.status === 201) {
             Swal.fire({

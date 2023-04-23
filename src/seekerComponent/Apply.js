@@ -26,8 +26,6 @@ function Apply() {
   const navigate = useNavigate();
   const [apply, setApply] = useState({ js_name: '', js_email: '', js_mno: '', resume: '' });
   const [accesstoken] = useState(localStorage.getItem('seekerToken'))
-
-  // const [cv, setCv] = useState({ resume: "" });
   const inputHandle = (e) => {
     setApply({
 
@@ -38,28 +36,16 @@ function Apply() {
 
   const [cv, setCv] = useState();
   const resumeHanlde = (event, val) => {
-    console.log("target", event)
     setCv({
       ...cv,
       resume: event.target.files[0].name
     })
   }
-  // const [cv, setCv] = useState();
-  // const inputHandle = (e) => {
-  //   setApply({
-
-  //     ...apply,
-  //     [e.target.name]: e.target.type == 'file' ? e.target.filename : e.target.value
-  //   })
-  // }
-
-
 
   const callProfile = async (e) => {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
-      console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-19af.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -69,7 +55,6 @@ function Apply() {
         }
       });
       const data = await res.json();
-      console.log(data);
       setApply({
         ...apply,
         js_name: data.js_name,
@@ -82,84 +67,9 @@ function Apply() {
         throw error;
       }
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
       navigate('/seekerlogin')
     }
   }
-
-
-  // const applyFrom = async () => {
-  //   console.log("apply====>", apply)
-  //   try {
-  //     const data = new FormData();
-  //     data.append('js_name', apply.js_name);
-  //     data.append('js_email', apply.js_email);
-  //     data.append('js_mno', apply.js_mno);
-  //     data.append('resume', cv.resume);
-  //     data.append('recid', location.state);
-  //     console.log(apply.resume)
-  //     const confiOption = {
-  //       method: "post",
-  //       headers: {
-  //         // Accept: "application/json",
-  //         // "Content-Type": "application/json",
-  //         credentials: "includes",
-  //         'Authorization': `Bearer ${accesstoken}`,
-  //       },
-  //       body: data,
-  //     };
-
-  //     const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
-  //     const result = await response.json();
-  //     console.log("result=--->", result)
-  //     if (result.status === 201) {
-  //       toast.success('Job Apply ');
-  //       navigate('/seekerhome')
-  //     } else {
-  //       toast.error('Job Not Apply ')
-  //     }
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-
-  // const applyFrom = async () => {
-  //   try {
-  //     const data = new FormData();
-  //     data.append('js_name', apply.js_name);
-  //     data.append('js_email', apply.js_email);
-  //     data.append('js_mno', apply.js_mno);
-  //     data.append('resume', apply.resume);
-  //     data.append('recid', location.state);
-  //     console.log(`Fornm===>>>${data}`)
-  //     const confiOption = {
-  //       method: "post",
-  //       headers: {
-  //         // Accept: "application/json",
-  //         // "Content-Type": "application/json",
-  //         credentials: "includes",
-  //         'Authorization': `Bearer ${accesstoken}`,
-  //       },
-  //       body: data,
-  //     };
-  //     // const id = location.state
-  //     // console.log("id--->", id)
-  //     const response = await fetch(`http://localhost:5000/applyjob`, confiOption);
-  //     const result = await response.json();
-  //     console.log("result=--->", result)
-  //     if (result.status === 201) {
-  //       toast.success('Job Apply ');
-  //       navigate('/seekerhome')
-  //     } else {
-  //       toast.error('Job Not Apply ')
-  //     }
-  //   } catch (error) {
-  //     console.log(`Error from frontend :- ${error}`)
-  //   }
-  // }
-
 
   const applyFrom = async (e) => {
     try {
@@ -169,21 +79,17 @@ function Apply() {
       data.append('js_email', apply.js_email);
       data.append('js_mno', apply.js_mno);
       data.append('resume', apply.resume);
-      console.log(`Fornm===>>>${data}`)
       const confiOption = {
         method: "post",
         headers: {
-          // Accept: "application/json",
-          // "Content-Type": "application/json",
           credentials: "includes",
           'Authorization': `Bearer ${accesstoken}`,
         },
         body: data,
       };
 
-      const response = await fetch(`http://localhost:5000/applyjob/${id}`, confiOption);
+      const response = await fetch(`https://jobshubback-19af.onrender.com/applyjob/${id}`, confiOption);
       const result = await response.json();
-      console.log("result=--->", result)
       if (result.status === 201) {
         toast.success('Job Apply ');
         navigate('/jobhistory')
@@ -191,7 +97,6 @@ function Apply() {
         toast.error('Job Not Apply ')
       }
     } catch (error) {
-      console.log(`Error from frontend :- ${error}`)
     }
     // e.preventDefault();
 

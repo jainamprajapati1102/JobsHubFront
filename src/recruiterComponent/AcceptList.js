@@ -25,9 +25,8 @@ const AcceptList = () => {
     }
 
     const getAcceptList = async () => {
-        const response = await fetch('http://localhost:5000/acceptlist', requestoption);
+        const response = await fetch('https://jobshubback-19af.onrender.com/acceptlist', requestoption);
         const result = await response.json();
-        console.log("ACCEPTlIST--->", result)
         setuserData(result)
     }
     const exportcsv = async () => {
@@ -37,9 +36,7 @@ const AcceptList = () => {
                 "Content-Type": "application/json",
             },
         }
-        console.log("token jainm", accesstoken)
-        const response = await fetch(`http://localhost:5000/exportcsv/${accesstoken}`, d1)
-        console.log(response)
+        const response = await fetch(`https://jobshubback-19af.onrender.com/exportcsv/${accesstoken}`, d1)
         if (response.status === 200) {
             window.open(response.url, "self")
         } else {
@@ -60,10 +57,8 @@ const AcceptList = () => {
 
     return (
         <>
-
             <>
                 {/* ======================== Manage Job ========================= */}
-
                 <section className="utf_manage_jobs_area padd-top-50 padd-bot-50 text-success">
                     <div className="container">
                         <div className="table-responsive">
@@ -85,7 +80,7 @@ const AcceptList = () => {
                                                     <a href="job-detail.html">
                                                         {" "}
                                                         <img
-                                                            src={`http://localhost:5000/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
+                                                            src={`https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${item?.js_id?.js_profile}`}
                                                             className="avatar-lg"
                                                             alt="Avatar"
                                                         />

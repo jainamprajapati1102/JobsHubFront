@@ -13,8 +13,6 @@ function Recruiterfooter() {
   const [accesstoken] = useState(localStorage.getItem('recruiterToken'))
   const handlechange = (newrating) => {
     setrating(newrating);
-    console.log(newrating, "newrating");
-    console.log(rating.newrating, "rate in state");
   };
   const [rev, setRev] = useState('');
   const inputHandle = (e) => {
@@ -33,7 +31,7 @@ function Recruiterfooter() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/getrecruiterreview', config)
+    const response = await fetch('https://jobshubback-19af.onrender.com/getrecruiterreview', config)
     const result = await response.json()
     if (result.status == 1) {
       setRev(result.review);
@@ -45,14 +43,10 @@ function Recruiterfooter() {
 
   }
   const rate = async () => {
-    console.log('hyyy ')
     const data = new FormData();
     data.append('ratingstars', rating.newrating);
     data.append('review', rev.review)
     r = { ratingstar: rating, review: rev }
-
-    console.log("review data", rev);
-    console.log("all review data", r);
     const config = {
       method: "put",
       headers: {
@@ -63,7 +57,7 @@ function Recruiterfooter() {
       body: JSON.stringify(r)
     }
 
-    const response = await fetch('http://localhost:5000/recruiterreview', config)
+    const response = await fetch('https://jobshubback-19af.onrender.com/recruiterreview', config)
     const result = await response.json()
 
     if (result.status === 201) {

@@ -32,9 +32,8 @@ function Seekerhome() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/checkprofile', configOption);
+    const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
     const result = await response.json();
-    console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
     } else {
       toast.error(result.msg);
@@ -49,7 +48,6 @@ function Seekerhome() {
   const calljobs = async () => {
 
     const token = JSON.stringify(localStorage.getItem('seekerToken'));
-    console.log("token===>", token)
     const configOption = {
       method: "GET",
       headers: {
@@ -59,10 +57,9 @@ function Seekerhome() {
         'Authorization': `Bearer ${accesstoken}`,
       }
     }
-    const res = await fetch('http://localhost:5000/getjobedu', configOption);
+    const res = await fetch('https://jobshubback-19af.onrender.com/getjobedu', configOption);
     const data = await res.json();
     setJohb(data);
-    console.log(job);
   }
   return (
     <>
@@ -275,7 +272,6 @@ function Seekerhome() {
                         <div className="col-md-3 col-sm-6">
                           <div className="utf_grid_job_widget_area">
                             {" "}
-                            {console.log("job type-->", item.jobtype)}
                             <span className=
                               {
                                 item.jobtype === "Part Time" ? "job-type part-type" : item?.jobtype === "Full Time" ? "job-type full-type " : item?.jobtype === "Freelancer" ? "job-type internship-type" : item?.jobtype === "WorkFromHome" ? "job-type workFromHome" : ''}

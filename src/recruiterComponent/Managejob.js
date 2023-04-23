@@ -29,7 +29,6 @@ function ManageJob() {
 
 
   const [jobData, setJobData] = useState([])
-  console.log("accesstoiken===>", accesstoken);
 
   const requestoption = {
     method: 'GET',
@@ -41,14 +40,12 @@ function ManageJob() {
 
   //  ********** get own jobpost data  ************** //
   const getOwnJobpostData = async () => {
-    const response = await fetch('http://localhost:5000/getownjobpost', requestoption)
+    const response = await fetch('https://jobshubback-19af.onrender.com/getownjobpost', requestoption)
     const result = await response.json();
-    console.log(result);
     setJobData(result)
   }
   const [jobtrash, setJobtrash] = useState();
   const trashfun = (item) => {
-    console.log("company id from the trash function---->", item)
     setJobtrash({
       ...jobtrash, recid: item
     })
@@ -61,14 +58,13 @@ function ManageJob() {
 
   //  ************* delete job  **************** //
   const deleteJobHandler = async () => {
-    const response = await fetch(`http://localhost:5000/restorejobpost/${jobtrash.recid}`, {
+    const response = await fetch(`https://jobshubback-19af.onrender.com/restorejobpost/${jobtrash.recid}`, {
       method: 'put'
     });
     const result = await response.json();
     if (result.status === 200) {
       toast.success("job delete success");
       getOwnJobpostData();
-
     }
   }
 

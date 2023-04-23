@@ -42,7 +42,6 @@ function Login() {
   }
 
   async function loginapi() {
-    console.log("nrewes===>", newData1)
     if (newData1.cmp_email && newData1.cmp_pwd) {
       const requestOptions = {
         method: "POST",
@@ -50,11 +49,8 @@ function Login() {
         body: JSON.stringify(newData1),
       };
 
-      const response = await fetch("http://localhost:5000/reclogin", requestOptions);
+      const response = await fetch("https://jobshubback-19af.onrender.com/reclogin", requestOptions);
       const result = await response.json();
-      console.log("result===>", result);
-      console.log("response===>", response);
-      console.log(result.status)
       if (result.status !== 8) {
         if (result.status === 200) {
 
@@ -156,14 +152,6 @@ function Login() {
                     </div>
                     <div className="form-group">
                       <Link to="/recruiterforgot" title="Forget" className="fl-right">Forgot Password?</Link>
-
-                      {" "}
-                      {/*   <label for="chpass" title="Forget" className="fl-right">Forgot Password?</label>
-                      <button style={{ display: "none" }} id="chpass"
-                      //  onClick={}
-                      ></button> */}
-
-
                     </div>
                   </div>
 
@@ -172,10 +160,6 @@ function Login() {
                       <button
                         type="submit"
                         className="btn theme-btn btn-m full-width"
-                      // onClick={(e) => {
-                      //   loginapi();
-                      //   e.preventDefault();
-                      // }}
                       >
                         Sign In
                       </button>

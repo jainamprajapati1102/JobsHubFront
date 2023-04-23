@@ -38,26 +38,12 @@ const Noti = () => {
     }
 
     const getjobApplieduser = async () => {
-        const response = await fetch('http://localhost:5000/getapplieduser', requestoption);
+        const response = await fetch('https://jobshubback-19af.onrender.com/getapplieduser', requestoption);
         const result = await response.json();
         setuserData(result)
     }
 
-    console.log("userdata=====>", userdata);
-
-    // const resumeview = (url) => {
-    //     console.log("url====>", url)
-    // }
-
-
-
-    // const acceptHandler = (id) => {
-    //     console.log("id=====>", id);
-
-    // }
-
     const acceptHandler = async (id) => {
-        console.log("id=====>", id);
         const confiOption = {
             method: "PUT",
             headers: {
@@ -65,31 +51,27 @@ const Noti = () => {
                 "Content-Type": "application/json",
                 credentials: "includes",
                 'Authorization': `Bearer ${accesstoken}`,
-                // 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
             }
         };
-        const response = await fetch(`http://localhost:5000/acceptrequest/${id}`, confiOption);
+        const response = await fetch(`https://jobshubback-19af.onrender.com/acceptrequest/${id}`, confiOption);
         const result = await response.json();
 
         if (result.status === 200) {
             toast.success(" request accept successfully");
             getjobApplieduser();
-
-            //   navigate('/manageprofile');
         } else {
             toast.error("something wrong");
         }
     }
 
     const acceptmail = async (id) => {
-        console.log(`id---->${id}`)
         const configOption = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             }
         }
-        const data = await fetch(`http://localhost:5000/acceptmail/${id}`, configOption);
+        const data = await fetch(`https://jobshubback-19af.onrender.com/acceptmail/${id}`, configOption);
         const res = await data.json();
         if (res.status === 201) {
             toast.success("Mail Send On Seeker Email Id")
@@ -101,14 +83,12 @@ const Noti = () => {
 
 
     const rejectHandler = async (id) => {
-        console.log("id=====>", id);
         const confiOption = {
             method: "PUT",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
                 credentials: "includes",
-                // 'Authorization': `Bearer ${accesstoken}`,
                 'Authorization': `Bearer ${accesstoken.replace(/"/g, '')}`,
             }
         };
@@ -116,7 +96,7 @@ const Noti = () => {
         const conf = window.confirm("You want to Reject This Request")
 
         if (conf) {
-            const response = await fetch(`http://localhost:5000/rejectrequest/${id}`, confiOption);
+            const response = await fetch(`https://jobshubback-19af.onrender.com/rejectrequest/${id}`, confiOption);
             const result = await response.json();
 
             if (result.status === 200) {
@@ -188,7 +168,7 @@ const Noti = () => {
     //                                             <a href="job-detail.html">
     //                                                 {" "}
     //                                                 <img
-    //                                                     // src={`http://localhost:5000/public/uploads/seekerprofile/${item?.js_id?.js_profile}`}
+    //                                                     // src={`https://jobshubback-19af.onrender.com/public/uploads/seekerprofile/${item?.js_id?.js_profile}`}
     //                                                     className="avatar-lg"
     //                                                     alt="Avatar"
     //                                                 />
@@ -216,17 +196,17 @@ const Noti = () => {
 
     //                                             <label className="cl-success mrg-5" for="md1">  <i className="fa fa-check" /> </label>
     //                                             <label className="cl-danger mrg-5 " for="md2">   <i className="fa fa-trash-o" /> </label>
-    //                                             <Link target="_blank" class="cl-primary mrg-5" to={`http://localhost:5000/public/uploads1/resume/${item?.resume}`} ><i className="fa fa-eye" /></Link>
+    //                                             <Link target="_blank" class="cl-primary mrg-5" to={`https://jobshubback-19af.onrender.com/public/uploads1/resume/${item?.resume}`} ><i className="fa fa-eye" /></Link>
 
     //                                             {/* {item?.accept == 1 ? <Button variant="success" > Accepted </Button> : */}
     //                                             {/* <Button onClick={() => resumeview(item?.resume)} variant="info" data-toggle="tooltip"  > viewDetail </Button> */}
 
 
 
-    //                                             {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`http://localhost:5000/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
+    //                                             {/* <Button variant="info" data-toggle="tooltip" onClick={window.open().location.href = {`https://jobshubback-19af.onrender.com/public/uploads/resume/${item?.resume}`}> view Resume</Button> */}
 
     //                                             {/* 
-    //                                         <a href={`http://localhost:5000/public/uploads/resume/${item?.resume}`} target="_blank"
+    //                                         <a href={`https://jobshubback-19af.onrender.com/public/uploads/resume/${item?.resume}`} target="_blank"
     //                                             rel="noreferrer">
     //                                             Open First PDF
     //                                         </a> */}

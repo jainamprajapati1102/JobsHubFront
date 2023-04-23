@@ -133,9 +133,8 @@ function Seekercontact() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/checkprofile', configOption);
+    const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
     const result = await response.json();
-    console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
     } else {
       toast.error(result.msg);
@@ -152,8 +151,7 @@ function Seekercontact() {
   const callProfile = async () => {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
-      console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-19af.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -163,14 +161,12 @@ function Seekercontact() {
         }
       });
       const data = await res.json();
-      console.log(data);
       setSeekerdata(data);
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
       }
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
       navigate('/seekerlogin')
     }
   }
@@ -197,13 +193,11 @@ function Seekercontact() {
       body: JSON.stringify(seekerData),
 
     };
-    const response = await fetch("http://localhost:5000/seekercontact", confiOption);
+    const response = await fetch("https://jobshubback-19af.onrender.com/seekercontact", confiOption);
     const result = await response.json();
 
     if (result.status === 201) {
       toast.success("Message Send Successful");
-      console.log({ result });
-      // localStorage.setItem('seeker', JSON.stringify(result));/
       navigate("/seekerhome");
     } else {
       toast.error("Message Not Send");

@@ -35,7 +35,7 @@ function Addjob() {
         'Authorization': `Bearer ${accesstoken}`
       }
     }
-    const response = await fetch('http://localhost:5000/checkpayment', config);
+    const response = await fetch('https://jobshubback-19af.onrender.com/checkpayment', config);
     const result = await response.json()
     if (result.status == 1) {
       navigate('/payment')
@@ -57,9 +57,6 @@ function Addjob() {
     description: "",
     designation: ""
   });
-
-  console.log(jobdata)
-  console.log(accesstoken);
 
   const requestOptions = {
     method: 'GET',
@@ -119,9 +116,8 @@ function Addjob() {
         },
         body: JSON.stringify(jobdata),
       };
-      const response = await fetch('http://localhost:5000/jobpost', requestOptions);
+      const response = await fetch('https://jobshubback-19af.onrender.com/jobpost', requestOptions);
       const result = await response.json();
-      console.log('result===>', result)
       if (result.status === 200) {
         toast.success("job post successfully");
         navigate("/Managejob");

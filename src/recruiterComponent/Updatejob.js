@@ -25,11 +25,6 @@ function Updatejob() {
         fetchcategory();
         fetchjobData();
     }, [])
-
-
-    console.log("id====>", id);
-
-
     const navigate = useNavigate();
     const [accesstoken] = useState(localStorage.getItem("recruiterToken"));
     const [categorydata, setcategorydata] = useState();
@@ -49,14 +44,6 @@ function Updatejob() {
         description: "",
         designation: ""
     });
-    console.log(jobdata)
-    console.log(accesstoken);
-    // const [salarydata, setsalarydata] = useState();
-    // const [experiencedata, setexperiencedata] = useState();
-    // const [jobtypedata, setjobtypedata] = useState();
-    // const [file, setFile] = useState();
-
-
     const requestOptions = {
         method: 'GET',
         headers: {
@@ -90,7 +77,7 @@ function Updatejob() {
             },
             body: JSON.stringify(jobdata),
         };
-        const response = await fetch(`http://localhost:5000/updatejob/${id}`, requestOptions);
+        const response = await fetch(`https://jobshubback-19af.onrender.com/updatejob/${id}`, requestOptions);
         const result = await response.json();
 
         if (result.status === 200) {
@@ -106,17 +93,14 @@ function Updatejob() {
 
     /* *********** fetch jobdata *********  */
     const fetchjobData = async () => {
-        const response = await fetch(`http://localhost:5000/getperticularjob/${id}`, requestOptions);
+        const response = await fetch(`https://jobshubback-19af.onrender.com/getperticularjob/${id}`, requestOptions);
         const result = await response.json();
         setjobdata(result.data);
 
     }
-
-    console.log("jobdataa====>", jobdata);
-
     /* *********** fetch category *********  */
     const fetchcategory = async () => {
-        const response = await fetch('http://localhost:5000/industry', requestOptions);
+        const response = await fetch('https://jobshubback-19af.onrender.com/industry', requestOptions);
         const categoryres = await response.json();
         const category_list = [];
         categoryres.map((item) => { category_list.push({ value: item.ind_name, label: item.ind_name }) })
@@ -258,19 +242,6 @@ function Updatejob() {
                                                 />
                                             </div>
                                         </div>
-
-
-                                        {/*<div className="col-md-6 col-sm-6 col-xs-12">
-                          <label>Category</label>
-                          <Select
-                            className="wide form-control"
-                            name="category"
-                            onChange={({ value }) => selectHandler({ name: 'category', value })}
-                            options={categorydata}
-                          />
-                        </div>*/}
-
-
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Salary Range</label>
                                             <Select
@@ -339,12 +310,6 @@ function Updatejob() {
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Degree</label>
-                                            {/* <Select
-                              className="wide form-control"
-                              name="category"
-                              onChange={({ value }) => selectHandler({ name: 'category', value })}
-                              options={categorydata}
-                            />*/}
                                             <input
                                                 type="text"
                                                 className="form-control"

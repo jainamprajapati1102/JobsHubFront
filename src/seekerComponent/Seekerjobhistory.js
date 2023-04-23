@@ -40,14 +40,10 @@ function Jobhistory() {
             }
         };
 
-        const data = await fetch('http://localhost:5000/jobhistory', configOption);
+        const data = await fetch('https://jobshubback-19af.onrender.com/jobhistory', configOption);
 
         const result = await data.json()
-
-        console.log(result)
-
         setSeeker(result)
-        console.log(seeker)
     }
 
     const [del, setDel] = useState();
@@ -59,8 +55,6 @@ function Jobhistory() {
     }
 
     const deleteJobHandler = async () => {
-        console.log(del._id)
-
         const configOption = {
             method: "PATCH",
             headers: {
@@ -68,9 +62,8 @@ function Jobhistory() {
                 'Authorization': `Bearer ${accesstoken}`
             }
         };
-        const data = await fetch(`http://localhost:5000/jobbackup/${del._id}`, configOption);
+        const data = await fetch(`https://jobshubback-19af.onrender.com/jobbackup/${del._id}`, configOption);
         const result = await data.json()
-        console.log("====>", result)
         if (result.status === 201) {
             toast.success("Your Application In Trash")
             callhistory();
@@ -182,7 +175,7 @@ function Jobhistory() {
                                                     <tr>
                                                         <td>
                                                             <img
-                                                                src={`http://localhost:5000/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`}
+                                                                src={`https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${item?.rec_id?.cmp_logo}`}
                                                                 className="avatar-lg"
                                                                 alt="Avatar"
                                                             />

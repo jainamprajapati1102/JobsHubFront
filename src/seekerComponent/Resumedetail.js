@@ -37,9 +37,8 @@ function Resumedetail() {
       }
     }
 
-    const response = await fetch('http://localhost:5000/checkprofile', configOption);
+    const response = await fetch('https://jobshubback-19af.onrender.com/checkprofile', configOption);
     const result = await response.json();
-    console.log(`Profile check ${JSON.stringify(result)}`);
     if (result.status !== 0) {
     } else {
       toast.error(result.msg);
@@ -53,8 +52,7 @@ function Resumedetail() {
   const callProfile = async () => {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
-      console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-19af.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -64,7 +62,6 @@ function Resumedetail() {
         }
       });
       const data = await res.json();
-      console.log(data);
       setSeekerdata({
         ...seekerData, js_name: data.js_name,
         js_gender: data.js_gender,
@@ -87,13 +84,12 @@ function Resumedetail() {
         throw error;
       }
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
       navigate('/seekerlogin')
     }
   }
   const downloadresume = async (req, res) => {
-    axios.post('http://localhost:5000/createresume', seekerData)
-      .then(() => axios.get('http://localhost:5000/downloadresume', { responseType: 'blob' })).then((res) => {
+    axios.post('https://jobshubback-19af.onrender.com/createresume', seekerData)
+      .then(() => axios.get('https://jobshubback-19af.onrender.com/downloadresume', { responseType: 'blob' })).then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, `${seekerData.js_name}Resume.pdf`)
       })
@@ -142,7 +138,7 @@ function Resumedetail() {
                         <div className="col-md-4 text-center user_profile_img mrg-bot-30">
                           {" "}
                           <img
-                            src={`http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}`}
+                            src={`https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}`}
                             className="img-circle width-100"
                             alt=""
                           />
@@ -208,14 +204,6 @@ function Resumedetail() {
                               <i className="ti-location-pin padd-r-10" />
                               {seekerData.js_address}
                             </li>
-                            {/* <li>
-                              <i className="ti-credit-card padd-r-10" />
-                              Package: {seekerData.js_salary}
-                            </li>*/}
-                            {/*<li>
-                              <i className="ti-world padd-r-10" />
-                              
-                            </li>*/}
                             <li>
                               <i className="ti-mobile padd-r-10" />
                               {seekerData.js_mno}

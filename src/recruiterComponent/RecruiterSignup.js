@@ -37,9 +37,7 @@ const Signup1 = () => {
     // esta_date: ""
   });
 
-
   const update = (e) => {
-
     setnew(
       {
         ...newData,
@@ -47,9 +45,6 @@ const Signup1 = () => {
 
       });
   }
-
-  console.log('newdata===>', newData)
-
   const submit = async (e) => {
     // e.preventDefault();
     const data = new FormData();
@@ -58,7 +53,7 @@ const Signup1 = () => {
     data.append('cmp_email', newData.cmp_email)
     data.append('rec_mno', newData.rec_mno)
     data.append('cmp_logo', newData.cmp_logo);
-    let response = await fetch('http://localhost:5000/recsignup', {
+    let response = await fetch('https://jobshubback-19af.onrender.com/recsignup', {
       method: "POST",
       body: data
     })
@@ -161,31 +156,6 @@ const Signup1 = () => {
 
                     </div>
                   </div>
-                  {/* <div className="col-md-4">
-                    <div className="form-group">
-                      <label>Confirm Password</label>
-                      <input
-                        type="password"
-                        name="jsrepwd"
-                        className="form-control"
-                        placeholder="********"
-                        onChange={(e) => update(e)}
-                      />
-                    </div> */}
-                  {/* </div> */}
-                  {/* <div className="col-md-4">
-                    <div className="form-group">
-                      <label>Phone</label>
-                      <input
-                        type="text"
-                        name="jsmno"
-                        className="form-control"
-                        placeholder="Phone Number"
-  
-                        onChange={(e) => update(e)}
-                      />
-                    </div>
-                  </div> */}
                   <div className="col-md-6">
                     <div className="form-group">
                       <label>Whatsapp  No:</label>
@@ -222,16 +192,6 @@ const Signup1 = () => {
                     <div className="form-group text-center mrg-top-15">
 
                       <input className="btn theme-btn btn-m full-width" type='submit' value='Sign Up' />
-                      {/* <button
-                      type="button"
-                      className="btn theme-btn btn-m full-width" */}
-                      {/* onClick={ */}
-                      {/* //   submit */}
-                      {/* //   // e.preventDefault(); */}
-                      {/* // } */}
-                      {/* //> */}
-                      {/* Sign Up
-                    </button> */}
                     </div>
 
                     Alredy have an account?  <Link to="/recruiterlogin" title="Home" className="login">

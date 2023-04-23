@@ -27,8 +27,7 @@ function Seekerprofile() {
   const callProfile = async () => {
     try {
       const token = JSON.stringify(localStorage.getItem('seekerToken'));
-      console.log("token===>", token)
-      const res = await fetch('http://localhost:5000/getseeker', {
+      const res = await fetch('https://jobshubback-19af.onrender.com/getseeker', {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -38,7 +37,6 @@ function Seekerprofile() {
         }
       });
       const data = await res.json();
-      console.log(data);
       setSeekerdata({
         ...seekerData, js_name: data.js_name,
         js_gender: data.js_gender,
@@ -61,7 +59,6 @@ function Seekerprofile() {
         throw error;
       }
     } catch (err) {
-      console.log(`Here is some Error :- ${err}`);
       navigate('/seekerlogin')
     }
   }
@@ -84,7 +81,7 @@ function Seekerprofile() {
       }
     };
 
-    const response = await fetch(`http://localhost:5000/updateprofile`, confiOption);
+    const response = await fetch(`https://jobshubback-19af.onrender.com/updateprofile`, confiOption);
     const result = await response.json();
 
     if (result.status === 200) {
@@ -123,8 +120,6 @@ function Seekerprofile() {
   const changepass = async () => {
     if (newpass.oldpwd && newpass.updatedpass && newpass.updateconpass) {
 
-
-      console.log("")
       const configOPtion = {
         method: "POST",
         headers: {
@@ -134,18 +129,15 @@ function Seekerprofile() {
         body: JSON.stringify(newpass)
       }
 
-      const response = await fetch('http://localhost:5000/changepass', configOPtion)
+      const response = await fetch('https://jobshubback-19af.onrender.com/changepass', configOPtion)
       const result = await response.json()
-      console.log(`---->${result.status}`)
       if (result.status === 201) {
         toast.success("Your Password Successfully Change")
         logout()
       } else {
         if (result.status === 401) {
-          console.log(`Aa add kravani 6 error ma :--->${result.err}`)
           toast.error(`${result.err}`)
         }
-        // toast.error("Your Password Not Change Yet!!")
       }
     } else {
       toast.error("All Feilds Required")
@@ -177,7 +169,7 @@ function Seekerprofile() {
         'Authorization': `Bearer ${accesstoken}`,
       },
     }
-    const response = await fetch('http://localhost:5000/sekdeleteaccount', configOPtion)
+    const response = await fetch('https://jobshubback-19af.onrender.com/sekdeleteaccount', configOPtion)
     const result = await response.json();
     if (result.status === 201) {
       toast.success("Your Account Deleted")
@@ -299,7 +291,7 @@ function Seekerprofile() {
                     <div className="user_dashboard_pic">
                       {" "}
                       {
-                        <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
+                        <img src={seekerData.js_profile ? `https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avatar} />
                       }
 
                       <span className="user-photo-action">{seekerData.js_name}</span>{" "}
@@ -377,7 +369,6 @@ function Seekerprofile() {
                           Address
                         </div>
                         <div className="col-md-4 col-sm-4 col-xs-12">
-                          {console.log("seek add", seekerData.js_address)}
                           {seekerData.js_address}
                         </div>
                       </li>

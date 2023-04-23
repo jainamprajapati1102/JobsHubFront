@@ -26,14 +26,13 @@ function Recruiterforgot() {
     const OtpRequestFunction = async (e) => {
         //     //  form Validation
         e.preventDefault();
-        const res = await fetch("http://localhost:5000/recmail", {
+        const res = await fetch("https://jobshubback-19af.onrender.com/recmail", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         })
-        // console.log(res)
 
         const result = await res.json();
         if (result.status === 401 || !result) {
@@ -62,7 +61,7 @@ function Recruiterforgot() {
                 },
                 body: JSON.stringify(veri)
             }
-            const resp = await fetch("http://localhost:5000/recruiterverifyotp", config);
+            const resp = await fetch("https://jobshubback-19af.onrender.com/recruiterverifyotp", config);
             var result = await resp.json();
             if (result.status === 201) {
                 toast.success(result.msg);
@@ -74,7 +73,6 @@ function Recruiterforgot() {
     };
 
     const changepassword = async () => {
-        console.log("aavi gayu 6 hve st thase")
         if (data.newpwd == data.conpwd) {
             const config = {
                 method: "PUT",
@@ -83,7 +81,7 @@ function Recruiterforgot() {
                 },
                 body: JSON.stringify(data)
             }
-            const response = await fetch("http://localhost:5000/recruiterforgot", config);
+            const response = await fetch("https://jobshubback-19af.onrender.com/recruiterforgot", config);
             const result = await response.json()
             if (result.status === 201) {
                 toast.success(result.msg)
