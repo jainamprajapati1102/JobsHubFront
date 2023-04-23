@@ -42,7 +42,6 @@ function SeekerLogin() {
   console.log(count)
   const loginUser = async (e) => {
     if (user.js_email && user.js_pwd) {
-      // let result = await fetch('https://jobshubback-19af.onrender.com/login', {
       let result = await fetch('https://jobshubback-19af.onrender.com/login', {
         method: "POST",
         body: JSON.stringify(user),
@@ -250,11 +249,7 @@ function SeekerLogin() {
                     </div>
                     <div className="form-group">
                       {" "}
-
                       <Link to="/seekersendmail" title="Forget" className="fl-right">Forgot Password?</Link>
-                      {/*   <label for="chpass" title="Forget" className="fl-right">Forgot Password?</label>
-                      <button style={{ display: "none" }} id="chpass" onClick={onOpenModal}></button>
-*/}
                     </div>
                   </div>
 
@@ -268,25 +263,7 @@ function SeekerLogin() {
                           Sign In
                         </button>
                       }
-                      {/*<button onClick={googlesignupHandle}>
-                    Sign In With Google
-                  </button>
-                  <Link to="https://jobshubback-19af.onrender.com/auth/google" onClick={googlesignupHandle}>Sign In with Google</Link>*/}
-                      {/*<Link to="http://localhost:5000/auth/google" onClick={googlesignupHandle}>
-                        <>
 
-                          <div className="google-btn" style={{ display: "flex", justifyContent: "center" }}>
-                            <div className="google-icon-wrapper" style={{ marginBottom: "10px" }}>
-                              <img
-                                className="google-icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                              />
-
-                            </div>
-
-                          </div>
-                        </>
-                      </Link>*/}
                     </div>
                     Don't Have an account ?  <Link to="/seekersignup" title="Home" className="login">
                       Sign Up
