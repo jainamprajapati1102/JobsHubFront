@@ -80,7 +80,7 @@ function Recruiterjobrestor() {
             Swal.fire({
                 position: 'top-middle',
                 icon: 'success',
-                title: 'Your Your Job Post Restore',
+                title: 'Your Job Post Restore',
                 showConfirmButton: false,
                 timer: 1500
             })

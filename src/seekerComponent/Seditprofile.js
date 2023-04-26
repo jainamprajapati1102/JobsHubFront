@@ -466,6 +466,7 @@ function Seditprofile() {
                             name='js_dob'
                             className="form-control"
                             placeholder="YYYY/MM/DD"
+                            data-max-day={Date.now()}
                             value={seekerData.js_dob}
 
                             onChange={updateHandler}

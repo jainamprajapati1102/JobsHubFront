@@ -493,14 +493,15 @@ function Editprofile() {
                               <input
                                 type="text"
                                 name="esta_date"
-                                value={inputdata.esta_date ? moment(inputdata?.esta_date).format("DD/MM/YYYY") : ''}
+                                // value={inputdata.esta_date ? moment(inputdata?.esta_date).format("DD/MM/YYYY") : ''}
+                                value={moment(inputdata?.esta_date).format("DD/MM/YYYY")}
                                 placeholder="DD/MM/YYYY"
                                 id="reservation-date"
                                 data-lang="en"
                                 data-large-mode="true"
                                 // data-min-year={2020}
                                 // data-max-year={2023}
-                                // data-max-day={Date.now()}
+                                data-max-day={Date.now()}
                                 // data-disabled-days="08/17/2020,08/18/2020"
                                 data-id="datedropper-0"
                                 data-theme="my-style"

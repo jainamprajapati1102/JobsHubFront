@@ -63,7 +63,7 @@ function ManageJob() {
     });
     const result = await response.json();
     if (result.status === 200) {
-      toast.success("job delete success");
+      toast.success("Job Trash Success");
       getOwnJobpostData();
     }
   }
