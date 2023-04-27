@@ -89,6 +89,7 @@ function Resumedetail() {
   }
   const downloadresume = async (req, res) => {
     console.log('seeekerData in resume component before ===>', seekerData)
+    console.log('seeekerData in resume component before ===>', seekerData)
     axios.post('http://localhost:5000/createresume', seekerData)
       .then(() => axios.get('http://localhost:5000/downloadresume', { responseType: 'blob' })).then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
