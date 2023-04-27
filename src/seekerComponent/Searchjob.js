@@ -541,30 +541,7 @@ function Searchjob() {
                               Both
                             </li>
                           </ul>
-                          <div className="fl-right short_by_filter_list">
 
-                            <div className="search-wide short_by_til">
-                              <h5>Short By</h5>
-                            </div>
-                            <div className="search-wide full">
-
-                              <Select
-                                className="wide "
-                                name="time"
-                                onChange={(value) => selectHandler({ ...sort, value })}
-                                options={timeOption}
-                              />
-                            </div>
-                            <></>
-                            <div className="search-wide full">
-                              <select className="wide form-control">
-                                <option>10 Per Page</option>
-                                <option value={1}>20 Per Page</option>
-                                <option value={2}>30 Per Page</option>
-                                <option value={4}>50 Per Page</option>
-                              </select>
-                            </div>
-                          </div>
                         </div>
 
                       </div>
