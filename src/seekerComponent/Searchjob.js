@@ -517,7 +517,7 @@ function Searchjob() {
                         </div>
 
                         <div className="col-md-8 col-sm-12 col-xs-12">
-                          <ul style={{ display: "flex", position: "relative", top: "56px", left: "-10%" }}>
+                          <ul style={{ display: "flex", position: "relative", top: "29px", left: "50%", paddingBottom: "15px" }}>
 
                             <li style={{ listStyle: "none", margin: "10px" }}>
                               <span className="custom-radio">
