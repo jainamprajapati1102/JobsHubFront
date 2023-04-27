@@ -233,24 +233,18 @@ function Updatejob() {
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <div className="form-group">
                                                 <label>Gender</label>
-                                                <Select
-                                                    className="wide form-control"
-                                                    name="gender"
-                                                    onChange={({ value }) => selectHandler({ name: 'gender', value })}
-                                                    options={genderOption}
-                                                    value={{ value: jobdata.gender, label: jobdata.gender }}
-                                                />
+                                                <select className="wide form-control" name="gender" onChange={(e) => selectHandler('gender', e)}>
+                                                    <option value="">select</option>
+                                                    {genderOption.map((item) => <option value={item.value} selected={item.value === jobdata?.gender} >{item.label}</option>)}
+                                                </select>
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Salary Range</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="salaryrange"
-                                                onChange={({ value }) => selectHandler({ name: 'salaryrange', value })}
-                                                options={salaryoption}
-                                                value={{ value: jobdata.salaryrange, label: jobdata.salaryrange }}
-                                            />
+                                            <select className="wide form-control" name="salaryrange" onChange={(e) => selectHandler('salaryrange', e)}>
+                                                <option value="">Select</option>
+                                                {salaryoption.map((item) => <option value={item.value} selected={item.value === jobdata?.salaryrange} >{item.label}</option>)}
+                                            </select>
                                         </div>
 
                                         <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
@@ -267,24 +261,18 @@ function Updatejob() {
 
                                         <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
                                             <label>Experience</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="experience"
-                                                onChange={({ value }) => selectHandler({ name: 'experience', value })}
-                                                options={experienceOption}
-                                                value={{ value: jobdata.experience, label: jobdata.experience }}
-                                            />
+                                            <select className="wide form-control" name="experience" onChange={(e) => selectHandler('experience', e)}>
+                                                <option value="">Select</option>
+                                                {experienceOption.map((item) => <option value={item.value} selected={item.value === jobdata.experience}  >{item.label}</option>)}
+                                            </select>
                                         </div>
 
                                         <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
                                             <label>Job Type</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="jobtype"
-                                                onChange={({ value }) => selectHandler({ name: 'jobtype', value })}
-                                                options={jobtypeOption}
-                                                value={{ value: jobdata.jobtype, label: jobdata.jobtype }}
-                                            />
+                                            <select className="wide form-control" name="jobtype" onChange={(e) => selectHandler('jobtype', e)}>
+                                                <option value="">Select</option>
+                                                {jobtypeOption.map((item) => <option value={item.value} selected={item.value === jobdata.jobtype} >{item.label}</option>)}
+                                            </select>
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Language known</label>
@@ -300,13 +288,10 @@ function Updatejob() {
 
                                         <div className="col-md-6 col-sm-6 col-xs-12 m-clear">
                                             <label>Qualification Required</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="qualification"
-                                                onChange={({ value }) => selectQuali({ name: 'qualification', value })}
-                                                options={qualificationOption}
-                                                value={{ value: jobdata.qualification, label: jobdata.qualification }}
-                                            />
+                                            <select className="wide form-control" name="qualification" onChange={(e) => selectHandler('qualification', e)}>
+                                                <option value="">Select</option>
+                                                {qualificationOption.map((item) => <option value={item.value} selected={item.value === jobdata.qualification} >{item.label}</option>)}
+                                            </select>
                                         </div>
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Degree</label>
@@ -336,13 +321,10 @@ function Updatejob() {
 
                                         <div className="col-md-6 col-sm-6 col-xs-12">
                                             <label>Types of Interview</label>
-                                            <Select
-                                                className="wide form-control"
-                                                name="interviewtype"
-                                                onChange={({ value }) => selectHandler({ name: 'interviewtype', value })}
-                                                options={interviewtypeOption}
-                                                value={{ value: jobdata.interviewtype, label: jobdata.interviewtype }}
-                                            />
+                                            <select className="wide form-control" name="interviewtype" onChange={(e) => selectHandler('interviewtype', e)}>
+                                                <option value="">Select</option>
+                                                {interviewtypeOption.map((item) => <option value={item.value} selected={item.value === jobdata?.interviewtype} >{item.label}</option>)}
+                                            </select>
                                         </div>
 
 

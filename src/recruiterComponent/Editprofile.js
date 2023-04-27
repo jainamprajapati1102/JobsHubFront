@@ -18,9 +18,7 @@ function Editprofile() {
 
   useEffect(() => {
     fetchCompanyData();
-    fetchCountry();
-    fecthState();
-    fetchCityData();
+
     callrecruiter();
     fetchcategory();
     // simulate an API call with a delay of 3 seconds
@@ -42,9 +40,7 @@ function Editprofile() {
     localStorage.removeItem('recruiterToken')
     navigate('/recruiterlogin')
   }
-  const [countrylist, setCountrylist] = useState([]);
-  const [statelist, setStatelist] = useState([]);
-  const [citylist, setCitylist] = useState([]);
+
   const [categorydata, setCategorydata] = useState();
   const [accesstoken] = useState(localStorage.getItem("recruiterToken"));
   const [inputdata, setInputdata] = useState('');
@@ -63,12 +59,7 @@ function Editprofile() {
     { value: '11:00AM To 7:00PM', label: '11:00AM To 7:00PM' }
 
   ]
-  const jobcatogoryOption = [
-    { label: 'information technology', value: 'information technology' },
-    { label: 'Hardware', value: 'Hardware' },
-    { label: 'software', value: 'software' },
-    { label: 'mechanical', value: 'mechanical' }
-  ]
+
   const selectHandler = ({ name, label }) => {
     setInputdata({ ...inputdata, [name]: label })
   }
@@ -99,50 +90,6 @@ function Editprofile() {
     setInputdata({ ...inputdata, [name]: value })
   }
 
-  // ***** fetch country data ******
-  const fetchCountry = async () => {
-    const rescountry = Country.getAllCountries()
-    let country_list = [];
-    rescountry?.map((item) => country_list.push({ value: item.name, label: item.name }));
-    setCountrylist(country_list);
-  };
-
-  // ***** fetch state data ******
-  const fecthState = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        credentials: "includes",
-        'Authorization': `Bearer ${accesstoken}`,
-      }
-    })
-    const resultstate = await response.json();
-    let State_list = [];
-    resultstate?.map((item) => { State_list.push({ value: item.name, label: item.name }) })
-    setStatelist(State_list);
-  }
-
-  // ***** fetch city data ******
-  const fetchCityData = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        credentials: "includes",
-        'Authorization': `Bearer ${accesstoken}`,
-      }
-    }
-    );
-
-    const result = await response.json();
-    let city_list = [];
-    result?.map((item) => { city_list.push({ value: item.title, label: item.title }) });
-    setCitylist(city_list);
-  }
-
   // ***** fetch company data ****** 
   const fetchCompanyData = async () => {
     const response = await fetch('https://jobshubback-19af.onrender.com/getrecruiter', {
@@ -154,10 +101,7 @@ function Editprofile() {
         'Authorization': `Bearer ${accesstoken}`,
       }
     });
-
-
     const data = await response.json();
-
     setInputdata({
       ...inputdata,
       cmp_name: data.cmp_name,
@@ -387,7 +331,7 @@ function Editprofile() {
                 <div className="col-md-3">
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
-                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={inputdata.cmp_logo ? `http://localhost:5000/public/uploads1/companylogo/${inputdata.cmp_logo}` : avtar} alt={inputdata.cmp_name} />{" "}</label>
                       <input type="file" id="file" name="cmp_logo" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
                   </div>
@@ -467,30 +411,16 @@ function Editprofile() {
 
                             <div className="col-md-6 col-sm-6 col-xs-12">
                               <div className="form-group">
-
                                 <label>Category</label>
-
-                                <Select
-                                  className="wide form-control"
-                                  name="industry_cat"
-
-                                  onChange={({ label }) => selectHandler({ name: 'industry_cat', label })}
-                                  options={categorydata}
-                                  value={categorydata?.map((list) => {
-                                    if (list.label == inputdata.industry_cat) {
-                                      return {
-                                        value: list.value,
-                                        label: list.label,
-                                      }
-                                    }
-                                  })}
-                                />
+                                <select className="wide form-control" name="industry_cat" onChange={(e) => update2('industry_cat', e)}>
+                                  {categorydata.map((item) => <option value={item.label} selected={item.label === inputdata?.industry_cat}>{item.label}</option>)}
+                                </select>
                               </div>
                             </div>
 
                             <div className="col-md-6 col-sm-6 col-xs-12">
                               <div className="form-group">
-                                <label>Establish Date</label>
+                                <label>Date Of Birth</label>
                                 <input
                                   type="date"
                                   id="esta_date"
@@ -621,9 +551,10 @@ function Editprofile() {
 
                             <div className="col-md-6 col-sm-6 col-xs-12">
                               <div className="form-group">
-
                                 <label>Employees</label>
-                                <Select options={employessOption} onChange={({ value }) => update2({ name: 'employess', value })} value={inputdata.employess ? { value: inputdata.employess, label: inputdata.employess } : 'select'} />
+                                <select className="wide form-control" name="employee" onChange={(e) => update2('employess', e)}>
+                                  {employessOption.map((item) => <option value={item.value} selected={item.value === inputdata?.employess}>{item.label}</option>)}
+                                </select>
                               </div>
 
                             </div>
@@ -632,19 +563,11 @@ function Editprofile() {
                               <div className="form-group">
 
                                 <label>Working Time</label>
-                                <Select options={worktimeOption}
-                                  style={{ display: "none" }}
-                                  onChange={({ value }) => update2({ value, name: 'worktime' })}
-                                  value={{ value: inputdata.worktime, label: inputdata.worktime }} />
+                                <select className="wide form-control" name="worktime" onChange={(e) => update2('worktime', e)}>
+                                  {worktimeOption.map((item) => <option value={item.value} selected={item.value === inputdata?.worktime}>{item.label}</option>)}
+                                </select>
                               </div>
                             </div>
-
-                            {/* <div className="col-md-6">
-                            <label>Company Logo</label>
-                            <div className="custom-file-upload">
-                              <input type="file" name="cmp_logo" onChange={(e) => update1(e)} />
-                            </div>
-                          </div> */}
                           </div>
                         </div>
                       </div>

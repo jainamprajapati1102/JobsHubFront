@@ -326,7 +326,7 @@ function Seditprofile() {
                   <div id="leftcol_item">
                     <div className="user_dashboard_pic">
                       {" "}
-                      <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
+                      <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `http://localhost:5000/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
                       <input type="file" id="file" name="js_profile" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
                     </div>
                   </div>
@@ -446,14 +446,10 @@ function Seditprofile() {
                       </div>
                       <div className="col-md-6 col-sm-6 col-xs-12">
                         <label>Gender</label>
-                        <Select
-                          className="wide "
-                          name="gender"
-
-                          onChange={({ value }) => update2({ name: 'gender', value })}
-                          options={genderOption}
-                          value={{ value: seekerData.js_gender, label: seekerData.js_gender }}
-                        />
+                        <select className="wide form-control" name="gender" onChange={(e) => updateHandler('gender', e)}>
+                          <option value="">Select Gender</option>
+                          {genderOption.map((item) => <option value={item.value} selected={item.value === seekerData?.gender} >{item.label}</option>)}
+                        </select>
                       </div>
 
 
