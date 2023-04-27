@@ -490,7 +490,7 @@ function Editprofile() {
 
                             <div className="col-md-6 col-sm-6 col-xs-12">
                               <div className="form-group">
-                                <label>Date Of Birth</label>
+                                <label>Establish Date</label>
                                 <input
                                   type="date"
                                   id="esta_date"
