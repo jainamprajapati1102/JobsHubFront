@@ -181,7 +181,7 @@ function Jobhistory() {
                                                             />
                                                             {item?.rec_id?.cmp_name}
                                                         </td>
-                                                        <td>{moment(item?.rec_id?.updatedAt).format("DD/MM/YYYY")}</td>
+                                                        <td>{moment(item?.createdAt).format("DD/MM/YYYY")}</td>
                                                         <td>
                                                             {/* {((item) => {
                                                         if (item?.accept == 1) {
