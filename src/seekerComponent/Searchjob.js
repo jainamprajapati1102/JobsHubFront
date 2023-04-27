@@ -518,7 +518,7 @@ function Searchjob() {
 
                         <div className="col-md-8 col-sm-12 col-xs-12">
                           <ul style={{ display: "flex", position: "relative", top: "56px", left: "-10%" }}>
-                  
+
                             <li style={{ listStyle: "none", margin: "10px" }}>
                               <span className="custom-radio">
                                 <input type="radio" name="gender" style={{ listStyleType: "none" }} value="Male" onChange={(e) => setgender(e.target.value)} id="g1" />
@@ -577,13 +577,12 @@ function Searchjob() {
                               <div className="vertical-job-header">
                                 <div className="vrt-job-cmp-logo">
                                   {" "}
-                                  <a href="job-detail.html">
+                                  <a href="#">
                                     <img src={list?.postedby?.cmp_logo ? `https://jobshubback-19af.onrender.com/public/uploads1/companylogo/${list?.postedby?.cmp_logo}` : pic} className="img-responsive" />
                                   </a>{" "}
                                 </div>
                                 <h4>
-
-                                  <Link to={`/jobdetail/${list?._id}`}>{list?.jobtitle}</Link>
+                                  {list?.jobtitle}
                                 </h4>
                                 <span className="com-tagline">{list?.postedby?.designation}</span>{" "}
                                 <span className="pull-right vacancy-no">
@@ -684,7 +683,7 @@ function Searchjob() {
             </>
             <Seekerfooter />
           </>
-        </div>
+        </div >
       }
     </>
   )
