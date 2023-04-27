@@ -4,7 +4,7 @@ import SeekHeader from "./SeekHeader";
 import Footer from '../Footer';
 import { toast } from 'react-toastify';
 import { Modal } from 'react-responsive-modal';
-
+import moment from 'moment';
 import Load from '../Load'
 import RecHeader from "./SeekHeader";
 import { useForm } from "react-hook-form";
@@ -209,7 +209,10 @@ function Seditprofile() {
       toast.error("All Feilds Required")
     }
   }
+  const date = new Date();
 
+  const today = moment().add(-18, 'y').format("YYYY-MM-DD")
+  console.log(today, "todayyyyyyyyyy")
   return (
     <>
       {isLoading ? <Loader /> : <div>
@@ -325,8 +328,6 @@ function Seditprofile() {
                       {" "}
                       <label for="file" style={mystyle} onChange={profile}> <img src={seekerData.js_profile ? `https://jobshubback-19af.onrender.com/public/uploads1/seekerprofile/${seekerData.js_profile}` : avtar} />{" "}</label>
                       <input type="file" id="file" name="js_profile" style={{ display: 'none' }} onChange={(e, val) => profilepic(e, val)} />
-
-
                     </div>
                   </div>
                   <div className="dashboard_nav_item">
@@ -406,7 +407,6 @@ function Seditprofile() {
                         <div className="form-group">
                           <label>Phone</label>
                           <input type="text" className="form-control" name="js_mno" maxLength={13} placeholder="123 214 13247" value={seekerData.js_mno} onChange={updateHandler}
-
                           />
                           {errors.js_mno && <p className='err'>Please check the Password</p>}
 
@@ -457,26 +457,22 @@ function Seditprofile() {
                       </div>
 
 
-                      {/**/}<div className="col-md-6 col-sm-6 col-xs-12">
+                      <div className="col-md-6 col-sm-6 col-xs-12">
                         <div className="form-group">
                           <label>Date Of Birth</label>
                           <input
                             type="date"
                             id="js_dob"
                             name='js_dob'
+                            max={today}
                             className="form-control"
                             placeholder="YYYY/MM/DD"
-                            data-max-day={Date.now()}
                             value={seekerData.js_dob}
-
                             onChange={updateHandler}
-                          // readOnly=""
                           />
                           {errors.js_dob && <p className='err'>Please check the Password</p>}
-
                         </div>
                       </div>
-
                       <div className="col-md-6 col-sm-6 col-xs-12">
                         <div className="form-group">
                           <label>Education</label>

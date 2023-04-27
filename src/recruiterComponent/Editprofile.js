@@ -272,7 +272,8 @@ function Editprofile() {
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
-
+  const date = new Date();
+  const today = moment().add(-1, 'd').format("YYYY-MM-DD")
   return (
     <>
       {isLoading ? <Loader /> : <div>
@@ -487,29 +488,23 @@ function Editprofile() {
                               </div>
                             </div>
 
-
                             <div className="col-md-6 col-sm-6 col-xs-12">
-                              <label>Established</label>
-                              <input
-                                type="text"
-                                name="esta_date"
-                                // value={inputdata.esta_date ? moment(inputdata?.esta_date).format("DD/MM/YYYY") : ''}
-                                value={moment(inputdata?.esta_date).format("DD/MM/YYYY")}
-                                placeholder="DD/MM/YYYY"
-                                id="reservation-date"
-                                data-lang="en"
-                                data-large-mode="true"
-                                // data-min-year={2020}
-                                // data-max-year={2023}
-                                data-max-day={Date.now()}
-                                // data-disabled-days="08/17/2020,08/18/2020"
-                                data-id="datedropper-0"
-                                data-theme="my-style"
-                                className="form-control"
-                                readOnly=""
-                                onChange={update1}
-                              />
+                              <div className="form-group">
+                                <label>Date Of Birth</label>
+                                <input
+                                  type="date"
+                                  id="esta_date"
+                                  name='esta_date'
+                                  max={today}
+                                  className="form-control"
+                                  placeholder="YYYY/MM/DD"
+                                  value={inputdata?.esta_date}
+                                  selected={inputdata?.esta_date ? moment(inputdata?.esta_date, "DD-MM-YYYY") : ''}
+                                  onChange={update1}
+                                />
+                              </div>
                             </div>
+
                           </div>
                         </div>
                       </div>

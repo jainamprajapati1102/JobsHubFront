@@ -110,9 +110,9 @@ function Updatejob() {
 
     /* *********** gender option *********  */
     const genderOption = [
-        { value: 'male', label: 'Male' },
-        { value: 'female', label: 'Female' },
-        { value: 'LGBT', label: 'LGBT' },
+        { value: 'Male', label: 'Male' },
+        { value: 'Female', label: 'Female' },
+        { value: 'Both', label: 'Both' },
     ]
 
     /* *********** salary option *********  */

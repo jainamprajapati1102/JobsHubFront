@@ -13,8 +13,17 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import Loader from '../Loader';
 function Seekerprofile() {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     callProfile();
+    getlocaltion();
+    // simulate an API call with a delay of 3 seconds
+    setTimeout(() => {
+      setData("Some data");
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
   const [seekerData, setSeekerdata] = useState({
@@ -91,9 +100,6 @@ function Seekerprofile() {
       toast.error("Seeker Is Not Exist");
     }
   }
-  useEffect(() => {
-    getlocaltion();
-  }, [])
   const [country, setCountry] = useState([]);
   const [state, setStates] = useState('');
   const [city, setCity] = useState('');
@@ -148,16 +154,7 @@ function Seekerprofile() {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // simulate an API call with a delay of 3 seconds
-    setTimeout(() => {
-      setData("Some data");
-      setIsLoading(false);
-    }, 1000);
-  }, []);
 
   const deleteaccount = async () => {
     const configOPtion = {
@@ -295,12 +292,6 @@ function Seekerprofile() {
                       }
 
                       <span className="user-photo-action">{seekerData.js_name}</span>{" "}
-                      {/*<span
-                  className='user-photo-action' >
-                  <input type="file" id="file" name="myfiles" style={{ display: 'none' }} />
-                  <label for="file"> <i className="ti-camera" aria-hidden="true" style={{ fontSize: '2rem' }} />{" "}</label>
-                </span>*/}
-                      {" "}
                     </div>
                   </div>
                   <div className="dashboard_nav_item">
@@ -342,7 +333,7 @@ function Seekerprofile() {
                   </div>
                 </div>
                 <div className="col-md-9">
-                  <h3 class="background"><span>User Profile</span></h3>
+                  <h3 className="background"><span>User Profile</span></h3>
                   <div className="emp-des">
                     <h3>{seekerData.js_name}</h3>
 
@@ -404,7 +395,7 @@ function Seekerprofile() {
 
 
                   <div className="emp-des">
-                    <h3 class="background"><span>Education</span></h3>
+                    <h3 className="background"><span>Education</span></h3>
                     <ul className="employer_detail_item">
                       <li>
                         <div className="col-md-4 col-sm-4 col-xs-12 detail_tag">
@@ -454,7 +445,7 @@ function Seekerprofile() {
 
 
                   <div className="emp-des">
-                    <h3 class="background"><span>Experience</span></h3>
+                    <h3 className="background"><span>Experience</span></h3>
                     <div className="row">
                       <ul className="employer_detail_item">
 
