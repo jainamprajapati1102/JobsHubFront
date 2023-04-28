@@ -90,8 +90,8 @@ function Resumedetail() {
   const downloadresume = async (req, res) => {
     console.log('seeekerData in resume component before ===>', seekerData)
     console.log('seeekerData in resume component before ===>', seekerData)
-    axios.post('https://jobshubback-19af.onrender.com/createresume', seekerData)
-      .then(() => axios.get('https://jobshubback-19af.onrender.com/downloadresume', { responseType: 'blob' })).then((res) => {
+    axios.post('http://localhost:5000/createresume', seekerData)
+      .then(() => axios.get('http://localhost:5000/downloadresume', { responseType: 'blob' })).then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         console.log("during download", res.data)
         saveAs(pdfBlob, `${seekerData.js_name}Resume.pdf`)
